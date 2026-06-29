@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head>
 <meta charset="utf-8"/>
-<title>Case Study: Domino's Sri Lanka | Mahita Manikandan</title>
-<meta content="Domino's Sri Lanka menu photography and burger films — figuring it out, one pizza at a time." name="description"/>
+<title>Case Study: SuperYou Choco-Peanut Pro Bar | Mahita Manikandan</title>
+<meta content="Ingredients, honestly shown. Mostly AI. A product window film for SuperYou's Choco-Peanut Pro Bar." name="description"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <link href="https://cdn.prod.website-files.com/609988bd503b3c3129b4bab4/css/bitemark.webflow.shared.bffa682c5.min.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -70,74 +70,63 @@
     margin-top: 1rem;
   }
 
-  /* ── Domino's SL: stills grid (no captions) ── */
-  .ds-stills-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    border-top: 1px solid #222;
-    border-left: 1px solid #222;
-    margin-top: 1.5rem;
-  }
-  .ds-stills-cell {
-    border-right: 1px solid #222;
-    border-bottom: 1px solid #222;
-    overflow: hidden;
-    background: #000;
-    aspect-ratio: 1 / 1;
-  }
-  .ds-stills-cell img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  @media (max-width: 900px) {
-    .ds-stills-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 520px) {
-    .ds-stills-grid { grid-template-columns: 1fr; }
-  }
-
   /* ── Credits 2-line ── */
   .bk-credits { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.75rem; }
 
-  /* ── Film sections ── */
-  .bk-film-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.8fr;
-    min-height: 0;
+  /* ── Full film section ── */
+  .sy-full-film {
     border-top: 1px solid #222;
     margin-top: 1.5rem;
   }
-  .bk-film-grid.reverse { grid-template-columns: 1.8fr 1fr; }
-  .bk-film-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2.5rem;
-    background: var(--color-pink);
-  }
-  .bk-film-grid .bk-film-text { border-right: 1px solid #222; }
-  .bk-film-grid.reverse .bk-film-text { border-right: none; border-left: 1px solid #222; order: 2; }
-  .bk-film-grid.reverse .bk-video-cell { order: 1; }
-
-  /* ── Video: full 16:9, no crop ── */
-  .bk-video-cell {
+  .sy-full-film-video {
     position: relative;
     background: #000;
     aspect-ratio: 16 / 9;
     width: 100%;
     overflow: hidden;
-    align-self: stretch;
   }
-  .bk-video-cell video {
+  .sy-full-film-video video {
     width: 100%;
     height: 100%;
     object-fit: contain;
     display: block;
     background: #000;
   }
+  .sy-film-caption {
+    padding: 1.5rem 0 0 0;
+    max-width: 65%;
+  }
+  @media (max-width: 767px) {
+    .sy-film-caption { max-width: 100%; }
+  }
+
+  /* ── 2×2 clip grid ── */
+  .sy-clip-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid #222;
+    margin-top: 1.5rem;
+  }
+  .sy-clip-cell {
+    position: relative;
+    background: #000;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 0.75px solid #222;
+  }
+  .sy-clip-cell video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #000;
+  }
+  @media (max-width: 600px) {
+    .sy-clip-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Play button ── */
   .bk-play-btn {
     position: absolute;
     inset: 0;
@@ -151,9 +140,10 @@
   .bk-play-btn:hover { background: rgba(0,0,0,0.05); }
   .bk-play-btn svg { width: 72px; height: 72px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
   .bk-play-btn.playing { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-  .bk-video-cell:hover .bk-play-btn.playing { opacity: 1; pointer-events: auto; background: transparent; }
+  .sy-full-film-video:hover .bk-play-btn.playing,
+  .sy-clip-cell:hover .bk-play-btn.playing { opacity: 1; pointer-events: auto; background: transparent; }
 
-  /* ── Footer 3D MAHITA — exact copy of homepage ── */
+  /* ── Footer 3D MAHITA ── */
   .section.mahita-footer { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0 !important; padding-right: 0 !important; height: auto !important; background-color: var(--color-pink) !important; }
   .n-container.mahita-footer-inner { background-color: #feffdd !important; padding-bottom: 2rem !important; }
   .footer-3d-row {
@@ -227,9 +217,6 @@
   .sm-icon-wrapper { display: flex; align-items: center; }
 
   @media (max-width: 900px) {
-    .bk-film-grid, .bk-film-grid.reverse { grid-template-columns: 1fr; }
-    .bk-film-grid .bk-film-text, .bk-film-grid.reverse .bk-film-text { order: 2; border-right: none; border-left: none; border-top: 1px solid #222; }
-    .bk-film-grid .bk-video-cell, .bk-film-grid.reverse .bk-video-cell { order: 1; }
     .sprite-3d-model { width: 50px; height: 50px; }
     .sprite-3d-text { font-size: 2.5rem; }
   }
@@ -260,7 +247,7 @@
     <div class="content stretched verticle no-stroke _3-31-gap">
       <div class="w-layout-grid cs-title-wrap _3fr">
         <div class="_1-5em-gap">
-          <h1 class="display-header _22em-width">Figuring it out, one pizza at a time.</h1>
+          <h1 class="display-header _22em-width">Ingredients, honestly shown. Mostly AI.</h1>
         </div>
         <div class="_1-5em-gap back">
           <a href="/portfolio" class="wobble-icon w-inline-block">
@@ -269,13 +256,13 @@
               <path d="M23 13L16 20L23 27" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <h4 class="black no-caps">Domino's Sri Lanka — Menu Photography &amp; Burger Films</h4>
+          <h4 class="black no-caps">SuperYou — Choco-Peanut Pro Bar</h4>
         </div>
       </div>
     </div>
 
-    <!-- ── Domino's SL Hero Image ── -->
-    <img class="bk-hero-img" src="/dominos-sl/header-dominos-sl.png" alt="Domino's Sri Lanka"/>
+    <!-- ── Hero image ── -->
+    <img class="bk-hero-img" src="/super%20you/header%20super%20you.webp" alt="SuperYou Choco-Peanut Pro Bar"/>
 
   </div>
 </div>
@@ -287,18 +274,17 @@
       <div class="_1em-gap">
         <h2 class="case-study-title">What I did</h2>
         <div class="bk-pills">
-          <span class="bk-pill">Food Styling Assistance</span>
-          <span class="bk-pill">Production Coordination</span>
-          <span class="bk-pill">Tabletop Ad Concept</span>
-          <span class="bk-pill">Shot Breakdowns</span>
-          <span class="bk-pill">Motion Graphics &amp; Supers</span>
+          <span class="bk-pill">AI Film Production</span>
+          <span class="bk-pill">Creative Concept</span>
+          <span class="bk-pill">Shot Design</span>
+          <span class="bk-pill">Animation</span>
         </div>
       </div>
       <div class="_1em-gap" style="margin-top:2rem;">
         <h2 class="case-study-title">Credits</h2>
         <div class="bk-credits">
-          <p class="left-aligned black">Stills: Food Styling Assistance &amp; Production Coordination: Mahita Manikandan / Direction &amp; Food Styling: Saba Gaziyani</p>
-          <p class="left-aligned black">Films: Concept &amp; Creative Treatment: Mahita Manikandan / Direction: Saba Gaziyani</p>
+          <p class="left-aligned black">Concept &amp; Creative Treatment: Mahita Manikandan</p>
+          <p class="left-aligned black">Direction: Saba Gaziyani</p>
         </div>
       </div>
     </div>
@@ -309,19 +295,19 @@
     <div class="rounded-ivory">
       <div class="_1-5em-gap verticle">
         <h2 class="case-study-title">Context</h2>
-        <p class="black left-aligned">Domino's Sri Lanka needed their full menu shot — 80 products across pizzas, sides, and a rice range. Their whole team flew in to Delhi for the stills shoot. We had a local Sri Lankan chef on set to help us navigate the menu. He was great.<br/></p>
+        <p class="black left-aligned">SuperYou's Choco-Peanut bar is a new protein bar — fun, energetic, genuinely good for you. They needed a clean product window film that showed off what's actually inside it. Chocolate, peanuts, wafer.<br/></p>
       </div>
     </div>
     <div class="rounded-ivory">
       <div class="_1-5em-gap verticle">
         <h2 class="case-study-title">Problem</h2>
-        <p class="black left-aligned">We'd never worked with the Sri Lankan menu before. Different toppings, different ranges, different everything. Figuring out how to style and present each category correctly — without being familiar with the food — was the main challenge.<br/></p>
+        <p class="black left-aligned">Two days. No live shoot. And AI texture generation was not cooperating — specifically the wafer. Getting that layered, crisp texture to look accurate took way longer than it should have. The chocolate movement had to feel physically believable too, not floaty or fake.<br/></p>
       </div>
     </div>
     <div class="rounded-ivory">
       <div class="_1-5em-gap verticle">
         <h2 class="case-study-title">Solution</h2>
-        <p class="black left-aligned">Nine shoot days, a lot of prep, and a very organised pre-production deck. The Sri Lankan team was collaborative throughout. The burger films — a separate brief, done over video call — came together the same way.<br/></p>
+        <p class="black left-aligned">Most of the film was generated using Nano Banana, Kling 1.0, and Seeddance Flux. The wafer was the exception — that got shot practically by Saba ma'am and then carefully animated into the AI sequence. A hybrid approach, more or less.<br/></p>
       </div>
     </div>
   </div>
@@ -331,83 +317,111 @@
 <section class="section ivory">
   <div class="content relative-div case-study">
 
-    <!-- Section 2: The Concept -->
+    <!-- The Concept -->
     <div class="cs-main first">
       <div class="_1-5em-gap _65--width-wrapper">
         <h2 class="case-study-title">The Concept</h2>
-        <p class="black left-aligned cs-show-and-hide" style="display:block;">80 products means 80 chances to get it wrong. The prep work was everything — shoot order, tabletop choices, propping per category, how each pizza style should be presented differently from the next. Once that was sorted, the shoot itself could just flow.<br/></p>
+        <p class="black left-aligned cs-show-and-hide" style="display:block;">The brief was simple: show the ingredients, make them look real. Red background, milk chocolate, peanuts, wafer layers. Accuracy over drama — this bar actually has good stuff in it, so the film just needed to prove that honestly.<br/></p>
       </div>
     </div>
 
-    <!-- Stills grid (16 images) -->
+    <!-- Full Film -->
     <div class="cs-main">
       <div class="_1-5em-gap _65--width-wrapper">
-        <h2 class="case-study-title">Stills</h2>
+        <h2 class="case-study-title">Full Film</h2>
       </div>
-      <div class="ds-stills-grid">
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-1.jpg" alt="Domino's Sri Lanka still 1"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-2.jpg" alt="Domino's Sri Lanka still 2"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-3.jpg" alt="Domino's Sri Lanka still 3"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-4.jpg" alt="Domino's Sri Lanka still 4"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-5.jpg" alt="Domino's Sri Lanka still 5"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-6.jpg" alt="Domino's Sri Lanka still 6"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-7.jpg" alt="Domino's Sri Lanka still 7"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-8.jpg" alt="Domino's Sri Lanka still 8"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-9.jpg" alt="Domino's Sri Lanka still 9"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-10.jpg" alt="Domino's Sri Lanka still 10"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-11.jpg" alt="Domino's Sri Lanka still 11"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-12.jpg" alt="Domino's Sri Lanka still 12"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-13.jpg" alt="Domino's Sri Lanka still 13"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-14.jpg" alt="Domino's Sri Lanka still 14"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-15.jpg" alt="Domino's Sri Lanka still 15"/></div>
-        <div class="ds-stills-cell"><img src="/dominos-sl/dominos-sl-img-16.jpg" alt="Domino's Sri Lanka still 16"/></div>
+      <div class="sy-full-film">
+        <div class="sy-full-film-video">
+          <video src="/super%20you/full%20video.mp4" preload="metadata" loop playsinline></video>
+          <div class="bk-play-btn" onclick="bkToggle(this)">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
+              <polygon points="32,22 62,40 32,58" fill="#111"/>
+            </svg>
+          </div>
+        </div>
+        <p class="black left-aligned sy-film-caption">The chocolate movement was the thing I kept going back to. It needed weight. AI has a tendency to make liquid look a little too perfect — so a lot of the generation time went into getting that right.</p>
       </div>
     </div>
 
-    <!-- Bridge text -->
+    <!-- 4-Shot Grid -->
     <div class="cs-main">
       <div class="_1-5em-gap _65--width-wrapper">
-        <p class="black left-aligned">Domino's doesn't usually do burgers. These two films were something new for them — a separate brief we handled remotely, over video call.<br/></p>
+        <h2 class="case-study-title">Individual Shots</h2>
       </div>
-    </div>
-
-    <!-- Films (2) — stacked -->
-    <div class="cs-main">
-      <div class="_1-5em-gap _65--width-wrapper">
-        <h2 class="case-study-title">Films</h2>
-      </div>
-      <div class="bk-video-cell">
-        <video src="/dominos-sl/dominos-sl-film-1.mp4" preload="metadata" playsinline controls></video>
-      </div>
-      <div class="bk-video-cell" style="margin-top:1px;">
-        <video src="/dominos-sl/dominos-sl-film-2.mp4" preload="metadata" playsinline controls></video>
+      <div class="sy-clip-grid">
+        <div class="sy-clip-cell">
+          <video src="/super%20you/clip%201.mp4" preload="metadata" loop playsinline></video>
+          <div class="bk-play-btn" onclick="bkToggle(this)">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
+              <polygon points="32,22 62,40 32,58" fill="#111"/>
+            </svg>
+          </div>
+        </div>
+        <div class="sy-clip-cell">
+          <video src="/super%20you/clip%202.mp4" preload="metadata" loop playsinline></video>
+          <div class="bk-play-btn" onclick="bkToggle(this)">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
+              <polygon points="32,22 62,40 32,58" fill="#111"/>
+            </svg>
+          </div>
+        </div>
+        <div class="sy-clip-cell">
+          <video src="/super%20you/clip%203.mp4" preload="metadata" loop playsinline></video>
+          <div class="bk-play-btn" onclick="bkToggle(this)">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
+              <polygon points="32,22 62,40 32,58" fill="#111"/>
+            </svg>
+          </div>
+        </div>
+        <div class="sy-clip-cell">
+          <video src="/super%20you/clip%204.mp4" preload="metadata" loop playsinline></video>
+          <div class="bk-play-btn" onclick="bkToggle(this)">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
+              <polygon points="32,22 62,40 32,58" fill="#111"/>
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- The Result -->
-    <div class="cs-main last">
+    <div class="cs-main">
       <div class="_1-5em-gap _65--width-wrapper">
         <h2 class="case-study-title">The Result</h2>
-        <p class="left-aligned black">The full menu is shot. The films are done. The Sri Lankan team was wonderful to work with.<br/></p>
-        <p class="left-aligned black">Honestly just glad it got done lmao.<br/></p>
+        <p class="left-aligned black">It ran digitally. Two days, no live shoot — except the wafer, which we did shoot, because sometimes AI just loses that round.<br/></p>
+      </div>
+    </div>
+
+    <!-- Closing -->
+    <div class="cs-main last">
+      <div class="_1-5em-gap _65--width-wrapper">
+        <p class="left-aligned black" style="font-style:italic;">Honestly? Pretty glad it worked out.</p>
       </div>
     </div>
 
     <!-- Next project -->
     <div class="cs-next">
-      <a href="/portfolio/agents-by-brooke-branding-and-web" class="_3-grid-wrap next-cs w-inline-block">
+      <a href="/portfolio/papa-johns-india" class="_3-grid-wrap next-cs w-inline-block">
         <h4 class="black no-caps">Another project...</h4>
-        <h2 class="display-header">Indomie Nigeria</h2>
+        <h2 class="display-header">Papa John's India</h2>
+        <div class="wobble-icon" style="transform: translate3d(0em, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+          <img src="https://cdn.prod.website-files.com/609988bd503b3c3129b4bab4/661d489c4706486a0bd6840f_Group%207527.avif" loading="lazy" alt="Plus icon."/>
+        </div>
       </a>
-      <a href="/portfolio/agents-by-brooke-branding-and-web" class="project-wrapped r w-inline-block">
+      <a href="/portfolio/papa-johns-india" class="project-wrapped r w-inline-block">
         <div class="project-cover-wrapper next-cs" style="padding:0;overflow:hidden;height:auto !important;">
-          <img src="/agents%20by%20brooke/indomie-thumbnail.jpg" loading="lazy" alt="Indomie Nigeria" style="width:100%;height:auto;display:block;"/>
+          <img src="/papa-johns/thumbnail_papa_johns.png" loading="lazy" alt="Papa John's India" style="width:100%;height:auto;display:block;"/>
         </div>
         <div class="project-description-wrapper">
-          <h2 class="smaller black">Made in Mumbai, made for Nigeria. A full visual asset library for Indomie Nigeria.</h2>
+          <div class="spacer-15px"></div>
+          <h2 class="smaller black">Pretty, funky, fun.<br/></h2>
           <div class="deliverables-wrap portfolio">
-            <div class="deliverable"><p class="black smaller">Food Styling Assistance</p></div>
-            <div class="deliverable"><p class="black smaller">Shot Breakdown</p></div>
+            <div class="deliverable"><p class="black smaller">Tabletop Ad Concept<br/></p></div><div class="deliverable"><p class="black smaller">Creative Treatment<br/></p></div><div class="deliverable"><p class="black smaller">Shot Breakdowns<br/></p></div>
           </div>
         </div>
       </a>
@@ -416,7 +430,7 @@
   </div>
 </section>
 
-<!-- ── FOOTER: 3D MAHITA animation (matches home page) ── -->
+<!-- ── FOOTER: 3D MAHITA animation ── -->
 <section class="section ivory mahita-footer">
   <div class="n-container _0em-t-b-padding mahita-footer-inner">
     <div class="footer-3d-row">
@@ -480,7 +494,7 @@
 
 <script>
 function bkToggle(btn) {
-  var cell = btn.closest('.bk-video-cell');
+  var cell = btn.parentElement;
   var video = cell.querySelector('video');
   if (video.paused) {
     video.play();
@@ -490,9 +504,9 @@ function bkToggle(btn) {
     btn.classList.remove('playing');
   }
 }
-document.querySelectorAll('.bk-video-cell video').forEach(function(v) {
+document.querySelectorAll('.sy-full-film-video video, .sy-clip-cell video').forEach(function(v) {
   v.addEventListener('ended', function() {
-    var btn = v.closest('.bk-video-cell').querySelector('.bk-play-btn');
+    var btn = v.parentElement.querySelector('.bk-play-btn');
     if (btn) btn.classList.remove('playing');
   });
 });

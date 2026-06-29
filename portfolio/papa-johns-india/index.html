@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head>
 <meta charset="utf-8"/>
-<title>Case Study: Burger King Kings Collection | Mahita Manikandan</title>
-<meta content="Four films for Burger King India's Kings Collection — hunger turned into cinema." name="description"/>
+<title>Case Study: Papa John's India | Mahita Manikandan</title>
+<meta content="Food films for Papa John's India launch — pretty, funky, fun." name="description"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <link href="https://cdn.prod.website-files.com/609988bd503b3c3129b4bab4/css/bitemark.webflow.shared.bffa682c5.min.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -68,6 +68,33 @@
     border-radius: 0.5rem;
     border: 1.5px solid #222;
     margin-top: 1rem;
+  }
+
+  /* ── Papa John's: 2x2 grid ── */
+  .pj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    border-top: 1px solid #222;
+    border-left: 1px solid #222;
+    margin-top: 1.5rem;
+  }
+  .pj-cell {
+    background: #000;
+    aspect-ratio: 16 / 9;
+    border-right: 1px solid #222;
+    border-bottom: 1px solid #222;
+    overflow: hidden;
+  }
+  .pj-cell video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #000;
+  }
+  @media (max-width: 900px) {
+    .pj-grid { grid-template-columns: 1fr; }
   }
 
   /* ── Credits 2-line ── */
@@ -231,7 +258,7 @@
     <div class="content stretched verticle no-stroke _3-31-gap">
       <div class="w-layout-grid cs-title-wrap _3fr">
         <div class="_1-5em-gap">
-          <h1 class="display-header _22em-width">Hunger as Cinema. Four burgers. One fever dream.</h1>
+          <h1 class="display-header _22em-width">Pretty, funky, fun.</h1>
         </div>
         <div class="_1-5em-gap back">
           <a href="/portfolio" class="wobble-icon w-inline-block">
@@ -240,13 +267,13 @@
               <path d="M23 13L16 20L23 27" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <h4 class="black no-caps">Burger King India — Kings Collection</h4>
+          <h4 class="black no-caps">Papa John's India</h4>
         </div>
       </div>
     </div>
 
-    <!-- ── BK Hero Image ── -->
-    <img class="bk-hero-img" src="/burger%20king%20king's%20collection/burger%20king%20king's%20collection%20header%20%26%20thumbnail.jpg" alt="Burger King Kings Collection"/>
+    <!-- ── Papa John's Hero Image ── -->
+    <img class="bk-hero-img" src="/papa-johns/header_papa_johns.png" alt="Papa John's India"/>
 
   </div>
 </div>
@@ -258,9 +285,9 @@
       <div class="_1em-gap">
         <h2 class="case-study-title">What I did</h2>
         <div class="bk-pills">
-          <span class="bk-pill">Concept &amp; Creative Treatment</span>
-          <span class="bk-pill">Food Styling Assistant</span>
-          <span class="bk-pill">Tabletop Ad Film: Assistant Director</span>
+          <span class="bk-pill">Tabletop Ad Concept</span>
+          <span class="bk-pill">Creative Treatment</span>
+          <span class="bk-pill">Shot Breakdowns</span>
         </div>
       </div>
       <div class="_1em-gap" style="margin-top:2rem;">
@@ -268,6 +295,7 @@
         <div class="bk-credits">
           <p class="left-aligned black">Concept &amp; Creative Treatment: Mahita Manikandan</p>
           <p class="left-aligned black">Direction: Saba Gaziyani</p>
+          <p class="left-aligned black">Production: Dentsu Amplifi</p>
         </div>
       </div>
     </div>
@@ -278,19 +306,19 @@
     <div class="rounded-ivory">
       <div class="_1-5em-gap verticle">
         <h2 class="case-study-title">Context</h2>
-        <p class="black left-aligned">Burger King India was relaunching four burgers from their Kings Collection. We'd just come off their Korean Spicy Fest campaign, which had done really well. The pressure was to match it — and then do better somehow.<br/></p>
+        <p class="black left-aligned">Papa John's India needed food films for their launch — one per hero ingredient. Dough, sauce, cheese, meat.<br/></p>
       </div>
     </div>
     <div class="rounded-ivory">
       <div class="_1-5em-gap verticle">
         <h2 class="case-study-title">Problem</h2>
-        <p class="black left-aligned">The Korean campaign was a hit. Which meant the next one had to be, I don't know, more? I didn't want to just make another food film. I wanted it to feel like something you couldn't look away from.<br/></p>
+        <p class="black left-aligned">The brief was ingredient-led but the films couldn't feel like ingredient demos. They had to be dynamic, funky, fun — and the food had to look genuinely good.<br/></p>
       </div>
     </div>
     <div class="rounded-ivory">
       <div class="_1-5em-gap verticle">
         <h2 class="case-study-title">Solution</h2>
-        <p class="black left-aligned">I came up with this idea of treating each burger like it was the only thing in the world. Dark space, almost sacred. One slow dolly forward. And then these violent flash cuts — ingredients exploding, sizzling, bursting — building and building until you're face to face with the burger. Close enough to almost taste it. Four burgers, four films, one visual language.<br/></p>
+        <p class="black left-aligned">Each RTB film got its own visual logic and personality. The 45-second launch film brought it all together, with Danish Sait as the sceptic who gets completely won over.<br/></p>
       </div>
     </div>
   </div>
@@ -304,21 +332,21 @@
     <div class="cs-main first">
       <div class="_1-5em-gap _65--width-wrapper">
         <h2 class="case-study-title">The Concept</h2>
-        <p class="black left-aligned cs-show-and-hide" style="display:block;">It's basically hunger turned into cinema. Every film opens in silence. The burger is just... glowing in the dark. And then the camera starts moving toward it, very slowly and deliberately, and it just keeps getting closer and closer. In between, there are these flash cuts — sharp, almost aggressive — each one showing a different ingredient in the most intense way possible. A bun splitting mid-air. Sauce crashing down. Cheese lava dropping in extreme macro. Sparks flying. And then finally you're right there, face to face with it. One press, sauce oozes out. Three little lights blink on behind it, forming a crown. That's it.<br/></p>
+        <p class="black left-aligned cs-show-and-hide" style="display:block;">The ingredients were so lovely. The brief was to show them off — so the challenge was figuring out how to do that four times without it feeling like the same film. Different movements, different energy per ingredient. We tried our best to keep each one distinct.<br/></p>
       </div>
     </div>
 
-    <!-- Film 1: Chicken Tandoori — text LEFT, video RIGHT -->
+    <!-- Full film (launch) — text LEFT, video RIGHT -->
     <div class="cs-main">
       <div class="_1-5em-gap _65--width-wrapper">
-        <h2 class="case-study-title">Film 01 — Chicken Tandoori</h2>
+        <h2 class="case-study-title">Full film</h2>
       </div>
       <div class="bk-film-grid">
         <div class="bk-film-text">
-          <p class="black left-aligned">This one lives in fire and shadow. Mint mayo bursts upward while mint leaves fall in slow motion toward it. A bun splits mid-air. Sparks erupt from glowing embers. A single drop of juice slides down a sizzling patty. My favorite of the 4!<br/></p>
+          <p class="black left-aligned">This one's the full picture. Danish walks in suspicious, leaves completely converted. The food shots in between had to do a lot of work.<br/></p>
         </div>
         <div class="bk-video-cell">
-          <video src="/burger%20king%20king's%20collection/bk_chicken_tandoori_hd_v1%20(1080p).mp4" preload="metadata" loop playsinline></video>
+          <video src="/papa-johns/launch%20film%20papa%20johns.mp4" preload="metadata" playsinline controls></video>
           <div class="bk-play-btn" onclick="bkToggle(this)">
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
@@ -329,66 +357,16 @@
       </div>
     </div>
 
-    <!-- Film 2: Hot N Cheezy — video LEFT, text RIGHT -->
+    <!-- 2x2 grid of ingredient films -->
     <div class="cs-main">
       <div class="_1-5em-gap _65--width-wrapper">
-        <h2 class="case-study-title">Film 02 — Hot N Cheezy</h2>
+        <h2 class="case-study-title">The films</h2>
       </div>
-      <div class="bk-film-grid reverse">
-        <div class="bk-video-cell">
-          <video src="/burger%20king%20king's%20collection/bk_hot_n_cheezy_hd_v1%20(1080p).mp4" preload="metadata" loop playsinline></video>
-          <div class="bk-play-btn" onclick="bkToggle(this)">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
-              <polygon points="32,22 62,40 32,58" fill="#111"/>
-            </svg>
-          </div>
-        </div>
-        <div class="bk-film-text">
-          <p class="black left-aligned">This one is pure indulgence. The burger sits haloed in dangling cheese cubes — golden, glowing, surrounded. A blade slices clean through lettuce, tomato, jalapeño. Two ribbons of Thousand Island sauce arc across the frame and chopped pickles fly in to meet them. Then we're in this whole world of cheese cubes, and a wave of cheese lava comes down toward the lens through a valley of them. It ends on a cross section of the patty — cheese just slowly oozing out.<br/></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Film 3: Fiery Chicken — text LEFT, video RIGHT -->
-    <div class="cs-main">
-      <div class="_1-5em-gap _65--width-wrapper">
-        <h2 class="case-study-title">Film 03 — Fiery Chicken</h2>
-      </div>
-      <div class="bk-film-grid">
-        <div class="bk-film-text">
-          <p class="black left-aligned">A burst of chilli flakes announces this burger. Lettuce spins, a jalapeño gets sliced apart mid-air, and a red chilli explodes into flakes and then lands onto the paprika sauce. The chicken patty lands and highlights its crunch — crumbs bouncing. And then the chicken tears open — steaming, fibres pulling apart, still hot. Yummmyyyyyy.<br/></p>
-        </div>
-        <div class="bk-video-cell">
-          <video src="/burger%20king%20king's%20collection/bk_fiery_chicken_v1%20(1080p).mp4" preload="metadata" loop playsinline></video>
-          <div class="bk-play-btn" onclick="bkToggle(this)">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
-              <polygon points="32,22 62,40 32,58" fill="#111"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Film 4: Paneer Royale — video LEFT, text RIGHT -->
-    <div class="cs-main">
-      <div class="_1-5em-gap _65--width-wrapper">
-        <h2 class="case-study-title">Film 04 — Paneer Royale</h2>
-      </div>
-      <div class="bk-film-grid reverse">
-        <div class="bk-video-cell">
-          <video src="/burger%20king%20king's%20collection/bk_paneer_royal_v1%20(1080p).mp4" preload="metadata" loop playsinline></video>
-          <div class="bk-play-btn" onclick="bkToggle(this)">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
-              <polygon points="32,22 62,40 32,58" fill="#111"/>
-            </svg>
-          </div>
-        </div>
-        <div class="bk-film-text">
-          <p class="black left-aligned">The camera moves back over a bed of tomatoes and jalapeños all lit from below — lush, jewel-like. Lettuce slams in and seasoning bursts across it. Then paprika sauce gets smeared across the frame in thick, diagonal strokes, chilli flakes sticking to it. To show the softness of the paneer and the fact that is a real, whole piece, we spun the paneer in a bed of crumbs. The cross section of the paneer patty comes next — golden crumb on the outside, pure white paneer inside. And then you end up right at the layers of the burger, sauce dripping, everything lined up perfectly.<br/></p>
-        </div>
+      <div class="pj-grid">
+        <div class="pj-cell"><video src="/papa-johns/pjp%20film%201.mp4" preload="metadata" playsinline controls></video></div>
+        <div class="pj-cell"><video src="/papa-johns/pjp%20film%202.mp4" preload="metadata" playsinline controls></video></div>
+        <div class="pj-cell"><video src="/papa-johns/pjp%20film%203.mp4" preload="metadata" playsinline controls></video></div>
+        <div class="pj-cell"><video src="/papa-johns/pjp%20film%204.mp4" preload="metadata" playsinline controls></video></div>
       </div>
     </div>
 
@@ -396,28 +374,29 @@
     <div class="cs-main last">
       <div class="_1-5em-gap _65--width-wrapper">
         <h2 class="case-study-title">The Result</h2>
-        <p class="left-aligned black">Burger King India loved it. Full creative support throughout — no compromises. The films ran digitally. I think what I'm most happy about is that it somehow came out exactly how I was dreaming about it.<br/></p>
+        <p class="left-aligned black">The tomato sauce film especially. That first shot with the light playing on the tomatoes, local and imported together — it just looked really beautiful.<br/></p>
+        <p class="left-aligned black">It came out really pretty. I'm so happy with it.<br/></p>
       </div>
     </div>
 
     <!-- Next project -->
     <div class="cs-next">
-      <a href="/portfolio/kori-whitby-branding-and-web" class="_3-grid-wrap next-cs w-inline-block">
+      <a href="/portfolio/dominos-sri-lanka" class="_3-grid-wrap next-cs w-inline-block">
         <h4 class="black no-caps">Another project...</h4>
-        <h2 class="display-header">SuperYou</h2>
+        <h2 class="display-header">Domino's Sri Lanka</h2>
         <div class="wobble-icon" style="transform: translate3d(0em, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
           <img src="https://cdn.prod.website-files.com/609988bd503b3c3129b4bab4/661d489c4706486a0bd6840f_Group%207527.avif" loading="lazy" alt="Plus icon."/>
         </div>
       </a>
-      <a href="/portfolio/kori-whitby-branding-and-web" class="project-wrapped r w-inline-block">
+      <a href="/portfolio/dominos-sri-lanka" class="project-wrapped r w-inline-block">
         <div class="project-cover-wrapper next-cs" style="padding:0;overflow:hidden;height:auto !important;">
-          <img src="/super%20you/thumbnail.webp" loading="lazy" alt="SuperYou" style="width:100%;height:auto;display:block;"/>
+          <img src="/dominos-sl/thumbnail-dominos-sl.jpg" loading="lazy" alt="Domino's Sri Lanka" style="width:100%;height:auto;display:block;"/>
         </div>
         <div class="project-description-wrapper">
           <div class="spacer-15px"></div>
-          <h2 class="smaller black">Ingredients, honestly shown. Mostly AI. A product window film for SuperYou's Choco-Peanut Pro Bar.<br/></h2>
+          <h2 class="smaller black">Figuring it out, one pizza at a time.<br/></h2>
           <div class="deliverables-wrap portfolio">
-            <div class="deliverable"><p class="black smaller">AI Film Production<br/></p></div><div class="deliverable"><p class="black smaller">Creative Concept<br/></p></div><div class="deliverable"><p class="black smaller">Shot Design<br/></p></div>
+            <div class="deliverable"><p class="black smaller">Food Styling Assistance<br/></p></div><div class="deliverable"><p class="black smaller">Production Coordination<br/></p></div><div class="deliverable"><p class="black smaller">Tabletop Ad Concept<br/></p></div>
           </div>
         </div>
       </a>

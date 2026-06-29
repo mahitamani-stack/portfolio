@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head>
 <meta charset="utf-8"/>
-<title>Case Study: Indomie Nigeria Visual Asset Library | Mahita Manikandan</title>
-<meta content="Made in Mumbai, made for Nigeria. A full visual asset library for Indomie Nigeria." name="description"/>
+<title>Case Study: Burger King India, Korean Spicy Fest | Mahita Manikandan</title>
+<meta content="The one that started it all, kind of. Product films for Burger King India's Korean Spicy Fest campaign." name="description"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta property="og:image" content="/agents%20by%20brooke/indomie-thumbnail.jpg"/>
 <link href="https://cdn.prod.website-files.com/609988bd503b3c3129b4bab4/css/bitemark.webflow.shared.bffa682c5.min.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
@@ -32,8 +31,11 @@
   }
   body, .ivory, .section.ivory { background-color: var(--color-pink) !important; }
 
-  .navbar-1.ivory, .navbar-1.ivory.light { background-color: var(--color-blue) !important; }
+  .navbar-1.ivory, .navbar-1.ivory.light {
+    background-color: var(--color-blue) !important;
+  }
   .nav-container { background-color: var(--color-blue) !important; }
+
   .rounded-ivory { background-color: var(--color-blue) !important; border-color: #222 !important; }
 
   .bk-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
@@ -64,40 +66,36 @@
 
   .bk-credits { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.75rem; }
 
-  /* ── Stills 3×3 grid ── */
-  .sy-stills-grid {
+  /* ── 2×2 film grid ── */
+  .bk-korean-film-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0;
-    border-top: 1px solid #222;
-    margin-top: 1.5rem;
-  }
-  .sy-still-cell {
-    border: 0.75px solid #222;
+    border: 1px solid #222;
+    border-radius: 0.5rem;
     overflow: hidden;
-    aspect-ratio: 1 / 1;
-  }
-  .sy-still-cell img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  @media (max-width: 600px) { .sy-stills-grid { grid-template-columns: 1fr 1fr; } }
-
-  /* ── Featured ASMR film ── */
-  .sy-full-film {
-    border-top: 1px solid #222;
     margin-top: 1.5rem;
   }
-  .sy-full-film-video {
+  .bk-korean-film-grid .bk-video-cell {
+    border-right: 1px solid #222;
+    border-bottom: 1px solid #222;
+  }
+  .bk-korean-film-grid .bk-video-cell:nth-child(2n) { border-right: none; }
+  .bk-korean-film-grid .bk-video-cell:nth-child(3),
+  .bk-korean-film-grid .bk-video-cell:nth-child(4) { border-bottom: none; }
+
+  /* ── Season 2 full-width film ── */
+  .bk-s2-video {
     position: relative;
     background: #000;
-    aspect-ratio: 16 / 9;
     width: 100%;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
+    border-radius: 0.5rem;
+    border: 1.5px solid #222;
+    margin-top: 1rem;
   }
-  .sy-full-film-video video {
+  .bk-s2-video video {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -105,33 +103,22 @@
     background: #000;
   }
 
-  /* ── Films 3×2 grid ── */
-  .sy-clip-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
-    border-top: 1px solid #222;
-    margin-top: 1.5rem;
-  }
-  .sy-clip-cell {
+  /* ── Video cell shared ── */
+  .bk-video-cell {
     position: relative;
     background: #000;
     aspect-ratio: 16 / 9;
+    width: 100%;
     overflow: hidden;
-    border: 0.75px solid #222;
+    align-self: stretch;
   }
-  .sy-clip-cell video {
+  .bk-video-cell video {
     width: 100%;
     height: 100%;
     object-fit: contain;
     display: block;
     background: #000;
   }
-  @media (max-width: 600px) {
-    .sy-clip-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ── Play button ── */
   .bk-play-btn {
     position: absolute;
     inset: 0;
@@ -143,10 +130,31 @@
     transition: background 0.3s;
   }
   .bk-play-btn:hover { background: rgba(0,0,0,0.05); }
-  .bk-play-btn svg { width: 72px; height: 72px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
+  .bk-play-btn svg { width: 60px; height: 60px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
   .bk-play-btn.playing { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-  .sy-full-film-video:hover .bk-play-btn.playing,
-  .sy-clip-cell:hover .bk-play-btn.playing { opacity: 1; pointer-events: auto; background: transparent; }
+  .bk-video-cell:hover .bk-play-btn.playing { opacity: 1; pointer-events: auto; background: transparent; }
+
+  /* Season 2 note */
+  .bk-s2-note {
+    text-align: center;
+    font-style: italic;
+    color: #555;
+    max-width: 600px;
+    margin: 2rem auto 0;
+    font-family: var(--font-body) !important;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Section label */
+  .bk-section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-body) !important;
+  }
 
   /* ── Footer ── */
   .section.mahita-footer { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0 !important; padding-right: 0 !important; height: auto !important; background-color: var(--color-pink) !important; }
@@ -209,16 +217,31 @@
     opacity: 1;
     transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg);
   }
+  .sprite-3d-letter:nth-child(4) .sprite-3d-model,
+  .sprite-3d-letter:nth-child(6) .sprite-3d-model {
+    transform: translate(-50%, -50%) translateY(20px) scale(0.8);
+  }
+  .sprite-3d-letter:nth-child(4):hover .sprite-3d-model,
+  .sprite-3d-letter:nth-child(6):hover .sprite-3d-model {
+    transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg) scale(0.8);
+  }
   .sm-wrapper { display: flex !important; flex-direction: column !important; position: relative !important; inset: auto !important; justify-content: center !important; align-items: flex-end !important; padding: 0 1.5rem 0 0 !important; gap: 1rem !important; width: auto !important; margin: 0 !important; }
   .sm-icon { width: 28px; height: 28px; filter: brightness(0); }
   .sm-icon-wrapper { display: flex; align-items: center; }
+
+  @media (max-width: 700px) {
+    .bk-korean-film-grid { grid-template-columns: 1fr; }
+    .bk-korean-film-grid .bk-video-cell { border-right: none; border-bottom: 1px solid #222; }
+    .bk-korean-film-grid .bk-video-cell:last-child { border-bottom: none; }
+    .sprite-3d-text { font-size: 2.5rem; }
+  }
 </style>
   <link href="/ipod-player.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
 
-<!-- ── HERO ── -->
+<!-- ── HERO SECTION ── -->
 <div class="section hero case-study">
   <div class="n-container hero">
     <div data-animation="default" data-collapse="small" data-duration="400" data-easing="ease" role="banner" class="navbar-1 ivory light w-nav">
@@ -239,7 +262,7 @@
     <div class="content stretched verticle no-stroke _3-31-gap">
       <div class="w-layout-grid cs-title-wrap _3fr">
         <div class="_1-5em-gap">
-          <h1 class="display-header _22em-width">Made in Mumbai, made for Nigeria.</h1>
+          <h1 class="display-header _22em-width">The one that started it all, kind of.</h1>
         </div>
         <div class="_1-5em-gap back">
           <a href="/portfolio" class="wobble-icon w-inline-block">
@@ -248,12 +271,13 @@
               <path d="M23 13L16 20L23 27" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <h4 class="black no-caps">Indomie Nigeria — Visual Asset Library</h4>
+          <h4 class="black no-caps">Burger King India — Korean Spicy Fest</h4>
         </div>
       </div>
     </div>
 
-    <img class="bk-hero-img" src="/agents%20by%20brooke/indomie-header.jpg" alt="Indomie Nigeria Visual Asset Library"/>
+    <img class="bk-hero-img" src="/bk-korean-header-image.jpeg" alt="Burger King India Korean Spicy Fest"/>
+
   </div>
 </div>
 
@@ -264,38 +288,37 @@
       <div class="_1em-gap">
         <h2 class="case-study-title">What I did</h2>
         <div class="bk-pills">
-          <span class="bk-pill">Food Styling Assistance &amp; Shot Breakdown</span>
+          <span class="bk-pill">Concept &amp; Creative Treatment</span>
         </div>
       </div>
       <div class="_1em-gap" style="margin-top:2rem;">
         <h2 class="case-study-title">Credits</h2>
         <div class="bk-credits">
-          <p class="left-aligned black">Food Styling Assistance &amp; Shot Breakdown: Mahita Manikandan</p>
+          <p class="left-aligned black">Concept &amp; Creative Treatment: Mahita Manikandan</p>
           <p class="left-aligned black">Direction: Saba Gaziyani</p>
-          <p class="left-aligned black">Agency: Dimensions Africa</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── THREE COLUMNS ── -->
+  <!-- ── THREE COLUMNS: Context / Problem / Solution ── -->
   <div class="_3-grid-wrap case">
     <div class="rounded-ivory">
       <div class="_1-5em-gap verticle">
         <h2 class="case-study-title">Context</h2>
-        <p class="black left-aligned">Dimensions Africa came to A La Carte to build a visual library from scratch. Packshots, food styling, lifestyle setups, video treatments — for everything. Billboards, phones, packaging, vehicles.<br/></p>
+        <p class="black left-aligned">By the time Burger King India launched Korean Spicy Fest, Korean food was everywhere — grocery aisles, social media, everywhere. They were the first QSR to do it properly, nationwide. A La Carte Pictures made the product films.<br/></p>
       </div>
     </div>
     <div class="rounded-ivory">
       <div class="_1-5em-gap verticle">
         <h2 class="case-study-title">Problem</h2>
-        <p class="black left-aligned">Nigeria has its own food language. Ingredients, textures, the way a dish is put together. Crayfish flavour needs actual crayfish. There's a red pepper specific to Nigerian cooking. Figuring that out from Mumbai — while also making sure three films for the same flavour didn't all look identical.<br/></p>
+        <p class="black left-aligned">The brief needed a visual world that felt Korean without being costume-y about it. This was a cultural moment for Burger King India — their biggest new menu launch in years. The films had to match that.<br/></p>
       </div>
     </div>
     <div class="rounded-ivory">
       <div class="_1-5em-gap verticle">
         <h2 class="case-study-title">Solution</h2>
-        <p class="black left-aligned">It came together through a lot of homework. What Nigerian home cooking actually looks like, what ingredients matter, how each flavour differs visually. From there I built out the shot briefs, prop lists, food looks. Saba ma'am figured out the treatments and made it all make sense on set.<br/></p>
+        <p class="black left-aligned">The background treatment reference I suggested answered the brief — Korean, high energy, but all about the food. Dark red-black surfaces, dramatic lighting made the food pop and shine.<br/></p>
       </div>
     </div>
   </div>
@@ -305,40 +328,51 @@
 <section class="section ivory">
   <div class="content relative-div case-study">
 
-    <!-- Stills -->
+    <!-- Concept -->
     <div class="cs-main first">
       <div class="_1-5em-gap _65--width-wrapper">
-        <h2 class="case-study-title">Stills</h2>
-      </div>
-      <div class="sy-stills-grid">
-        <div class="sy-still-cell"><img src="/agents%20by%20brooke/INDOMIE%20GRID%20IMAGES/Chicken.jpg" alt=""/></div>
-        <div class="sy-still-cell"><img src="/agents%20by%20brooke/INDOMIE%20GRID%20IMAGES/IndomieDay1%207April2555005_opt.jpg" alt=""/></div>
-        <div class="sy-still-cell"><img src="/agents%20by%20brooke/INDOMIE%20GRID%20IMAGES/IndomieDay1%207April2555042.jpg" alt=""/></div>
-        <div class="sy-still-cell"><img src="/agents%20by%20brooke/INDOMIE%20GRID%20IMAGES/IndomieDay2%2008April2555125.jpg" alt=""/></div>
-        <div class="sy-still-cell"><img src="/agents%20by%20brooke/INDOMIE%20GRID%20IMAGES/IndomieDay2%2008April2555219.jpg" alt=""/></div>
-        <div class="sy-still-cell"><img src="/agents%20by%20brooke/INDOMIE%20GRID%20IMAGES/IndomieDay2%2008April2555250.jpg" alt=""/></div>
-        <div class="sy-still-cell"><img src="/agents%20by%20brooke/INDOMIE%20GRID%20IMAGES/IndomieDay2%2008April2555317.jpg" alt=""/></div>
-        <div class="sy-still-cell"><img src="/agents%20by%20brooke/INDOMIE%20GRID%20IMAGES/IndomieDay2%2008April2555357.jpg" alt=""/></div>
-        <div class="sy-still-cell"><img src="/agents%20by%20brooke/INDOMIE%20GRID%20IMAGES/beef.jpg" alt=""/></div>
-      </div>
-    </div>
-
-    <!-- Concept -->
-    <div class="cs-main">
-      <div class="_1-5em-gap _65--width-wrapper">
+        <p class="bk-section-label">Concept</p>
         <h2 class="case-study-title">The Concept</h2>
-        <p class="black left-aligned cs-show-and-hide" style="display:block;">We used the brand palette as the starting point — teal, red, orange showing up in the bowls, napkins, tabletops. The idea wasn't to make it look obviously Nigerian. It was to make sure it didn't feel wrong — something that slots in naturally once the live action is around it.<br/></p>
+        <p class="black left-aligned cs-show-and-hide" style="display:block;">High contrast, close on the product, always moving.<br/></p>
       </div>
     </div>
 
-    <!-- Featured ASMR Film -->
+    <!-- 2×2 Films Grid -->
     <div class="cs-main">
       <div class="_1-5em-gap _65--width-wrapper">
-        <h2 class="case-study-title">Film</h2>
+        <p class="bk-section-label">Films</p>
+        <h2 class="case-study-title">Films</h2>
       </div>
-      <div class="sy-full-film">
-        <div class="sy-full-film-video">
-          <video src="/agents%20by%20brooke/indomie-asmr.mp4" preload="metadata" loop playsinline></video>
+      <div class="bk-korean-film-grid">
+        <div class="bk-video-cell">
+          <video src="/burger_king_korean_chicken_burger%20(1080p).mp4" preload="metadata" loop playsinline></video>
+          <div class="bk-play-btn" onclick="bkToggle(this)">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
+              <polygon points="32,22 62,40 32,58" fill="#111"/>
+            </svg>
+          </div>
+        </div>
+        <div class="bk-video-cell">
+          <video src="/burger_king_korean_fried_chicken%20(1080p).mp4" preload="metadata" loop playsinline></video>
+          <div class="bk-play-btn" onclick="bkToggle(this)">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
+              <polygon points="32,22 62,40 32,58" fill="#111"/>
+            </svg>
+          </div>
+        </div>
+        <div class="bk-video-cell">
+          <video src="/burger_king_korean_fries%20(1080p).mp4" preload="metadata" loop playsinline></video>
+          <div class="bk-play-btn" onclick="bkToggle(this)">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
+              <polygon points="32,22 62,40 32,58" fill="#111"/>
+            </svg>
+          </div>
+        </div>
+        <div class="bk-video-cell">
+          <video src="/burger_king_korean_paneer_burger%20(1080p).mp4" preload="metadata" loop playsinline></video>
           <div class="bk-play-btn" onclick="bkToggle(this)">
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
@@ -349,102 +383,55 @@
       </div>
     </div>
 
-    <!-- Films Grid 3×2 -->
+    <!-- Season 2 note -->
+    <div class="cs-main">
+      <p class="bk-s2-note">Season 2 launched the following year with kimchi added and an expanded menu. I suggested a new colour palette and lighting direction for it. Saba ma'am ran with it beautifully.</p>
+    </div>
+
+    <!-- Season 2 film -->
     <div class="cs-main">
       <div class="_1-5em-gap _65--width-wrapper">
-        <h2 class="case-study-title">More Films</h2>
+        <p class="bk-section-label">Season 2</p>
+        <h2 class="case-study-title">Season 2</h2>
       </div>
-      <div class="sy-clip-grid">
-        <div class="sy-clip-cell">
-          <video src="/agents%20by%20brooke/indomie%20films%20grid/Film%2001%20Chicken%20Flavor%2015%20secs_HD_30_04_2025.mp4" preload="metadata" loop playsinline></video>
-          <div class="bk-play-btn" onclick="bkToggle(this)">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
-              <polygon points="32,22 62,40 32,58" fill="#111"/>
-            </svg>
-          </div>
-        </div>
-        <div class="sy-clip-cell">
-          <video src="/agents%20by%20brooke/indomie%20films%20grid/Film%2002%20Oriental%20Fried%2015%20secs.HD_30_04_2025_1.mp4" preload="metadata" loop playsinline></video>
-          <div class="bk-play-btn" onclick="bkToggle(this)">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
-              <polygon points="32,22 62,40 32,58" fill="#111"/>
-            </svg>
-          </div>
-        </div>
-        <div class="sy-clip-cell">
-          <video src="/agents%20by%20brooke/indomie%20films%20grid/Film%2003%20Relish%20Beef%20Flavor%2015%20secs.HD_30_04_2025_1.mp4" preload="metadata" loop playsinline></video>
-          <div class="bk-play-btn" onclick="bkToggle(this)">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
-              <polygon points="32,22 62,40 32,58" fill="#111"/>
-            </svg>
-          </div>
-        </div>
-        <div class="sy-clip-cell">
-          <video src="/agents%20by%20brooke/indomie%20films%20grid/Film%2004%20Chicken%20Flavor%202%2015%20secs.HD_30_04_2025_1.mp4" preload="metadata" loop playsinline></video>
-          <div class="bk-play-btn" onclick="bkToggle(this)">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
-              <polygon points="32,22 62,40 32,58" fill="#111"/>
-            </svg>
-          </div>
-        </div>
-        <div class="sy-clip-cell">
-          <video src="/agents%20by%20brooke/indomie%20films%20grid/Film%2006%20Chicken%20Flavor%204%2015%20sec.HD_30_04_2025_1.mp4" preload="metadata" loop playsinline></video>
-          <div class="bk-play-btn" onclick="bkToggle(this)">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
-              <polygon points="32,22 62,40 32,58" fill="#111"/>
-            </svg>
-          </div>
-        </div>
-        <div class="sy-clip-cell">
-          <video src="/agents%20by%20brooke/indomie%20films%20grid/Film%2008%20All%20Packs%202%2015%20secs_HD_30_04_2025_1.mp4" preload="metadata" loop playsinline></video>
-          <div class="bk-play-btn" onclick="bkToggle(this)">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
-              <polygon points="32,22 62,40 32,58" fill="#111"/>
-            </svg>
-          </div>
+      <div class="bk-s2-video">
+        <video src="/Bk-korean-final-s2-film.mp4" preload="metadata" loop playsinline></video>
+        <div class="bk-play-btn" onclick="bkToggle(this)">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
+            <polygon points="32,22 62,40 32,58" fill="#111"/>
+          </svg>
         </div>
       </div>
     </div>
 
     <!-- Result -->
-    <div class="cs-main">
-      <div class="_1-5em-gap _65--width-wrapper">
-        <h2 class="case-study-title">The Result</h2>
-        <p class="left-aligned black">Delivered and approved. Assets are out in the world now.<br/></p>
-      </div>
-    </div>
-
-    <!-- Closing -->
     <div class="cs-main last">
       <div class="_1-5em-gap _65--width-wrapper">
-        <p class="left-aligned black" style="font-style:italic;">Honestly pretty fun to think through. We had a school lunch setup with little lunchboxes, and another where the noodles and garnishes were mid-air. You start with a brief and end up asking yourself what you can do with a bowl of noodles. Turns out, a lot.</p>
+        <h2 class="case-study-title">The Result</h2>
+        <p class="left-aligned black">All four films delivered and approved.<br/></p>
+        <p class="left-aligned black" style="margin-top:1rem;">The background being these moving neon patterns was my idea. I still kind of can't believe something I suggested actually made it into the final films.<br/></p>
       </div>
     </div>
 
     <!-- Next project -->
     <div class="cs-next">
-      <a href="/portfolio/scale-your-socials-design-intensive" class="_3-grid-wrap next-cs w-inline-block">
+      <a href="/portfolio/saba-portfolio-viewer" class="_3-grid-wrap next-cs w-inline-block">
         <h4 class="black no-caps">Another project...</h4>
-        <h2 class="display-header">BK Korean Spicy Fest</h2>
+        <h2 class="display-header">3D Website</h2>
         <div class="wobble-icon" style="transform: translate3d(0em, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
           <img src="https://cdn.prod.website-files.com/609988bd503b3c3129b4bab4/661d489c4706486a0bd6840f_Group%207527.avif" loading="lazy" alt="Plus icon."/>
         </div>
       </a>
-      <a href="/portfolio/scale-your-socials-design-intensive" class="project-wrapped r w-inline-block">
+      <a href="/portfolio/saba-portfolio-viewer" class="project-wrapped r w-inline-block">
         <div class="project-cover-wrapper next-cs" style="padding:0;overflow:hidden;height:auto !important;">
-          <img src="/bk-korean-thumbnail.png" loading="lazy" alt="BK Korean Spicy Fest" style="width:100%;height:auto;display:block;"/>
+          <img src="/thumbnail-3d-image-viewer-website.png" loading="lazy" alt="3D Image Viewer Website" style="width:100%;height:auto;display:block;"/>
         </div>
         <div class="project-description-wrapper">
           <div class="spacer-15px"></div>
-          <h2 class="smaller black">The one that started it all, kind of. Burger King India's Korean Spicy Fest campaign.<br/></h2>
+          <h2 class="smaller black">Handy image viewer ;) A 3D portfolio viewer built for Saba Gaziyani.<br/></h2>
           <div class="deliverables-wrap portfolio">
-            <div class="deliverable"><p class="black smaller">Concept &amp; Creative Treatment<br/></p></div>
+            <div class="deliverable"><p class="black smaller">Web Development<br/></p></div>
           </div>
         </div>
       </a>
@@ -516,18 +503,24 @@
 
 <script>
 function bkToggle(btn) {
-  var cell = btn.parentElement;
+  var cell = btn.closest('.bk-video-cell, .bk-s2-video');
   var video = cell.querySelector('video');
-  if (video.paused) { video.play(); btn.classList.add('playing'); }
-  else { video.pause(); btn.classList.remove('playing'); }
+  if (video.paused) {
+    video.play();
+    btn.classList.add('playing');
+  } else {
+    video.pause();
+    btn.classList.remove('playing');
+  }
 }
-document.querySelectorAll('.sy-full-film-video video, .sy-clip-cell video').forEach(function(v) {
+document.querySelectorAll('.bk-video-cell video, .bk-s2-video video').forEach(function(v) {
   v.addEventListener('ended', function() {
-    var btn = v.parentElement.querySelector('.bk-play-btn');
+    var btn = v.closest('.bk-video-cell, .bk-s2-video').querySelector('.bk-play-btn');
     if (btn) btn.classList.remove('playing');
   });
 });
 </script>
+
 <script src="/click-spark.js"></script>
   <script src="/ipod-player.js" defer></script>
 </body></html>
