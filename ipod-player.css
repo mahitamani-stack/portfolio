@@ -1,0 +1,410 @@
+/* ── iPod Classic Floating Player Widget Styles ── */
+
+.ipod-widget-container {
+    position: fixed;
+    right: 20px;
+    bottom: 100px; /* Aligns right above the progress-bar orange icon */
+    width: 240px;
+    height: 427px; /* Matches 736x1308 aspect ratio */
+    z-index: 999999 !important;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    background-color: transparent;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.25));
+    user-select: none;
+    overflow: visible;
+}
+
+/* Minimized state styling */
+.ipod-widget-container.minimized {
+    width: 42px;
+    height: 75px;
+    bottom: 95px;
+    right: 20px;
+    cursor: pointer;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15));
+}
+
+.ipod-widget-container.minimized:hover {
+    transform: scale(1.08) translateY(-3px);
+}
+
+/* Inner wrapper maintaining relative container size */
+.ipod-inner-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Transparent PNG image faceplate */
+.ipod-faceplate {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 10;
+    pointer-events: none; /* Let pointer events pass to click targets below */
+}
+
+/* Minimized cover overlay to receive click to expand */
+.ipod-expand-clicker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: none;
+    cursor: pointer;
+}
+.ipod-widget-container.minimized .ipod-expand-clicker {
+    display: block;
+}
+
+/* ── Screen Section (behind transparent window of PNG) ── */
+.ipod-screen-container {
+    position: absolute;
+    /* Map exact transparency coordinate bounds found from find_transparent_screen.py */
+    left: 12.77%;
+    top: 3.44%;
+    width: 75.68%;
+    height: 32.95%;
+    background-color: #f7f7f7; /* iPod Classic grey LCD screen background */
+    border-radius: 4px;
+    z-index: 5;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    border: 1.5px solid #dcdcdc;
+    transition: opacity 0.3s ease;
+}
+
+.ipod-widget-container.minimized .ipod-screen-container {
+    padding: 1px;
+    border-radius: 1px;
+    border: 0.5px solid #dcdcdc;
+}
+
+/* Header bar inside screen */
+.ipod-screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 3px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #333;
+    height: 14px;
+    box-sizing: border-box;
+}
+.ipod-widget-container.minimized .ipod-screen-header {
+    font-size: 2px;
+    height: 3px;
+    border-bottom: 0.2px solid #ccc;
+    padding: 0;
+    margin: 0;
+}
+
+.ipod-header-battery {
+    width: 14px;
+    height: 7px;
+    border: 1px solid #666;
+    position: relative;
+    border-radius: 1px;
+}
+.ipod-widget-container.minimized .ipod-header-battery {
+    width: 3px;
+    height: 2px;
+    border: 0.1px solid #666;
+}
+.ipod-header-battery::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: 1px;
+    width: 1px;
+    height: 3px;
+    background-color: #666;
+}
+
+.ipod-header-battery-fill {
+    height: 100%;
+    width: 80%;
+    background-color: #4cd964;
+}
+
+/* Menu items view */
+.ipod-screen-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-y: auto;
+}
+
+.ipod-menu-item {
+    font-size: 11px;
+    padding: 4px 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ipod-widget-container.minimized .ipod-menu-item {
+    font-size: 2px;
+    padding: 0.5px;
+}
+
+.ipod-menu-item.selected {
+    background: linear-gradient(to bottom, #4f94e8, #2a6ac2);
+    color: #fff !important;
+}
+
+.ipod-menu-item-arrow {
+    font-size: 9px;
+    font-weight: bold;
+}
+
+/* Now playing view inside screen */
+.ipod-screen-nowplaying {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.ipod-np-content {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    align-items: center;
+}
+.ipod-widget-container.minimized .ipod-np-content {
+    gap: 1px;
+}
+
+.ipod-np-art {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #ffb6c1, #b0e0e6);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+.ipod-widget-container.minimized .ipod-np-art {
+    width: 8px;
+    height: 8px;
+    font-size: 2px;
+}
+
+.ipod-np-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.ipod-np-title {
+    font-size: 11px;
+    font-weight: bold;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ipod-widget-container.minimized .ipod-np-title {
+    font-size: 2px;
+    width: 15px;
+}
+
+.ipod-np-artist {
+    font-size: 10px;
+    color: #666;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ipod-widget-container.minimized .ipod-np-artist {
+    font-size: 1px;
+    width: 15px;
+}
+
+.ipod-np-progress-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 4px;
+}
+.ipod-widget-container.minimized .ipod-np-progress-section {
+    margin: 0;
+    gap: 0.2px;
+}
+
+.ipod-np-progressbar-bg {
+    width: 100%;
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.ipod-widget-container.minimized .ipod-np-progressbar-bg {
+    height: 1px;
+}
+
+.ipod-np-progressbar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #2a6ac2;
+    border-radius: 3px;
+}
+
+.ipod-np-time-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: #555;
+}
+.ipod-widget-container.minimized .ipod-np-time-row {
+    font-size: 1px;
+}
+
+/* ── Clickwheel Controls Overlay ── */
+.ipod-clickwheel {
+    position: absolute;
+    left: 20%;
+    top: 50.4%;
+    width: 60%;
+    height: 33.8%; /* circular height matching width on aspect ratio */
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 15;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.ipod-widget-container.minimized .ipod-clickwheel {
+    pointer-events: none; /* ignore interactions when minimized */
+}
+
+/* Click wheel button targets */
+.ipod-wheel-btn {
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0); /* invisible */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    z-index: 20;
+    transition: background-color 0.1s ease;
+}
+
+/* Hover highlights for testing/debugging button press visual feedback */
+.ipod-wheel-btn:active {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.ipod-btn-select {
+    left: 35%;
+    top: 35%;
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+}
+
+.ipod-btn-menu {
+    left: 30%;
+    top: 0;
+    width: 40%;
+    height: 25%;
+    border-radius: 30% 30% 0 0;
+}
+
+.ipod-btn-play {
+    left: 30%;
+    bottom: 0;
+    width: 40%;
+    height: 25%;
+    border-radius: 0 0 30% 30%;
+}
+
+.ipod-btn-prev {
+    left: 0;
+    top: 30%;
+    width: 25%;
+    height: 40%;
+    border-radius: 30% 0 0 30%;
+}
+
+.ipod-btn-next {
+    right: 0;
+    top: 30%;
+    width: 25%;
+    height: 40%;
+    border-radius: 0 30% 30% 0;
+}
+
+/* Close/minimize button at very top of player */
+.ipod-close-btn {
+    position: absolute;
+    top: 1px;
+    right: 12.77%;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ipod-widget-container:hover .ipod-close-btn {
+    opacity: 1;
+}
+
+.ipod-widget-container.minimized .ipod-close-btn {
+    display: none;
+}
+
+/* Backdrop Dimming Overlay when iPod is expanded */
+.ipod-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45); /* Soft dimming shadow */
+    backdrop-filter: blur(4px); /* Premium iOS-style blur effect */
+    z-index: 999998; /* Just below the iPod container */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.ipod-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
