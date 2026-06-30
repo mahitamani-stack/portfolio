@@ -299,7 +299,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
 
 <!-- ── Intro overlay ── -->
 <div id="intro-overlay" style="position:fixed;inset:0;background:#b0e0e6;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 1.2s ease;">
-  <video id="intro-video" src="/intro%20animation.mp4" autoplay muted playsinline style="width:calc(100vw - 3rem);height:calc(100vh - 3rem);max-width:calc(100vw - 3rem);max-height:calc(100vh - 3rem);object-fit:contain;border-radius:6px;"></video>
+  <video id="intro-video" src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782827950/site/intro-animation.mp4" autoplay muted playsinline style="width:calc(100vw - 3rem);height:calc(100vh - 3rem);max-width:calc(100vw - 3rem);max-height:calc(100vh - 3rem);object-fit:contain;border-radius:6px;"></video>
 </div>
 
 <script>
@@ -480,7 +480,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
             win.style.left = `${positions[i].left}%`;
 
             const vid = document.createElement('video');
-            vid.src = `/mac%20os%20windows%20for%20home%20page/mac%20os%20window%20${i + 1}.mp4`;
+            const macWindowUrls = [
+                'https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743978/mac-os-windows/window-1.mp4',
+                'https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743385/mac-os-windows/window-2.mp4',
+                'https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743981/mac-os-windows/window-3.mp4',
+                'https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743395/mac-os-windows/window-4.mp4',
+                'https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743404/mac-os-windows/window-5.mp4',
+                'https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743410/mac-os-windows/window-6.mp4',
+                'https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743984/mac-os-windows/window-7.mp4',
+            ];
+            vid.src = macWindowUrls[i];
             vid.autoplay = true;
             vid.muted = true;
             vid.loop = true;
