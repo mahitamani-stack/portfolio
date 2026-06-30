@@ -315,9 +315,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
     }, 1250);
   }
 
+  var dismissed = false;
+  function dismiss() {
+    if (dismissed) return;
+    dismissed = true;
+    overlay.style.opacity = '0';
+    setTimeout(function () {
+      overlay.style.display = 'none';
+      if (typeof window._initMacWindows === 'function') window._initMacWindows();
+    }, 1250);
+  }
+
   video.addEventListener('ended', dismiss);
-  // safety fallback in case video can't load
   video.addEventListener('error', dismiss);
+
+  // Force play and set a max-duration fallback (video is ~4s, allow 8s then dismiss)
+  var playPromise = video.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(function() { dismiss(); });
+  }
+  setTimeout(dismiss, 8000);
 })();
 </script>
 
