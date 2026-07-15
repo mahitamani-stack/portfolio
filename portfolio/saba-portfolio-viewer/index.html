@@ -185,6 +185,8 @@
     word-break: break-word !important;
   }
   html, body { overflow-x: hidden !important; }
+  /* Widen left column so the description fits in 3 lines instead of 5 */
+  .summary-grid { grid-template-columns: 1fr 39em !important; }
   .cs-next h4.no-caps {
     font-size: clamp(1.1rem, 2vw, 1.4rem) !important;
   }
