@@ -235,15 +235,33 @@
   h1, .display-header, .h1 {
     font-size: clamp(3rem, 5.5vw, 4rem) !important; /* 48px to 64px on desktop */
     line-height: 1.15 !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
   }
   h2, .case-study-title, .h2-smaller {
     font-size: clamp(1.6rem, 3.5vw, 2.25rem) !important; /* 26px to 36px on desktop */
     line-height: 1.25 !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
   }
   p, .body-text, .main-text, .left-aligned, .client-name, .testimonial-text {
     font-size: clamp(1.28rem, 2.5vw, 1.45rem) !important; /* 21px to 23px on desktop */
     line-height: 1.65 !important; /* 165% line height for readable space */
     max-width: 75ch !important; /* Restrict lines to ~75 characters to prevent eye strain */
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+  html, body { overflow-x: hidden !important; }
+  .cs-next h4.no-caps {
+    font-size: clamp(1.1rem, 2vw, 1.4rem) !important;
+  }
+  /* Fix: _22em-width is relative to h1's own (now much larger) font-size,
+     so 22em blew past the viewport. Let headline wrap within its column. */
+  .display-header._22em-width, .display-header._18em-width, .display-header._13em-width {
+    width: auto !important;
+    max-width: 100% !important;
   }
   /* Keep paragraph vertical margins clean */
   .bk-film-text p, .rounded-ivory p, .cs-main p {
@@ -257,9 +275,11 @@
   }
 </style>
   <link href="/ipod-player.css" rel="stylesheet" type="text/css"/>
+<style>.progress-bar { position: fixed !important; right: 0 !important; bottom: 1.5rem !important; top: auto !important; transform: none !important; display: flex !important; flex-direction: column !important; align-items: center !important; gap: 0.5rem !important; z-index: 100 !important; }</style>
 </head>
 
 <body>
+<div class="progress-bar"><a class="button-inner sidebar w-button" href="mailto:mahita.mani@gmail.com">HI!</a><a class="w-inline-block" href="mailto:mahita.mani@gmail.com"><img alt="" loading="lazy" src="/oranges.png"/></a></div>
 
 <!-- ── HERO SECTION ── -->
 <div class="section hero case-study">
@@ -486,11 +506,6 @@
         </nav>
         <div class="w-nav-button"><div class="w-icon-nav-menu"></div></div>
       </div>
-    </div>
-
-    <div class="legal-links-wrapper outline">
-      <a href="#" class="footer-link n-1 w-inline-block"><h4 class="black no-height _0-7em-l-padding">2026 Mahita Manikandan</h4></a>
-      <a href="mailto:mahita.mani@gmail.com" class="footer-link w-inline-block"><h4 class="black no-height _0-7em-r-padding">mahita.mani@gmail.com</h4></a>
     </div>
   </div>
 </section>
