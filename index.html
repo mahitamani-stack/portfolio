@@ -638,8 +638,13 @@ window.checkAndInitMacWindows = function() {
                 'https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743410/mac-os-windows/window-6.mp4',
                 'https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743984/mac-os-windows/window-7.mp4',
             ];
-            vid.src = macWindowUrls[i];
-            vid.autoplay = true;
+            // Set these as real attributes (not just JS props) so Safari treats
+            // the video as eligible for autoplay before we ever call .play().
+            vid.setAttribute('muted', '');
+            vid.setAttribute('playsinline', '');
+            vid.setAttribute('webkit-playsinline', '');
+            vid.setAttribute('loop', '');
+            vid.setAttribute('preload', 'auto');
             vid.muted = true;
             vid.loop = true;
             vid.playsInline = true;
@@ -648,8 +653,19 @@ window.checkAndInitMacWindows = function() {
             vid.style.objectFit = 'contain';
             vid.style.display = 'block';
             vid.style.pointerEvents = 'none';
+            vid.src = macWindowUrls[i];
             win.appendChild(vid);
             container.appendChild(win);
+
+            // Safari (and some browsers) can silently ignore the `autoplay`
+            // attribute on videos created/appended dynamically via JS, leaving
+            // them paused on the poster frame until clicked. Explicitly kick
+            // off playback once metadata is ready, and retry once more shortly
+            // after in case Safari's power-saving pause kicked in.
+            const tryPlay = () => { vid.play().catch(() => {}); };
+            vid.addEventListener('loadedmetadata', tryPlay, { once: true });
+            tryPlay();
+            setTimeout(tryPlay, 400);
 
             // GSAP spring pop-in (slightly random stagger)
             const delay = (i * 0.28) + (Math.random() * 0.55);
