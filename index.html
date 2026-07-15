@@ -256,10 +256,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
             transform-style: preserve-3d;
             z-index: 1;
         }
-        .sprite-3d-letter:hover .sprite-3d-text {
+        .sprite-3d-letter:hover .sprite-3d-text,
+        .sprite-3d-letter.sprite-3d-active .sprite-3d-text {
             opacity: 0;
         }
-        .sprite-3d-letter:hover .sprite-3d-model {
+        .sprite-3d-letter:hover .sprite-3d-model,
+        .sprite-3d-letter.sprite-3d-active .sprite-3d-model {
             opacity: 1;
             transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg);
         }
@@ -268,7 +270,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
             transform: translate(-50%, -50%) translateY(20px) scale(0.8);
         }
         .sprite-3d-letter:nth-child(4):hover .sprite-3d-model,
-        .sprite-3d-letter:nth-child(6):hover .sprite-3d-model {
+        .sprite-3d-letter:nth-child(6):hover .sprite-3d-model,
+        .sprite-3d-letter:nth-child(4).sprite-3d-active .sprite-3d-model,
+        .sprite-3d-letter:nth-child(6).sprite-3d-active .sprite-3d-model {
             transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg) scale(0.8);
         }
         .service-outer {
@@ -599,18 +603,29 @@ window.checkAndInitMacWindows = function() {
     });
 </script>
 <style>
+/* On mobile the windows are percentage-sized against a much narrower
+   container, which otherwise makes each one 60-90% of the phone's screen
+   width — covering most of the viewport and making page scroll feel
+   broken wherever a drag lands. Cap them down significantly. */
+@media (max-width: 767px) {
+    .mac-window {
+        width: 42% !important;
+        max-width: 150px !important;
+        min-width: 85px !important;
+    }
+}
 .mac-window-controls {
     position: absolute;
-    top: 6px;
-    right: 6px;
+    top: 8px;
+    right: 14px;
     display: flex;
-    gap: 6px;
+    gap: 4px;
     z-index: 10;
     pointer-events: auto;
 }
 .mac-window-btn {
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: rgba(0,0,0,0.55);
     color: #fff;
@@ -619,7 +634,7 @@ window.checkAndInitMacWindows = function() {
     justify-content: center;
     cursor: pointer;
     border: none;
-    font-size: 13px;
+    font-size: 10px;
     line-height: 1;
     touch-action: manipulation;
     transition: transform 0.15s ease, background 0.15s ease;
@@ -690,11 +705,25 @@ window.checkAndInitMacWindows = function() {
 
         let fullscreenWin = null;
         let fullscreenCloseBtn = null;
+        let fullscreenReturnParent = null;
+        let fullscreenReturnNextSibling = null;
 
+        // #macos-container has its own position+z-index, which makes it a
+        // stacking context — any descendant's z-index (even position:fixed
+        // ones) gets capped at the container's own z-index (5) when compared
+        // to elements outside it, like the backdrop. Reparenting the window
+        // to <body> while fullscreen escapes that and lets its real z-index
+        // win. Moving the existing DOM node (not recreating it) doesn't
+        // restart or flicker the video.
         const exitFullscreen = () => {
             if (!fullscreenWin) return;
             fullscreenWin.classList.remove('mac-window-fullscreen');
             if (fullscreenCloseBtn) { fullscreenCloseBtn.remove(); fullscreenCloseBtn = null; }
+            if (fullscreenReturnParent) {
+                fullscreenReturnParent.insertBefore(fullscreenWin, fullscreenReturnNextSibling);
+            }
+            fullscreenReturnParent = null;
+            fullscreenReturnNextSibling = null;
             backdrop.classList.remove('active');
             fullscreenWin = null;
         };
@@ -702,6 +731,9 @@ window.checkAndInitMacWindows = function() {
         const enterFullscreen = (win) => {
             if (fullscreenWin === win) return;
             if (fullscreenWin) exitFullscreen();
+            fullscreenReturnParent = win.parentElement;
+            fullscreenReturnNextSibling = win.nextSibling;
+            document.body.appendChild(win);
             win.classList.add('mac-window-fullscreen');
             backdrop.classList.add('active');
             fullscreenWin = win;
@@ -731,6 +763,7 @@ window.checkAndInitMacWindows = function() {
         for (let i = 0; i < 7; i++) {
             const win = document.createElement('div');
             const rot = rotations[i];
+            win.classList.add('mac-window');
             win.style.position = 'absolute';
             win.style.width = sizes[i];
             win.style.aspectRatio = '550 / 385';
@@ -880,4 +913,20 @@ window.checkAndInitMacWindows = function() {
 <script src="/media-unlock.js" defer></script>
 <script src="/ipod-player.js" defer></script>
 <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
+<script>
+    // The 3D sprite reveal (footer "MAHITA" letters) is driven by :hover in
+    // CSS, which touch devices can't trigger reliably — tapping a letter on
+    // mobile does nothing without this. Toggle the same class :hover sets.
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".sprite-3d-letter").forEach((letter) => {
+            letter.addEventListener("click", () => {
+                const wasActive = letter.classList.contains("sprite-3d-active");
+                document.querySelectorAll(".sprite-3d-letter.sprite-3d-active").forEach((el) => {
+                    if (el !== letter) el.classList.remove("sprite-3d-active");
+                });
+                letter.classList.toggle("sprite-3d-active", !wasActive);
+            });
+        });
+    });
+</script>
 </body></html>

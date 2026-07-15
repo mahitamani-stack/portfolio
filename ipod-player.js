@@ -614,6 +614,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (document.hidden) pauseForBackground();
     });
     window.addEventListener("pagehide", pauseForBackground);
+    // Belt-and-suspenders for iOS: a locked screen doesn't always fire
+    // visibilitychange as promptly as switching tabs/apps does, and iOS treats
+    // real (unmuted, user-started) audio as background-playback-eligible by
+    // default — like a music app — unless we explicitly pause it ourselves.
+    // "freeze" (Page Lifecycle API) fires right before the page is suspended;
+    // "blur" catches the loss-of-focus moment a beat earlier on some builds.
+    window.addEventListener("freeze", pauseForBackground);
+    window.addEventListener("blur", pauseForBackground);
 
     // ── Inject Backdrop Overlay & iPod Markup ──
     const backdrop = document.createElement("div");

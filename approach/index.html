@@ -378,10 +378,19 @@
         }
 
         .diary-filmstrip-page {
+            /* Uniform frame for every page (left pages are 2150x3250, right
+               pages are 3333x3250 - same height, very different width).
+               Sizing the frame to the narrower left-page ratio and cropping
+               wider images to fit (object-fit: cover) keeps every pan step
+               the same width, so the motion reads as a smooth, even camera
+               pan instead of the frame visibly widening on right pages. */
             height: 100%;
+            aspect-ratio: 2150 / 3250;
             width: auto;
             flex-shrink: 0;
             display: block;
+            object-fit: cover;
+            object-position: center;
             -webkit-user-drag: none;
             user-select: none;
         }
@@ -413,6 +422,16 @@
 
         .diary-nav-btn.diary-nav-overlay.next-btn {
             right: 0.5rem;
+        }
+
+        /* The iPod widget's default minimized position (bottom-right) sits
+           right in the vertical-center strip where the landscape diary's
+           overlaid right arrow lives. Tuck it into the top-right corner
+           instead while the diary is in full-screen landscape mode. */
+        body:has(.diary-wrapper[data-diary-mode="landscape"]) .ipod-widget-container.minimized {
+            top: 4px;
+            right: 4px;
+            bottom: auto !important;
         }
 
         @media (min-width: 768px) {

@@ -66,3 +66,22 @@ html.bm-mobile-guard body {
 .bm-mobile-overlay-btn:active {
     opacity: 0.8;
 }
+
+/* ── Mobile nav dropdown (top nav + footer nav share this Webflow
+   component): without an explicit background it can render as a
+   transparent/endless-looking overlay showing whatever page background sits
+   behind it, and without a height cap a layout hiccup can make it stretch
+   far past its actual link list. Force a solid background and a sane cap. ── */
+@media (max-width: 767px) {
+    .w-nav-overlay {
+        background-color: #14120d !important;
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+    }
+
+    .nav-menu.w-nav-menu {
+        background-color: #14120d !important;
+        padding: 1.5rem !important;
+        box-sizing: border-box !important;
+    }
+}

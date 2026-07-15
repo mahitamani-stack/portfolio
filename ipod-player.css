@@ -67,9 +67,10 @@
 /* ── Screen Section (behind transparent window of PNG) ── */
 .ipod-screen-container {
     position: absolute;
-    /* Map exact transparency coordinate bounds found from find_transparent_screen.py */
+    /* Base bounds from find_transparent_screen.py, nudged down slightly —
+       reported as sitting a bit above the real screen cutout on device. */
     left: 12.77%;
-    top: 3.44%;
+    top: 5%;
     width: 75.68%;
     height: 32.95%;
     background-color: #f7f7f7; /* iPod Classic grey LCD screen background */
@@ -293,10 +294,10 @@
 /* ── Clickwheel Controls Overlay ── */
 .ipod-clickwheel {
     position: absolute;
-    left: 11.82%;
-    top: 47.94%;
-    width: 75.82%;
-    height: 42.66%; /* matched to the actual printed wheel graphic via pixel analysis of ipod.png */
+    left: 10.32%;
+    top: 49.5%;
+    width: 78.82%;
+    height: 45.5%; /* pixel-matched to the printed wheel, then nudged down + enlarged — reported as sitting a bit above the real dial on device */
     border-radius: 50%;
     background-color: transparent;
     z-index: 15;

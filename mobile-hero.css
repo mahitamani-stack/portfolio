@@ -2,9 +2,14 @@
 
 @media (max-width: 767px) {
   /* Safety net: nothing on the page should be able to force horizontal
-     scroll/zoom-out on mobile, no matter which section causes it. */
+     scroll/zoom-out on mobile, no matter which section causes it.
+     Using `clip` instead of `hidden` on purpose — overflow values other than
+     `visible`/`clip` on html/body establish a scroll container, which is a
+     well-known way to silently break `position: sticky` for every
+     descendant on the page (e.g. the case-study cards' sticky-stack scroll
+     effect). `clip` prevents the horizontal bleed without that side effect. */
   html, body {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     max-width: 100vw !important;
   }
 
@@ -60,8 +65,8 @@
 
   img.butter-toast {
     height: auto !important;
-    max-width: 100% !important;
-    transform: none !important;
+    max-width: 78% !important;
+    transform: translateX(-8%) !important;
     margin: 1rem 0 !important;
   }
 
@@ -81,7 +86,7 @@
     width: 36px !important;
     height: 64px !important;
     right: 8px !important;
-    bottom: 5rem !important;
+    bottom: 6.5rem !important; /* was sitting flush against progress-bar's top edge with zero gap */
   }
 
   .progress-bar {
@@ -119,5 +124,12 @@
   .knife-subtitle-box {
     font-size: 0.75rem !important;
     padding: 0.4rem 0.5rem !important;
+  }
+
+  /* MAHITA 3D letters: height:auto (set sitewide) leaves barely any room
+     for the tap-revealed 3D model to render without clipping on narrow
+     screens — give it real space. */
+  .sprite-3d-letter {
+    min-height: 140px !important;
   }
 }
