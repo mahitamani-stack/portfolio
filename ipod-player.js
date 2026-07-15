@@ -509,20 +509,54 @@ document.addEventListener("DOMContentLoaded", () => {
         ]
 };
 
-    // Select a random playlist and random track on load
+    // ── Session Persistence: save/restore across page navigations ──
+    const STORAGE_KEY = 'ipod_state';
+    const saveState = () => {
+        try {
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
+                playlist: activePlaylistName,
+                trackIndex: currentTrackIndex,
+                currentTime: audio.currentTime,
+                wasPlaying: !audio.paused,
+                playedIndices: playedIndices
+            }));
+        } catch(e) {}
+    };
+    const loadState = () => {
+        try {
+            const raw = sessionStorage.getItem(STORAGE_KEY);
+            return raw ? JSON.parse(raw) : null;
+        } catch(e) { return null; }
+    };
+
     const playlistNames = Object.keys(playlists);
-    let activePlaylistName = playlistNames[Math.floor(Math.random() * playlistNames.length)];
-    let currentTrackIndex = Math.floor(Math.random() * playlists[activePlaylistName].length);
-    
-    // Tracking played indices to ensure full shuffle cover and automatic playlist cycling
-    let playedIndices = [currentTrackIndex];
-    
+    const saved = loadState();
+
+    let activePlaylistName, currentTrackIndex, playedIndices;
+
+    if (saved && playlists[saved.playlist] && playlists[saved.playlist][saved.trackIndex]) {
+        // Restore saved session state
+        activePlaylistName = saved.playlist;
+        currentTrackIndex = saved.trackIndex;
+        playedIndices = saved.playedIndices || [currentTrackIndex];
+    } else {
+        // Fresh start — pick random playlist + track
+        activePlaylistName = playlistNames[Math.floor(Math.random() * playlistNames.length)];
+        currentTrackIndex = Math.floor(Math.random() * playlists[activePlaylistName].length);
+        playedIndices = [currentTrackIndex];
+    }
+
     // Retrieve track helper
     const getActiveTrack = () => playlists[activePlaylistName][currentTrackIndex];
 
     const audio = new Audio();
     audio.src = getActiveTrack().src;
-    audio.volume = 0.1; // Force 10% volume as requested
+    audio.volume = 0.1;
+
+    // Restore playback position if coming from another page
+    if (saved && saved.currentTime > 0) {
+        audio.currentTime = saved.currentTime;
+    }
 
     // ── Synthetic Haptic Click Sound Generator (Web Audio API) ──
     const playClickSound = () => {
@@ -545,16 +579,23 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (e) {}
     };
 
-    // ── Autoplay Policy Handler ──
-    const tryAutoplay = () => {
+    // ── Autoplay / Resume Handler ──
+    // If music was playing on previous page, auto-resume immediately
+    const tryAutoplay = (userGesture) => {
         audio.play().then(() => {
             document.removeEventListener("click", tryAutoplay);
             document.removeEventListener("touchstart", tryAutoplay);
             renderScreen();
-        }).catch(err => {
-            // Blocked by browser, plays on next page interaction
+            saveState();
+        }).catch(() => {
+            // Blocked without user gesture — will resume on first click
         });
     };
+
+    if (saved && saved.wasPlaying) {
+        // Try immediate resume (works if same-origin navigation already gave permission)
+        tryAutoplay(false);
+    }
 
     document.addEventListener("click", tryAutoplay);
     document.addEventListener("touchstart", tryAutoplay);
@@ -602,6 +643,84 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     document.body.appendChild(ipodContainer);
+
+    // ── Hide iPod during intro video, pop-in animate when revealed ──
+    const introOverlay = document.getElementById('intro-overlay') || document.querySelector('.intro-video-overlay') || document.querySelector('#intro-video-wrap');
+    if (introOverlay) {
+        // Keep iPod fully out of the way until intro is completely gone
+        ipodContainer.style.opacity = '0';
+        ipodContainer.style.visibility = 'hidden';
+        ipodContainer.style.pointerEvents = 'none';
+
+        let revealed = false;
+        const introFullyDone = () =>
+            introOverlay.style.display === 'none'
+            || !document.body.contains(introOverlay);
+
+        const revealIpod = () => {
+            if (revealed) return;
+            revealed = true;
+
+            // Step 1: pop in at the SAME size/position it uses when opened via click
+            // (right:20px / bottom:100px, full 312x555 size — no center modal, no backdrop,
+            // so the macOS windows revealing in the background stay visible)
+            ipodContainer.classList.remove('minimized'); // drop the tiny 42x75 icon size
+            ipodContainer.style.transition = 'none';
+            ipodContainer.style.visibility = '';
+            ipodContainer.style.opacity = '0';
+            ipodContainer.style.pointerEvents = '';
+            ipodContainer.style.position = 'fixed';
+            ipodContainer.style.top = 'auto';
+            ipodContainer.style.left = 'auto';
+            ipodContainer.style.right = '20px';
+            ipodContainer.style.bottom = '100px';
+            ipodContainer.style.transform = 'scale(0.6)';
+            ipodContainer.style.zIndex = '10000';
+
+            // Force reflow so the transition below actually animates from this start state
+            void ipodContainer.offsetHeight;
+
+            ipodContainer.style.transition = 'opacity 0.5s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            ipodContainer.style.opacity = '1';
+            ipodContainer.style.transform = 'scale(1)';
+
+            // Step 2: after a beat, shrink back down into the minimized corner position
+            setTimeout(() => {
+                ipodContainer.style.transition = 'all 0.65s cubic-bezier(0.34, 1.1, 0.64, 1)';
+                // Reset to original corner CSS (remove inline overrides)
+                ipodContainer.style.top = '';
+                ipodContainer.style.left = '';
+                ipodContainer.style.right = '';
+                ipodContainer.style.bottom = '';
+                ipodContainer.style.transform = '';
+                ipodContainer.style.zIndex = '';
+                ipodContainer.style.position = '';
+                ipodContainer.classList.add('minimized'); // shrink back to the small icon
+            }, 1400);
+        };
+
+        if (introFullyDone() || sessionStorage.getItem('introPlayed') === 'true') {
+            // Intro already skipped this session — reveal shortly after load
+            setTimeout(revealIpod, 400);
+        } else {
+            // Wait until overlay is fully removed (display:none), NOT mid-fade opacity.
+            // The old 500ms "opacity still 0" fallback was firing during the intro and
+            // enabling the dark blur backdrop over the video.
+            const observer = new MutationObserver(() => {
+                if (introFullyDone()) {
+                    observer.disconnect();
+                    revealIpod();
+                }
+            });
+            observer.observe(introOverlay, { attributes: true, attributeFilter: ['style', 'class'] });
+            observer.observe(document.body, { childList: true });
+
+            // Safety only — intro is ~4s + fade; never interrupt playback
+            setTimeout(() => {
+                if (!revealed) revealIpod();
+            }, 15000);
+        }
+    }
 
     // ── Modal State Control Handlers ──
     const expandIpod = () => {
@@ -910,6 +1029,7 @@ document.addEventListener("DOMContentLoaded", () => {
             audio.pause();
         }
         renderScreen();
+        saveState();
     });
 
     // 4. NEXT Button (Shuffle playback, transitions to next playlist when current one ends)
@@ -955,8 +1075,9 @@ document.addEventListener("DOMContentLoaded", () => {
         audio.volume = 0.1;
         audio.play();
         renderScreen();
+        saveState();
     };
-    
+
     document.getElementById("ipod-btn-next").addEventListener("click", (e) => {
         e.stopPropagation();
         playClickSound();
@@ -994,11 +1115,12 @@ document.addEventListener("DOMContentLoaded", () => {
         renderScreen();
     });
 
-    // ── Playback Progress Interval updates ──
+    // ── Playback Progress Interval updates + session save ──
     setInterval(() => {
         const currentView = menuStack[menuStack.length - 1];
-        if (currentView === "nowplaying" && !audio.paused) {
-            renderScreen();
+        if (!audio.paused) {
+            saveState();
+            if (currentView === "nowplaying") renderScreen();
         }
     }, 1000);
 

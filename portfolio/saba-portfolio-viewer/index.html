@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head><link href="https://portfolio-pi-one-uos32qk6gc.vercel.app/portfolio/saba-portfolio-viewer" rel="canonical"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/og-image.jpg" property="og:image"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/og-image.jpg" name="twitter:image"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/portfolio/saba-portfolio-viewer" property="og:url"/><link href="/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/><link href="/apple-touch-icon.png" rel="apple-touch-icon"/><script>(function(){try{var ua=navigator.userAgent||"";var isMobileUA=/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(ua);var isNarrow=window.matchMedia("(max-width: 767px)").matches;var proceeded=sessionStorage.getItem("bitemarkMobileProceed")==="true";if((isMobileUA||isNarrow)&&!proceeded){document.documentElement.classList.add("bm-mobile-guard");}}catch(e){}})();</script><link href="/mobile-block.css" rel="stylesheet" type="text/css"/><script src="/mobile-block.js" defer></script>
 <meta charset="utf-8"/>
 <title>Case Study: Handy Image Viewer | Mahita Manikandan</title>
 <meta content="A 3D image viewer website built for Saba Gaziyani's portfolio." name="description"/>
@@ -8,12 +8,9 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Pinyon+Script&display=swap" rel="stylesheet"/>
-<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<link href="https://cdn.prod.website-files.com/609988bd503b3c3129b4bab4/63d4407e186d465a00a2719e_bitemark_favicon_swirl.png" rel="shortcut icon" type="image/x-icon"/>
-
 <style>
-  body { -webkit-font-smoothing: antialiased; font-size: 1.2em; }
+  body { -webkit-font-smoothing: antialiased; font-size: 16px; }
   *, *::before, *::after { cursor: url('/strawberry_cursor_48.webp') 16 16, auto !important; }
 
   :root {
@@ -164,6 +161,31 @@
   @media (max-width: 900px) {
     .sprite-3d-text { font-size: 2.5rem; }
   }
+
+  /* ── Reading Accessibility & Typography Hierarchy Overrides ── */
+  h1, .display-header, .h1 {
+    font-size: clamp(3rem, 5.5vw, 4rem) !important; /* 48px to 64px on desktop */
+    line-height: 1.15 !important;
+  }
+  h2, .case-study-title, .h2-smaller {
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem) !important; /* 26px to 36px on desktop */
+    line-height: 1.25 !important;
+  }
+  p, .body-text, .main-text, .left-aligned, .client-name, .testimonial-text {
+    font-size: clamp(1.28rem, 2.5vw, 1.45rem) !important; /* 21px to 23px on desktop */
+    line-height: 1.65 !important; /* 165% line height for readable space */
+    max-width: 75ch !important; /* Restrict lines to ~75 characters to prevent eye strain */
+  }
+  /* Keep paragraph vertical margins clean */
+  .bk-film-text p, .rounded-ivory p, .cs-main p {
+    margin-bottom: 1rem;
+  }
+  .button-inner, .nav {
+    font-size: clamp(0.9rem, 1.5vw, 1rem) !important; /* 14px to 16px */
+  }
+  .bk-pill, .deliverable p, .bk-credits p, .bk-credits, .legal-links-wrapper h4 {
+    font-size: clamp(0.8rem, 1.2vw, 0.88rem) !important; /* 13px to 14px captions */
+  }
 </style>
   <link href="/ipod-player.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -178,7 +200,8 @@
         <nav role="navigation" class="nav-menu w-nav-menu">
           <a href="/" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">Home</a>
           <a href="/approach" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">My Journey</a>
-          <a href="/portfolio" class="nav hover-spacing alt-styling black ivory-mm w-nav-link w--current">The Kitchen (Work)</a>
+          <a href="/portfolio" class="nav hover-spacing alt-styling black ivory-mm w-nav-link w--current">The Kitchen (Work)</a><a href="/mise-en-place" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">Mise en Place</a>
+          
           <div class="nav-right">
             <a href="mailto:mahita.mani@gmail.com" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">Let's Cook</a>
           </div>
@@ -280,27 +303,27 @@
       <div class="sprite-3d-wrapper">
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">M</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_M.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_M.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">A</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_A.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">H</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_H.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_H.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">I</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_I.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_I.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">T</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_T.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_T.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">A</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_A2.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A2.glb"></model-viewer>
         </div>
       </div>
       <div class="sm-wrapper">
@@ -342,4 +365,5 @@ function goFullscreen() {
 }
 </script>
   <script src="/ipod-player.js" defer></script>
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
 </body></html>

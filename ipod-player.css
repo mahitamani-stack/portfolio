@@ -4,8 +4,8 @@
     position: fixed;
     right: 20px;
     bottom: 100px; /* Aligns right above the progress-bar orange icon */
-    width: 240px;
-    height: 427px; /* Matches 736x1308 aspect ratio */
+    width: 312px;
+    height: 555px; /* 30% bigger than original 240×427 */
     z-index: 999999 !important;
     transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     background-color: transparent;
@@ -18,10 +18,11 @@
 .ipod-widget-container.minimized {
     width: 42px;
     height: 75px;
-    bottom: 95px;
+    bottom: 180px; /* Raised so it sits above the HI! / oranges capsule */
     right: 20px;
     cursor: pointer;
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15));
+    z-index: 98 !important; /* Below HI! button (z-index:100) */
 }
 
 .ipod-widget-container.minimized:hover {

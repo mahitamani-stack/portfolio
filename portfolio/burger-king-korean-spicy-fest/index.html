@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head><link href="https://portfolio-pi-one-uos32qk6gc.vercel.app/portfolio/burger-king-korean-spicy-fest" rel="canonical"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/og-image.jpg" property="og:image"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/og-image.jpg" name="twitter:image"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/portfolio/burger-king-korean-spicy-fest" property="og:url"/><link href="/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/><link href="/apple-touch-icon.png" rel="apple-touch-icon"/><script>(function(){try{var ua=navigator.userAgent||"";var isMobileUA=/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(ua);var isNarrow=window.matchMedia("(max-width: 767px)").matches;var proceeded=sessionStorage.getItem("bitemarkMobileProceed")==="true";if((isMobileUA||isNarrow)&&!proceeded){document.documentElement.classList.add("bm-mobile-guard");}}catch(e){}})();</script><link href="/mobile-block.css" rel="stylesheet" type="text/css"/><script src="/mobile-block.js" defer></script>
 <meta charset="utf-8"/>
 <title>Case Study: Burger King India, Korean Spicy Fest | Mahita Manikandan</title>
 <meta content="The one that started it all, kind of. Product films for Burger King India's Korean Spicy Fest campaign." name="description"/>
@@ -8,12 +8,9 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Pinyon+Script&display=swap" rel="stylesheet"/>
-<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<link href="https://cdn.prod.website-files.com/609988bd503b3c3129b4bab4/63d4407e186d465a00a2719e_bitemark_favicon_swirl.png" rel="shortcut icon" type="image/x-icon"/>
-
 <style>
-  body { -webkit-font-smoothing: antialiased; font-size: 1.2em; }
+  body { -webkit-font-smoothing: antialiased; font-size: 16px; }
   *, *::before, *::after { cursor: url('/strawberry_cursor_48.webp') 16 16, auto !important; }
 
   :root {
@@ -235,6 +232,31 @@
     .bk-korean-film-grid .bk-video-cell:last-child { border-bottom: none; }
     .sprite-3d-text { font-size: 2.5rem; }
   }
+
+  /* ── Reading Accessibility & Typography Hierarchy Overrides ── */
+  h1, .display-header, .h1 {
+    font-size: clamp(3rem, 5.5vw, 4rem) !important; /* 48px to 64px on desktop */
+    line-height: 1.15 !important;
+  }
+  h2, .case-study-title, .h2-smaller {
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem) !important; /* 26px to 36px on desktop */
+    line-height: 1.25 !important;
+  }
+  p, .body-text, .main-text, .left-aligned, .client-name, .testimonial-text {
+    font-size: clamp(1.28rem, 2.5vw, 1.45rem) !important; /* 21px to 23px on desktop */
+    line-height: 1.65 !important; /* 165% line height for readable space */
+    max-width: 75ch !important; /* Restrict lines to ~75 characters to prevent eye strain */
+  }
+  /* Keep paragraph vertical margins clean */
+  .bk-film-text p, .rounded-ivory p, .cs-main p {
+    margin-bottom: 1rem;
+  }
+  .button-inner, .nav {
+    font-size: clamp(0.9rem, 1.5vw, 1rem) !important; /* 14px to 16px */
+  }
+  .bk-pill, .deliverable p, .bk-credits p, .bk-credits, .legal-links-wrapper h4 {
+    font-size: clamp(0.8rem, 1.2vw, 0.88rem) !important; /* 13px to 14px captions */
+  }
 </style>
   <link href="/ipod-player.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -249,7 +271,8 @@
         <nav role="navigation" class="nav-menu w-nav-menu">
           <a href="/" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">Home</a>
           <a href="/approach" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">My Journey</a>
-          <a href="/portfolio" class="nav hover-spacing alt-styling black ivory-mm w-nav-link w--current">The Kitchen (Work)</a>
+          <a href="/portfolio" class="nav hover-spacing alt-styling black ivory-mm w-nav-link w--current">The Kitchen (Work)</a><a href="/mise-en-place" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">Mise en Place</a>
+          
           <div class="nav-right">
             <a href="mailto:mahita.mani@gmail.com" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">Let's Cook</a>
           </div>
@@ -331,7 +354,6 @@
     <!-- Concept -->
     <div class="cs-main first">
       <div class="_1-5em-gap _65--width-wrapper">
-        <p class="bk-section-label">Concept</p>
         <h2 class="case-study-title">The Concept</h2>
         <p class="black left-aligned cs-show-and-hide" style="display:block;">High contrast, close on the product, always moving.<br/></p>
       </div>
@@ -340,7 +362,6 @@
     <!-- 2×2 Films Grid -->
     <div class="cs-main">
       <div class="_1-5em-gap _65--width-wrapper">
-        <p class="bk-section-label">Films</p>
         <h2 class="case-study-title">Films</h2>
       </div>
       <div class="bk-korean-film-grid">
@@ -354,7 +375,7 @@
           </div>
         </div>
         <div class="bk-video-cell">
-          <video src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743265/bk-korean/fried-chicken.mp4" preload="metadata" loop playsinline></video>
+          <video data-src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743265/bk-korean/fried-chicken.mp4" preload="none" loop playsinline></video>
           <div class="bk-play-btn" onclick="bkToggle(this)">
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
@@ -363,7 +384,7 @@
           </div>
         </div>
         <div class="bk-video-cell">
-          <video src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743272/bk-korean/fries.mp4" preload="metadata" loop playsinline></video>
+          <video data-src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743272/bk-korean/fries.mp4" preload="none" loop playsinline></video>
           <div class="bk-play-btn" onclick="bkToggle(this)">
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
@@ -372,7 +393,7 @@
           </div>
         </div>
         <div class="bk-video-cell">
-          <video src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743283/bk-korean/paneer-burger.mp4" preload="metadata" loop playsinline></video>
+          <video data-src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743283/bk-korean/paneer-burger.mp4" preload="none" loop playsinline></video>
           <div class="bk-play-btn" onclick="bkToggle(this)">
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
@@ -385,17 +406,16 @@
 
     <!-- Season 2 note -->
     <div class="cs-main">
-      <p class="bk-s2-note">Season 2 launched the following year with kimchi added and an expanded menu. I suggested a new colour palette and lighting direction for it. Saba ma'am ran with it beautifully.</p>
+      <p class="bk-s2-note" style="text-align:left">Season 2 launched the following year with kimchi added and an expanded menu. I suggested a new colour palette and lighting direction for it. Saba ma'am ran with it beautifully.</p>
     </div>
 
     <!-- Season 2 film -->
     <div class="cs-main">
       <div class="_1-5em-gap _65--width-wrapper">
-        <p class="bk-section-label">Season 2</p>
         <h2 class="case-study-title">Season 2</h2>
       </div>
       <div class="bk-s2-video">
-        <video src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743313/bk-korean/final-s2-film.mp4" preload="metadata" loop playsinline></video>
+        <video data-src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782743313/bk-korean/final-s2-film.mp4" preload="none" loop playsinline></video>
         <div class="bk-play-btn" onclick="bkToggle(this)">
           <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
@@ -447,27 +467,27 @@
       <div class="sprite-3d-wrapper">
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">M</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_M.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_M.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">A</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_A.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">H</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_H.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_H.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">I</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_I.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_I.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">T</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_T.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_T.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">A</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_A2.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A2.glb"></model-viewer>
         </div>
       </div>
       <div class="sm-wrapper">
@@ -523,4 +543,27 @@ document.querySelectorAll('.bk-video-cell video, .bk-s2-video video').forEach(fu
 
 <script src="/click-spark.js"></script>
   <script src="/ipod-player.js" defer></script>
+
+<script>
+// Lazy-load videos: only load src when video enters viewport
+(function() {
+  if (!('IntersectionObserver' in window)) return;
+  var vids = document.querySelectorAll('video[data-src]');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var v = e.target;
+        // Move data-src to src
+        v.src = v.dataset.src;
+        // Move source children too
+        v.querySelectorAll('source[data-src]').forEach(function(s) { s.src = s.dataset.src; });
+        v.load();
+        obs.unobserve(v);
+      }
+    });
+  }, { rootMargin: '200px' });
+  vids.forEach(function(v) { obs.observe(v); });
+})();
+</script>
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
 </body></html>

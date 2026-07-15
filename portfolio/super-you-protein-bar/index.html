@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head><link href="https://portfolio-pi-one-uos32qk6gc.vercel.app/portfolio/super-you-protein-bar" rel="canonical"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/og-image.jpg" property="og:image"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/og-image.jpg" name="twitter:image"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/portfolio/super-you-protein-bar" property="og:url"/><link href="/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/><link href="/apple-touch-icon.png" rel="apple-touch-icon"/><script>(function(){try{var ua=navigator.userAgent||"";var isMobileUA=/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(ua);var isNarrow=window.matchMedia("(max-width: 767px)").matches;var proceeded=sessionStorage.getItem("bitemarkMobileProceed")==="true";if((isMobileUA||isNarrow)&&!proceeded){document.documentElement.classList.add("bm-mobile-guard");}}catch(e){}})();</script><link href="/mobile-block.css" rel="stylesheet" type="text/css"/><script src="/mobile-block.js" defer></script>
 <meta charset="utf-8"/>
 <title>Case Study: SuperYou Choco-Peanut Pro Bar | Mahita Manikandan</title>
 <meta content="Ingredients, honestly shown. Mostly AI. A product window film for SuperYou's Choco-Peanut Pro Bar." name="description"/>
@@ -8,13 +8,10 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Pinyon+Script&display=swap" rel="stylesheet"/>
-<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<link href="https://cdn.prod.website-files.com/609988bd503b3c3129b4bab4/63d4407e186d465a00a2719e_bitemark_favicon_swirl.png" rel="shortcut icon" type="image/x-icon"/>
-
 <style>
   /* ── Reset & base ── */
-  body { -webkit-font-smoothing: antialiased; font-size: 1.2em; }
+  body { -webkit-font-smoothing: antialiased; font-size: 16px; }
   *, *::before, *::after { cursor: url('/strawberry_cursor_48.webp') 16 16, auto !important; }
 
   :root {
@@ -220,6 +217,31 @@
     .sprite-3d-model { width: 50px; height: 50px; }
     .sprite-3d-text { font-size: 2.5rem; }
   }
+
+  /* ── Reading Accessibility & Typography Hierarchy Overrides ── */
+  h1, .display-header, .h1 {
+    font-size: clamp(3rem, 5.5vw, 4rem) !important; /* 48px to 64px on desktop */
+    line-height: 1.15 !important;
+  }
+  h2, .case-study-title, .h2-smaller {
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem) !important; /* 26px to 36px on desktop */
+    line-height: 1.25 !important;
+  }
+  p, .body-text, .main-text, .left-aligned, .client-name, .testimonial-text {
+    font-size: clamp(1.28rem, 2.5vw, 1.45rem) !important; /* 21px to 23px on desktop */
+    line-height: 1.65 !important; /* 165% line height for readable space */
+    max-width: 75ch !important; /* Restrict lines to ~75 characters to prevent eye strain */
+  }
+  /* Keep paragraph vertical margins clean */
+  .bk-film-text p, .rounded-ivory p, .cs-main p {
+    margin-bottom: 1rem;
+  }
+  .button-inner, .nav {
+    font-size: clamp(0.9rem, 1.5vw, 1rem) !important; /* 14px to 16px */
+  }
+  .bk-pill, .deliverable p, .bk-credits p, .bk-credits, .legal-links-wrapper h4 {
+    font-size: clamp(0.8rem, 1.2vw, 0.88rem) !important; /* 13px to 14px captions */
+  }
 </style>
   <link href="/ipod-player.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -234,7 +256,8 @@
         <nav role="navigation" class="nav-menu w-nav-menu">
           <a href="/" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">Home</a>
           <a href="/approach" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">My Journey</a>
-          <a href="/portfolio" class="nav hover-spacing alt-styling black ivory-mm w-nav-link w--current">My Kitchen</a>
+          <a href="/portfolio" class="nav hover-spacing alt-styling black ivory-mm w-nav-link w--current">My Kitchen</a><a href="/mise-en-place" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">Mise en Place</a>
+          
           <div class="nav-right">
             <a href="mailto:mahita.mani@gmail.com" class="nav hover-spacing alt-styling black ivory-mm w-nav-link">Let's Cook</a>
           </div>
@@ -351,7 +374,7 @@
       </div>
       <div class="sy-clip-grid">
         <div class="sy-clip-cell">
-          <video src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782827953/super-you/clip-1.mp4" preload="metadata" loop playsinline></video>
+          <video data-src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782827953/super-you/clip-1.mp4" preload="none" loop playsinline></video>
           <div class="bk-play-btn" onclick="bkToggle(this)">
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
@@ -360,7 +383,7 @@
           </div>
         </div>
         <div class="sy-clip-cell">
-          <video src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782827957/super-you/clip-2.mp4" preload="metadata" loop playsinline></video>
+          <video data-src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782827957/super-you/clip-2.mp4" preload="none" loop playsinline></video>
           <div class="bk-play-btn" onclick="bkToggle(this)">
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
@@ -369,7 +392,7 @@
           </div>
         </div>
         <div class="sy-clip-cell">
-          <video src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782827960/super-you/clip-3.mp4" preload="metadata" loop playsinline></video>
+          <video data-src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782827960/super-you/clip-3.mp4" preload="none" loop playsinline></video>
           <div class="bk-play-btn" onclick="bkToggle(this)">
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
@@ -378,7 +401,7 @@
           </div>
         </div>
         <div class="sy-clip-cell">
-          <video src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782827962/super-you/clip-4.mp4" preload="metadata" loop playsinline></video>
+          <video data-src="https://res.cloudinary.com/dyazh2nxk/video/upload/v1782827962/super-you/clip-4.mp4" preload="none" loop playsinline></video>
           <div class="bk-play-btn" onclick="bkToggle(this)">
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="40" cy="40" r="38" fill="#b0e0e6" fill-opacity="0.92" stroke="#111" stroke-width="1.5"/>
@@ -393,7 +416,7 @@
     <div class="cs-main">
       <div class="_1-5em-gap _65--width-wrapper">
         <h2 class="case-study-title">The Result</h2>
-        <p class="left-aligned black">It ran digitally. Two days, no live shoot — except the wafer, which we did shoot, because sometimes AI just loses that round.<br/></p>
+        <p class="left-aligned black">It ran digitally. Two days, no live shoot — except the wafer, which we did shoot.<br/></p>
       </div>
     </div>
 
@@ -437,27 +460,27 @@
       <div class="sprite-3d-wrapper">
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">M</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_M.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_M.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">A</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_A.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">H</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_H.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_H.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">I</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_I.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_I.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">T</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_T.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_T.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">A</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="eager" src="/3d%20sprites%20for%20footer%20animation/Sprite_A2.glb"></model-viewer>
+          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A2.glb"></model-viewer>
         </div>
       </div>
       <div class="sm-wrapper">
@@ -472,7 +495,7 @@
         <nav role="navigation" class="nav-menu w-nav-menu">
           <a href="/" class="nav hover-spacing alt-styling black w-nav-link">Home</a>
           <a href="/approach" class="nav hover-spacing alt-styling black w-nav-link">My Journey</a>
-          <a href="/portfolio" class="nav hover-spacing alt-styling black w-nav-link">My Kitchen</a>
+          <a href="/portfolio" class="nav hover-spacing alt-styling black w-nav-link">My Kitchen</a><a href="/mise-en-place" class="nav hover-spacing alt-styling black w-nav-link">Mise en Place</a>
           <div class="nav-right"><a href="mailto:mahita.mani@gmail.com" class="nav hover-spacing alt-styling black w-nav-link">Let's Cook</a></div>
         </nav>
         <div class="w-nav-button"><div class="w-icon-nav-menu"></div></div>
@@ -514,4 +537,27 @@ document.querySelectorAll('.sy-full-film-video video, .sy-clip-cell video').forE
 
 <script src="/click-spark.js"></script>
   <script src="/ipod-player.js" defer></script>
+
+<script>
+// Lazy-load videos: only load src when video enters viewport
+(function() {
+  if (!('IntersectionObserver' in window)) return;
+  var vids = document.querySelectorAll('video[data-src]');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var v = e.target;
+        // Move data-src to src
+        v.src = v.dataset.src;
+        // Move source children too
+        v.querySelectorAll('source[data-src]').forEach(function(s) { s.src = s.dataset.src; });
+        v.load();
+        obs.unobserve(v);
+      }
+    });
+  }, { rootMargin: '200px' });
+  vids.forEach(function(v) { obs.observe(v); });
+})();
+</script>
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
 </body></html>
