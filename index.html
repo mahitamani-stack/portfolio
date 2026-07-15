@@ -648,6 +648,7 @@ window.checkAndInitMacWindows = function() {
             vid.muted = true;
             vid.loop = true;
             vid.playsInline = true;
+            vid.classList.add('site-media');
             vid.style.width = '100%';
             vid.style.height = '100%';
             vid.style.objectFit = 'contain';
@@ -657,11 +658,13 @@ window.checkAndInitMacWindows = function() {
             win.appendChild(vid);
             container.appendChild(win);
 
-            // Safari (and some browsers) can silently ignore the `autoplay`
-            // attribute on videos created/appended dynamically via JS, leaving
-            // them paused on the poster frame until clicked. Explicitly kick
-            // off playback once metadata is ready, and retry once more shortly
-            // after in case Safari's power-saving pause kicked in.
+            // Some browsers silently ignore attribute-based autoplay on videos
+            // created/appended dynamically via JS, leaving them paused on the
+            // poster frame. Explicitly kick off playback once metadata is
+            // ready, retry shortly after, and rely on media-unlock.js to
+            // retry every "site-media" video the moment the visitor grants
+            // the one-time media permission (covers browsers that block
+            // autoplay outright until a real user gesture happens).
             const tryPlay = () => { vid.play().catch(() => {}); };
             vid.addEventListener('loadedmetadata', tryPlay, { once: true });
             tryPlay();
@@ -708,6 +711,7 @@ window.checkAndInitMacWindows = function() {
     window.checkAndInitMacWindows();
     </script>
 <script src="/click-spark.js"></script>
+<script src="/media-unlock.js" defer></script>
 <script src="/ipod-player.js" defer></script>
 <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
 </body></html>
