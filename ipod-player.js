@@ -593,12 +593,27 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     if (saved && saved.wasPlaying) {
-        // Try immediate resume (works if same-origin navigation already gave permission)
+        // Try immediate resume (works if same-origin navigation already gave permission).
+        // Only listen for a follow-up gesture when we actually have something to resume —
+        // otherwise any click on a fresh/paused page would unexpectedly start playback.
         tryAutoplay(false);
+        document.addEventListener("click", tryAutoplay);
+        document.addEventListener("touchstart", tryAutoplay);
     }
 
-    document.addEventListener("click", tryAutoplay);
-    document.addEventListener("touchstart", tryAutoplay);
+    // ── Pause (and remember) playback when the tab/screen is hidden ──
+    // Prevents audio from continuing in the background after the phone locks,
+    // the tab is switched away from, or the tab/window is closed.
+    const pauseForBackground = () => {
+        if (!audio.paused) {
+            audio.pause();
+            saveState();
+        }
+    };
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) pauseForBackground();
+    });
+    window.addEventListener("pagehide", pauseForBackground);
 
     // ── Inject Backdrop Overlay & iPod Markup ──
     const backdrop = document.createElement("div");

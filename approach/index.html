@@ -22,6 +22,10 @@
     <!-- iPod Player Stylesheet -->
     <link href="/ipod-player.css" rel="stylesheet" type="text/css"/>
 
+    <!-- Diary landscape nudge (mobile only, dismissible) -->
+    <link href="/approach/landscape-gate.css" rel="stylesheet" type="text/css"/>
+    <script src="/approach/landscape-gate.js" defer></script>
+
     <!-- Theme and Layout Overrides (copied from index.html) -->
     <style id="custom-brand-overrides">
         @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Pinyon+Script&display=swap');
@@ -185,12 +189,7 @@
             filter: drop-shadow(0 25px 55px rgba(0, 0, 0, 0.22));
         }
 
-        /* Center the closed cover page on desktop (shift by 25% of double-width) */
-        @media (min-width: 768px) {
-            .diary-book-container.cover-state {
-                transform: translateX(-25%);
-            }
-        }
+        /* Cover-centering lives further down, scoped to skip mobile-landscape fullscreen mode */
 
         .diary-book {
             display: none; /* initialized by St.PageFlip script */
@@ -345,6 +344,82 @@
                 position: relative;
             }
         }
+
+        /* ── Orientation-aware mobile diary: portrait "camera pan" filmstrip,
+           landscape full-screen page-flip. Driven by data-diary-mode, set in JS
+           (a raw width media query can't tell portrait vs landscape apart when a
+           phone's landscape width exceeds 767px). ── */
+        .diary-filmstrip-container {
+            display: none;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            order: 1;
+            filter: drop-shadow(0 25px 55px rgba(0, 0, 0, 0.22));
+        }
+
+        .diary-wrapper[data-diary-mode="portrait"] {
+            flex-direction: column;
+        }
+
+        .diary-wrapper[data-diary-mode="portrait"] .diary-filmstrip-container {
+            display: block;
+        }
+
+        .diary-wrapper[data-diary-mode="portrait"] .diary-book-container {
+            display: none;
+        }
+
+        .diary-filmstrip-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+        }
+
+        .diary-filmstrip-page {
+            height: 100%;
+            width: auto;
+            flex-shrink: 0;
+            display: block;
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
+        /* Landscape mobile: the book fills the screen, nav arrows float over its edges.
+           Sized to content (not a forced 100vh) — the navbar sits above this section,
+           so forcing 100vh here would push the total page past one viewport and force
+           a scroll; the JS sizing already accounts for the navbar's real height. */
+        .diary-main-section[data-diary-fullscreen="true"] {
+            padding: 0.5rem !important;
+            min-height: 0 !important;
+        }
+
+        .diary-wrapper[data-diary-mode="landscape"] {
+            gap: 0;
+        }
+
+        .diary-nav-btn.diary-nav-overlay {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            background-color: rgba(254, 255, 221, 0.85);
+        }
+
+        .diary-nav-btn.diary-nav-overlay.prev-btn {
+            left: 0.5rem;
+        }
+
+        .diary-nav-btn.diary-nav-overlay.next-btn {
+            right: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .diary-wrapper:not([data-diary-mode="landscape"]) .diary-book-container.cover-state {
+                transform: translateX(-25%);
+            }
+        }
     </style>
     
     <!-- Scripts for 3D GLB & Animations -->
@@ -423,6 +498,19 @@
                     <div class="my-page right-page" data-density="hard">
                         <img src="/diary_assets/page_7.png" alt="Diary Page 6" class="page-img">
                     </div>
+                </div>
+            </div>
+
+            <!-- Mobile Portrait: Camera-Pan Filmstrip (all pages side by side, panned into view) -->
+            <div class="diary-filmstrip-container" id="diary-filmstrip-container">
+                <div class="diary-filmstrip-track" id="diary-filmstrip-track">
+                    <img src="/diary_assets/page_1.png" alt="Diary Cover - Closed Book" class="diary-filmstrip-page">
+                    <img src="/diary_assets/page_2.png" alt="Diary Page 1" class="diary-filmstrip-page">
+                    <img src="/diary_assets/page_3.png" alt="Diary Page 2" class="diary-filmstrip-page">
+                    <img src="/diary_assets/page_4.png" alt="Diary Page 3" class="diary-filmstrip-page">
+                    <img src="/diary_assets/page_5.png" alt="Diary Page 4" class="diary-filmstrip-page">
+                    <img src="/diary_assets/page_6.png" alt="Diary Page 5" class="diary-filmstrip-page">
+                    <img src="/diary_assets/page_7.png" alt="Diary Page 6" class="diary-filmstrip-page">
                 </div>
             </div>
 
@@ -517,64 +605,121 @@
             const container = document.querySelector('.diary-book-container');
             const prevBtn = document.getElementById("diary-prev-btn");
             const nextBtn = document.getElementById("diary-next-btn");
+            const wrapper = document.querySelector('.diary-wrapper');
+            const mainSection = document.querySelector('.diary-main-section');
+            const filmstripContainer = document.getElementById('diary-filmstrip-container');
+            const filmstripTrack = document.getElementById('diary-filmstrip-track');
 
             if (!bookElement || !container) return;
 
-            // Handle mobile arrows placement
-            const setupArrowsLayout = () => {
-                const isMobile = window.innerWidth <= 767;
-                const wrapper = document.querySelector('.diary-wrapper');
-                
-                // Remove arrows first
+            // Stable mobile-device check — deliberately does NOT change when the
+            // phone rotates (unlike a pure viewport-width media query, which
+            // would flip in/out as portrait/landscape width swap around 767px).
+            const ua = navigator.userAgent || '';
+            const isMobileUA = /iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+            const isMobileDevice = isMobileUA || Math.min(window.innerWidth, window.innerHeight) <= 767;
+
+            const getMode = () => {
+                if (!isMobileDevice) return 'desktop';
+                return window.matchMedia('(orientation: landscape)').matches ? 'landscape' : 'portrait';
+            };
+
+            let currentMode = null;
+
+            // ── Portrait "camera pan" filmstrip ──
+            let filmstripIndex = 0;
+            const filmstripPages = filmstripTrack ? Array.from(filmstripTrack.children) : [];
+
+            const updateFilmstripButtons = () => {
+                prevBtn.classList.toggle("disabled", filmstripIndex === 0);
+                nextBtn.classList.toggle("disabled", filmstripIndex >= filmstripPages.length - 1);
+            };
+
+            const renderFilmstrip = () => {
+                if (!filmstripPages.length) return;
+                let offset = 0;
+                for (let i = 0; i < filmstripIndex; i++) offset += filmstripPages[i].offsetWidth;
+                filmstripTrack.style.transform = `translateX(-${offset}px)`;
+                updateFilmstripButtons();
+            };
+
+            const filmstripPrev = () => { if (filmstripIndex > 0) { filmstripIndex--; renderFilmstrip(); } };
+            const filmstripNext = () => { if (filmstripIndex < filmstripPages.length - 1) { filmstripIndex++; renderFilmstrip(); } };
+
+            // Page width isn't known until each image loads; re-measure once it does.
+            filmstripPages.forEach((img) => {
+                img.addEventListener('load', () => { if (currentMode === 'portrait') renderFilmstrip(); });
+            });
+
+            // Handle mobile arrows placement — differs per mode: stacked below the
+            // filmstrip on portrait, floating over the book's edges on landscape
+            // (to keep the book itself screen-filling), beside the book on desktop.
+            const setupArrowsLayout = (mode) => {
                 prevBtn.remove();
                 nextBtn.remove();
+                prevBtn.classList.remove('diary-nav-overlay');
+                nextBtn.classList.remove('diary-nav-overlay');
+                const existingRow = document.querySelector('.mobile-arrows-row');
+                if (existingRow) existingRow.remove();
 
-                if (isMobile) {
-                    // Create wrapper row at bottom for arrows
-                    let arrowsRow = document.querySelector('.mobile-arrows-row');
-                    if (!arrowsRow) {
-                        arrowsRow = document.createElement('div');
-                        arrowsRow.className = 'mobile-arrows-row';
-                    }
+                if (mode === 'portrait') {
+                    const arrowsRow = document.createElement('div');
+                    arrowsRow.className = 'mobile-arrows-row';
                     arrowsRow.appendChild(prevBtn);
                     arrowsRow.appendChild(nextBtn);
                     wrapper.appendChild(arrowsRow);
-                } else {
-                    // Place them left and right of the book
+                } else if (mode === 'landscape') {
+                    prevBtn.classList.add('diary-nav-overlay');
+                    nextBtn.classList.add('diary-nav-overlay');
                     wrapper.insertBefore(prevBtn, container);
                     wrapper.appendChild(nextBtn);
-                    
-                    const arrowsRow = document.querySelector('.mobile-arrows-row');
-                    if (arrowsRow) arrowsRow.remove();
+                } else {
+                    wrapper.insertBefore(prevBtn, container);
+                    wrapper.appendChild(nextBtn);
                 }
             };
 
-            // Calculate base page size responsively, maximizing page width while fitting vertical space
-            const getPageDimensions = () => {
+            // Calculate base page size responsively. Desktop: maximize page width
+            // while fitting vertical space (unchanged from before). Mobile
+            // landscape: fill the (short) viewport height first so the book is
+            // screen-filling, since a short landscape phone breaks the
+            // width-led math desktop uses.
+            const getPageDimensions = (mode) => {
                 const vw = window.innerWidth;
                 const vh = window.innerHeight;
-                
-                // Width leads: the open book should use nearly the full page width.
-                // Height just follows the page's aspect ratio; we only rein it in
-                // if it would balloon to an absurd size, letting the page scroll
-                // a little on shorter screens rather than shrinking the book down.
-                const looseMaxHeight = vh * 1.35;
 
+                if (mode === 'landscape') {
+                    // Account for the navbar above this section and the section's
+                    // own padding — otherwise the book computes to a height that,
+                    // stacked below the navbar, is taller than the viewport and
+                    // forces a scroll instead of truly filling the screen.
+                    const navEl = document.querySelector('.navbar-1');
+                    const navHeight = navEl ? navEl.getBoundingClientRect().height : 0;
+                    const sectionPadding = 16; // 0.5rem top + bottom in fullscreen mode
+                    const margin = 16;
+                    const availableHeight = vh - navHeight - sectionPadding - margin;
+                    let height = Math.max(availableHeight, 200);
+                    let width = Math.round(height * (2150 / 3250));
+                    if (width * 2 > vw - margin) {
+                        width = Math.floor((vw - margin) / 2);
+                        height = Math.round(width * (3250 / 2150));
+                    }
+                    return { width, height };
+                }
+
+                const looseMaxHeight = vh * 1.35;
                 let width = 360;
 
                 if (vw > 1200) {
-                    // ~96vw total open book width -> 48vw single page width
                     width = Math.min(vw * 0.48, 950);
                 } else if (vw > 991) {
                     width = Math.min(vw * 0.47, 950);
                 } else if (vw > 767) {
                     width = Math.min(vw * 0.46, 950);
                 } else {
-                    // Portrait single-page on mobile
                     width = Math.min(vw - 40, 420);
                 }
 
-                // Aspect ratio of page is 2150 : 3250
                 let height = Math.round(width * (3250 / 2150));
 
                 if (vw > 767 && height > looseMaxHeight) {
@@ -585,20 +730,16 @@
                 return { width, height };
             };
 
-            const dimensions = getPageDimensions();
+            // Initial best-effort size (corrected by applyMode right after init)
+            const initialDims = getPageDimensions(isMobileDevice ? 'landscape' : 'desktop');
+            container.style.width = `${initialDims.width * 2}px`;
+            container.style.height = `${initialDims.height}px`;
 
-            // Set size on container before initialization
-            const totalWidth = window.innerWidth > 767 ? dimensions.width * 2 : dimensions.width;
-            container.style.width = `${totalWidth}px`;
-            container.style.height = `${dimensions.height}px`;
-
-            // Make book visible
             bookElement.style.display = "block";
 
-            // Initialize PageFlip
             const pageFlip = new St.PageFlip(bookElement, {
-                width: dimensions.width,
-                height: dimensions.height,
+                width: initialDims.width,
+                height: initialDims.height,
                 size: "stretch",
                 minWidth: 240,
                 maxWidth: 950,
@@ -606,80 +747,84 @@
                 maxHeight: 1300,
                 drawShadow: true,
                 showCover: true,
-                usePortrait: true, // Swaps to single page automatically on small screens
+                usePortrait: true, // Safety net for narrow desktop windows
                 flippingTime: 750,
                 maxShadowOpacity: 0.22,
                 startPage: 0
             });
 
-            // Load HTML elements as pages
             pageFlip.loadFromHTML(document.querySelectorAll(".my-page"));
 
-            // Setup layout
-            setupArrowsLayout();
-
-            // Dynamic Cover Centering and Arrow updates
             const updateCoverState = () => {
-                const currentPage = pageFlip.getCurrentPageIndex();
-                if (currentPage === 0) {
-                    container.classList.add("cover-state");
-                } else {
-                    container.classList.remove("cover-state");
-                }
+                container.classList.toggle("cover-state", pageFlip.getCurrentPageIndex() === 0);
             };
 
             const updateButtons = () => {
                 const currentPage = pageFlip.getCurrentPageIndex();
                 const pageCount = pageFlip.getPageCount();
-                
-                if (currentPage === 0) {
-                    prevBtn.classList.add("disabled");
-                } else {
-                    prevBtn.classList.remove("disabled");
-                }
-
-                if (currentPage >= pageCount - 1) {
-                    nextBtn.classList.add("disabled");
-                } else {
-                    nextBtn.classList.remove("disabled");
-                }
+                prevBtn.classList.toggle("disabled", currentPage === 0);
+                nextBtn.classList.toggle("disabled", currentPage >= pageCount - 1);
             };
 
-            // Initial Trigger
-            updateCoverState();
-            setTimeout(updateButtons, 200);
+            // Applies the current orientation-driven mode: which viewer is
+            // visible, where the arrows live, and (for desktop/landscape)
+            // resizes St.PageFlip. Portrait skips PageFlip entirely since its
+            // container is hidden — resizing a hidden canvas isn't meaningful.
+            const applyMode = (mode) => {
+                currentMode = mode;
+                wrapper.dataset.diaryMode = mode;
+                mainSection.dataset.diaryFullscreen = mode === 'landscape' ? 'true' : 'false';
+                setupArrowsLayout(mode);
 
-            // Event Listeners for Arrows
-            prevBtn.addEventListener("click", () => pageFlip.flipPrev());
-            nextBtn.addEventListener("click", () => pageFlip.flipNext());
+                if (mode === 'portrait') {
+                    renderFilmstrip();
+                    return;
+                }
+
+                const dims = getPageDimensions(mode);
+                container.style.width = `${dims.width * 2}px`;
+                container.style.height = `${dims.height}px`;
+                pageFlip.update({ width: dims.width, height: dims.height });
+                updateCoverState();
+                updateButtons();
+            };
+
+            applyMode(getMode());
+            setTimeout(() => applyMode(getMode()), 200); // safety re-check, mirrors old post-init delay
+
+            prevBtn.addEventListener("click", () => {
+                if (currentMode === 'portrait') filmstripPrev();
+                else pageFlip.flipPrev();
+            });
+            nextBtn.addEventListener("click", () => {
+                if (currentMode === 'portrait') filmstripNext();
+                else pageFlip.flipNext();
+            });
 
             pageFlip.on("flip", () => {
+                if (currentMode === 'portrait') return;
                 updateCoverState();
                 updateButtons();
             });
 
             pageFlip.on("changeState", (e) => {
-                if (e.data === "read") {
+                if (e.data === "read" && currentMode !== 'portrait') {
                     updateCoverState();
                     updateButtons();
                 }
             });
 
-            // Adjust on window resize
-            window.addEventListener("resize", () => {
-                setupArrowsLayout();
-                const dims = getPageDimensions();
-                const currentTotalWidth = window.innerWidth > 767 ? dims.width * 2 : dims.width;
-                container.style.width = `${currentTotalWidth}px`;
-                container.style.height = `${dims.height}px`;
-                
-                // Update size on pageFlip
-                pageFlip.update({
-                    width: dims.width,
-                    height: dims.height
-                });
-                updateCoverState();
-            });
+            window.addEventListener("resize", () => applyMode(getMode()));
+
+            // Belt-and-suspenders: some mobile WebKit versions fire resize
+            // unreliably on rotation, so also listen for the orientation
+            // media query directly.
+            if (window.matchMedia) {
+                const orientationMql = window.matchMedia('(orientation: landscape)');
+                const onOrientationChange = () => applyMode(getMode());
+                if (orientationMql.addEventListener) orientationMql.addEventListener('change', onOrientationChange);
+                else if (orientationMql.addListener) orientationMql.addListener(onOrientationChange);
+            }
         });
     </script>
 <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>

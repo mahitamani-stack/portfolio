@@ -1,0 +1,70 @@
+/* ── Diary landscape nudge: dismissible tip, not a blocking gate ── */
+
+.bl-landscape-tip {
+    position: fixed;
+    left: 50%;
+    top: calc(1.25rem + 56px); /* clear of the nav bar so it doesn't sit over the diary's own nav buttons at the bottom */
+    bottom: auto;
+    transform: translateX(-50%) translateY(0);
+    z-index: 999997; /* below the iPod widget (999998/999999), above everything else */
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    max-width: calc(100vw - 2rem);
+    background: #fffdf8;
+    border: 2px solid #111;
+    border-radius: 2rem;
+    padding: 0.65rem 0.9rem 0.65rem 1.1rem;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.bl-landscape-tip.bl-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.bl-landscape-tip-emoji {
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    animation: bl-rotate-hint 1.8s ease-in-out infinite;
+}
+
+@keyframes bl-rotate-hint {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-90deg); }
+}
+
+.bl-landscape-tip-text {
+    font-size: 0.85rem;
+    color: #222;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.bl-landscape-tip-close {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.bl-landscape-tip-close:active {
+    opacity: 0.8;
+}

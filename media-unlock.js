@@ -7,7 +7,7 @@
     } catch (e) {}
 
     document.querySelectorAll('video.site-media, audio.site-media').forEach(function (el) {
-      if (!el.paused) return;
+      if (!el.paused || el.dataset.userPaused === 'true') return;
       var p = el.play();
       if (p && p.catch) p.catch(function () {});
     });

@@ -293,10 +293,10 @@
 /* ── Clickwheel Controls Overlay ── */
 .ipod-clickwheel {
     position: absolute;
-    left: 20%;
-    top: 50.4%;
-    width: 60%;
-    height: 33.8%; /* circular height matching width on aspect ratio */
+    left: 11.82%;
+    top: 47.94%;
+    width: 75.82%;
+    height: 42.66%; /* matched to the actual printed wheel graphic via pixel analysis of ipod.png */
     border-radius: 50%;
     background-color: transparent;
     z-index: 15;

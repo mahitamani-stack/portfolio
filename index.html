@@ -598,6 +598,83 @@ window.checkAndInitMacWindows = function() {
         startDelay: 0,
     });
 </script>
+<style>
+.mac-window-controls {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+    pointer-events: auto;
+}
+.mac-window-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    font-size: 13px;
+    line-height: 1;
+    touch-action: manipulation;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+.mac-window-btn:hover {
+    background: rgba(0,0,0,0.75);
+}
+.mac-window-btn:active {
+    transform: scale(0.88);
+}
+.mac-window-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 950000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.mac-window-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.mac-window-fullscreen {
+    position: fixed !important;
+    inset: 5vh 5vw !important;
+    width: auto !important;
+    height: 90vh !important;
+    max-width: 90vw !important;
+    z-index: 950001 !important;
+    transform: none !important;
+    cursor: default !important;
+}
+.mac-window-close-btn {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    z-index: 2;
+    touch-action: manipulation;
+}
+</style>
 <script>
     window._initMacWindows = function () {
         const container = document.getElementById('macos-container');
@@ -605,6 +682,42 @@ window.checkAndInitMacWindows = function() {
         
         // Prevent double initialization
         if (container.children.length > 0) return;
+
+        // ── Shared fullscreen backdrop + exclusivity state ──
+        const backdrop = document.createElement('div');
+        backdrop.className = 'mac-window-backdrop';
+        document.body.appendChild(backdrop);
+
+        let fullscreenWin = null;
+        let fullscreenCloseBtn = null;
+
+        const exitFullscreen = () => {
+            if (!fullscreenWin) return;
+            fullscreenWin.classList.remove('mac-window-fullscreen');
+            if (fullscreenCloseBtn) { fullscreenCloseBtn.remove(); fullscreenCloseBtn = null; }
+            backdrop.classList.remove('active');
+            fullscreenWin = null;
+        };
+
+        const enterFullscreen = (win) => {
+            if (fullscreenWin === win) return;
+            if (fullscreenWin) exitFullscreen();
+            win.classList.add('mac-window-fullscreen');
+            backdrop.classList.add('active');
+            fullscreenWin = win;
+
+            const closeBtn = document.createElement('button');
+            closeBtn.type = 'button';
+            closeBtn.className = 'mac-window-close-btn';
+            closeBtn.innerHTML = '&times;';
+            closeBtn.setAttribute('aria-label', 'Exit enlarged view');
+            closeBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
+            closeBtn.addEventListener('click', (e) => { e.stopPropagation(); exitFullscreen(); });
+            win.appendChild(closeBtn);
+            fullscreenCloseBtn = closeBtn;
+        };
+
+        backdrop.addEventListener('click', exitFullscreen);
 
         const positions = [
             { top: 2,  left: 2  }, { top: 18, left: 28 },
@@ -625,6 +738,7 @@ window.checkAndInitMacWindows = function() {
             win.style.cursor = 'grab';
             win.style.zIndex = i + 1;
             win.style.pointerEvents = 'auto';
+            win.style.touchAction = 'none';
             win.style.top  = `${positions[i].top}%`;
             win.style.left = `${positions[i].left}%`;
 
@@ -656,6 +770,50 @@ window.checkAndInitMacWindows = function() {
             vid.style.pointerEvents = 'none';
             vid.src = macWindowUrls[i];
             win.appendChild(vid);
+
+            // ── Per-window controls: play/pause + enlarge ──
+            const controls = document.createElement('div');
+            controls.className = 'mac-window-controls';
+
+            const playBtn = document.createElement('button');
+            playBtn.type = 'button';
+            playBtn.className = 'mac-window-btn mac-window-play-btn';
+            playBtn.innerHTML = '&#10074;&#10074;';
+            playBtn.setAttribute('aria-label', 'Pause video');
+            playBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (vid.paused) {
+                    vid.play();
+                    delete vid.dataset.userPaused;
+                    playBtn.innerHTML = '&#10074;&#10074;';
+                    playBtn.setAttribute('aria-label', 'Pause video');
+                } else {
+                    vid.pause();
+                    vid.dataset.userPaused = 'true';
+                    playBtn.innerHTML = '&#9654;';
+                    playBtn.setAttribute('aria-label', 'Play video');
+                }
+            });
+            controls.appendChild(playBtn);
+
+            const fsBtn = document.createElement('button');
+            fsBtn.type = 'button';
+            fsBtn.className = 'mac-window-btn mac-window-fs-btn';
+            fsBtn.innerHTML = '&#9974;';
+            fsBtn.setAttribute('aria-label', 'Enlarge video');
+            fsBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
+            fsBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (win.classList.contains('mac-window-fullscreen')) {
+                    exitFullscreen();
+                } else {
+                    enterFullscreen(win);
+                }
+            });
+            controls.appendChild(fsBtn);
+
+            win.appendChild(controls);
             container.appendChild(win);
 
             // Some browsers silently ignore attribute-based autoplay on videos
@@ -684,10 +842,13 @@ window.checkAndInitMacWindows = function() {
             });
             gsap.set(win, { rotation: rot });
 
-            // Drag logic
+            // Drag logic — Pointer Events unify mouse + touch in one code path,
+            // so dragging works the same way with a finger as with a cursor.
             let isDown = false, startX, startY, startLeft, startTop;
-            win.addEventListener('mousedown', (e) => {
+            win.addEventListener('pointerdown', (e) => {
+                if (win.classList.contains('mac-window-fullscreen')) return;
                 isDown = true;
+                win.setPointerCapture(e.pointerId);
                 win.style.cursor = 'grabbing';
                 const allWins = container.children;
                 let maxZ = 0;
@@ -698,8 +859,13 @@ window.checkAndInitMacWindows = function() {
                 startLeft = parseInt(window.getComputedStyle(win).left, 10);
                 startTop  = parseInt(window.getComputedStyle(win).top, 10);
             });
-            window.addEventListener('mouseup', () => { isDown = false; win.style.cursor = 'grab'; });
-            window.addEventListener('mousemove', (e) => {
+            win.addEventListener('pointerup', (e) => {
+                isDown = false;
+                win.style.cursor = 'grab';
+                if (win.hasPointerCapture(e.pointerId)) win.releasePointerCapture(e.pointerId);
+            });
+            win.addEventListener('pointercancel', () => { isDown = false; win.style.cursor = 'grab'; });
+            win.addEventListener('pointermove', (e) => {
                 if (!isDown) return;
                 e.preventDefault();
                 win.style.left = `${startLeft + (e.clientX - startX)}px`;
