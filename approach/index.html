@@ -553,18 +553,21 @@
                 const vw = window.innerWidth;
                 const vh = window.innerHeight;
                 
-                // Keep safe vertical buffer to fit headers/footers without scrolling
-                const maxAvailableHeight = vh - 220; 
-                
+                // Width leads: the open book should use nearly the full page width.
+                // Height just follows the page's aspect ratio; we only rein it in
+                // if it would balloon to an absurd size, letting the page scroll
+                // a little on shorter screens rather than shrinking the book down.
+                const looseMaxHeight = vh * 1.35;
+
                 let width = 360;
-                
+
                 if (vw > 1200) {
-                    // 90vw total open book width -> 45vw single page width
-                    width = Math.min(vw * 0.45, 680); 
+                    // ~96vw total open book width -> 48vw single page width
+                    width = Math.min(vw * 0.48, 950);
                 } else if (vw > 991) {
-                    width = Math.min(vw * 0.43, 500);
+                    width = Math.min(vw * 0.47, 950);
                 } else if (vw > 767) {
-                    width = Math.min(vw * 0.42, 400);
+                    width = Math.min(vw * 0.46, 950);
                 } else {
                     // Portrait single-page on mobile
                     width = Math.min(vw - 40, 420);
@@ -572,13 +575,12 @@
 
                 // Aspect ratio of page is 2150 : 3250
                 let height = Math.round(width * (3250 / 2150));
-                
-                // If the computed height exceeds available vertical space, scale back proportionally
-                if (vw > 767 && height > maxAvailableHeight) {
-                    height = maxAvailableHeight;
+
+                if (vw > 767 && height > looseMaxHeight) {
+                    height = Math.round(looseMaxHeight);
                     width = Math.round(height * (2150 / 3250));
                 }
-                
+
                 return { width, height };
             };
 
@@ -598,7 +600,7 @@
                 height: dimensions.height,
                 size: "stretch",
                 minWidth: 240,
-                maxWidth: 900,
+                maxWidth: 950,
                 minHeight: 330,
                 maxHeight: 1300,
                 drawShadow: true,
