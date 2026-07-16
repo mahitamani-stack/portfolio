@@ -310,12 +310,19 @@
 
         @media (max-width: 767px) {
             .diary-main-section {
-                padding: 2rem 1rem;
+                padding: 2rem 0px !important;
                 min-height: auto;
+                margin: 0 !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
             }
             .diary-wrapper {
                 flex-direction: column;
                 gap: 1.5rem;
+                width: 100vw !important;
+                max-width: 100vw !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
             .diary-nav-btn {
                 width: 50px;
@@ -353,9 +360,52 @@
             display: none;
             position: relative;
             overflow: hidden;
-            border-radius: 4px;
+            border-radius: 0px !important;
             order: 1;
             filter: drop-shadow(0 25px 55px rgba(0, 0, 0, 0.22));
+            width: 100% !important;
+            max-width: 100vw !important;
+            margin: 0 !important;
+            aspect-ratio: 2260 / 3250 !important;
+        }
+
+        .diary-filmstrip-page {
+            width: 100vw !important;
+            height: 100% !important;
+            flex-shrink: 0 !important;
+            display: block !important;
+            object-fit: cover !important;
+        }
+
+        /* Page 1: centered & contain */
+        .diary-filmstrip-page:nth-child(1) {
+            object-fit: contain !important;
+            margin: 0 auto !important;
+        }
+        /* Pages 2, 4, 6: source photos have a thin white margin baked in on the
+           left (their aspect ratio is narrower than the filmstrip's, so cover
+           only crops vertically and that margin would otherwise show as a gap).
+           A small extra zoom, anchored to the right edge, crops it away so the
+           page reads as flush-right with no padding. Scale values are measured
+           per-image from the actual white-margin width in diary_assets. */
+        .diary-filmstrip-page:nth-child(2) {
+            object-position: right center !important;
+            transform: scale(1.05);
+            transform-origin: right center;
+        }
+        .diary-filmstrip-page:nth-child(4),
+        .diary-filmstrip-page:nth-child(6) {
+            object-position: right center !important;
+            transform: scale(1.015);
+            transform-origin: right center;
+        }
+        /* Pages 3, 5, 7: much wider than the filmstrip, so cover already crops
+           heavily on the width. Center the crop so it bleeds off both the left
+           and right edges evenly instead of anchoring to one side. */
+        .diary-filmstrip-page:nth-child(3),
+        .diary-filmstrip-page:nth-child(5),
+        .diary-filmstrip-page:nth-child(7) {
+            object-position: center center !important;
         }
 
         .diary-wrapper[data-diary-mode="portrait"] {
@@ -378,34 +428,33 @@
         }
 
         .diary-filmstrip-page {
-            /* Uniform frame for every page (left pages are 2150x3250, right
-               pages are 3333x3250 - same height, very different width).
-               Sizing the frame to the narrower left-page ratio and cropping
-               wider images to fit (object-fit: cover) keeps every pan step
-               the same width, so the motion reads as a smooth, even camera
-               pan instead of the frame visibly widening on right pages. */
-            height: 100%;
-            aspect-ratio: 2150 / 3250;
-            width: auto;
-            flex-shrink: 0;
-            display: block;
-            object-fit: cover;
-            object-position: center;
             -webkit-user-drag: none;
             user-select: none;
         }
+
 
         /* Landscape mobile: the book fills the screen, nav arrows float over its edges.
            Sized to content (not a forced 100vh) — the navbar sits above this section,
            so forcing 100vh here would push the total page past one viewport and force
            a scroll; the JS sizing already accounts for the navbar's real height. */
         .diary-main-section[data-diary-fullscreen="true"] {
-            padding: 0.5rem !important;
-            min-height: 0 !important;
+            padding: 0.5rem 0px !important;
+            min-height: 100vh !important;
+            height: auto !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
         }
 
         .diary-wrapper[data-diary-mode="landscape"] {
-            gap: 0;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 0 !important;
+            margin: 0 auto !important;
+            width: 100% !important;
+            max-width: 100vw !important;
         }
 
         .diary-nav-btn.diary-nav-overlay {
@@ -428,16 +477,44 @@
            right in the vertical-center strip where the landscape diary's
            overlaid right arrow lives. Tuck it into the top-right corner
            instead while the diary is in full-screen landscape mode. */
-        body:has(.diary-wrapper[data-diary-mode="landscape"]) .ipod-widget-container.minimized {
-            top: 4px;
-            right: 4px;
-            bottom: auto !important;
+        @media (max-width: 991px) and (orientation: landscape) {
+            body:has(.diary-wrapper[data-diary-mode="landscape"]) .ipod-widget-container.minimized {
+                bottom: 1.25rem !important;
+                left: 0.5rem !important;
+                right: auto !important;
+                top: auto !important;
+                height: 80px !important;
+            }
+            body:has(.diary-wrapper[data-diary-mode="landscape"]) .ipod-widget-container:not(.minimized) {
+                height: 420px !important;
+            }
         }
 
-        @media (min-width: 768px) {
-            .diary-wrapper:not([data-diary-mode="landscape"]) .diary-book-container.cover-state {
-                transform: translateX(-25%);
+        @media (max-width: 991px) and (orientation: landscape) {
+            .diary-main-section {
+                padding: 0.5rem 0px !important;
             }
+            /* Belt-and-suspenders on top of the JS-side sizing fix: StPageFlip
+               sets an inline min-width/min-height on #diary-book at construction
+               time that (in "stretch" mode) can win out over the smaller size we
+               actually want on a short mobile-landscape screen, pushing the book
+               wider/taller than its container and off-center to the bottom-right.
+               Force it back down to the container's own box no matter what the
+               library computes. */
+            #diary-book {
+                min-width: 0 !important;
+                min-height: 0 !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+            }
+            .diary-book-container {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
+        .diary-book-container.cover-state {
+            transform: translateX(-25%) !important;
         }
     </style>
     
@@ -717,7 +794,7 @@
                     const sectionPadding = 16; // 0.5rem top + bottom in fullscreen mode
                     const margin = 16;
                     const availableHeight = vh - navHeight - sectionPadding - margin;
-                    let height = Math.max(availableHeight, 200);
+                    let height = Math.max(availableHeight * 0.96, 180);
                     let width = Math.round(height * (2150 / 3250));
                     if (width * 2 > vw - margin) {
                         width = Math.floor((vw - margin) / 2);
@@ -760,13 +837,22 @@
                 width: initialDims.width,
                 height: initialDims.height,
                 size: "stretch",
-                minWidth: 240,
+                // minWidth/minHeight were 240/330 — taller and wider than a short
+                // mobile-landscape viewport can fit (nav + margins already eat
+                // ~100px of a ~390px-tall screen). getPageDimensions() computes a
+                // smaller size to fit that screen, but StPageFlip's "stretch" mode
+                // was clamping back up to these floors, forcing the book to
+                // overflow past the bottom/sides of the screen. 100/180 match the
+                // floor getPageDimensions() itself uses for landscape mode, so
+                // they're a no-op on desktop where the width-led math always
+                // computes well above this anyway.
+                minWidth: 100,
                 maxWidth: 950,
-                minHeight: 330,
+                minHeight: 180,
                 maxHeight: 1300,
                 drawShadow: true,
                 showCover: true,
-                usePortrait: true, // Safety net for narrow desktop windows
+                usePortrait: false, // Safety net for narrow desktop windows
                 flippingTime: 750,
                 maxShadowOpacity: 0.22,
                 startPage: 0

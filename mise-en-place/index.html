@@ -236,7 +236,7 @@
         }
 
         .fold.fold-center {
-            border: 1px solid #feffdc !important; 
+            border: 1px solid #feffdc !important;
             position: relative;
         }
 
@@ -415,6 +415,143 @@
             cursor: pointer;
             outline: none;
         }
+
+        .mep-mobile-text-box {
+            display: none;
+        }
+
+        @media (max-width: 767px) and (orientation: portrait) {
+            /* Prevent scrolling and keep 100vh room */
+            html, body {
+                overflow: hidden !important;
+                height: 100vh !important;
+            }
+
+            .mep-immersive-room {
+                flex-direction: column !important;
+                justify-content: flex-start !important;
+                padding-top: 60px !important; /* spacing below nav */
+                box-sizing: border-box !important;
+            }
+
+            /* Hide individual wall boxes */
+            .room-wall-left, .room-wall-right, .immersive-lines, .room-hint {
+                display: none !important;
+            }
+
+            /* Show unified mobile text card */
+            .mep-mobile-text-box {
+                display: block !important;
+                width: 85vw !important;
+                max-width: 400px !important;
+                background-color: rgba(254, 255, 220, 0.96) !important;
+                border: 2px solid #feffdc !important;
+                border-radius: 12px !important;
+                padding: 1.25rem 1rem !important;
+                margin: 1.5rem auto 1rem auto !important;
+                text-align: center !important;
+                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08) !important;
+                box-sizing: border-box !important;
+                z-index: 20 !important;
+            }
+            .mep-mobile-text-box .left-cursive-title {
+                font-family: 'Pinyon Script', cursive !important;
+                font-size: 3.2rem !important;
+                color: #f2cbd1 !important;
+                line-height: 0.95 !important;
+                margin: 0 0 0.5rem 0 !important;
+            }
+            .mep-mobile-text-box .right-desc-block {
+                font-family: 'Instrument Serif', serif !important;
+                font-size: 1.15rem !important;
+                color: #4b7880 !important;
+                line-height: 1.4 !important;
+                margin: 0 !important;
+            }
+
+            /* Conveyor corridor dimensions & reset */
+            .mep-scene-wrapper {
+                flex: 1 !important;
+                height: auto !important;
+                min-height: 250px !important;
+                max-height: 52vh !important;
+                width: 100% !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            .mep-scene-wrapper, .mep-3d-scene {
+                overflow: visible !important;
+            }
+
+            .mep-3d-scene {
+                width: 85vw !important;
+                height: 100% !important;
+            }
+
+            .fold {
+                width: 85vw !important;
+                height: 100% !important;
+            }
+
+            .fold.fold-center {
+                border: 1px solid #feffdc !important;
+            }
+            
+            .canva-deck-card, .video-deck-card {
+                width: 85% !important;
+            }
+        }
+
+        @media (max-width: 991px) and (orientation: landscape) {
+            /* Pin the scene wrapper to the exact same box the landscape SVG lines are drawn
+               over (top: 72px / height: calc(100% - 72px) of the room), so the fold box and
+               the perspective lines share one coordinate system instead of drifting apart. */
+            .mep-scene-wrapper {
+                position: absolute !important;
+                top: 72px !important;
+                left: 0 !important;
+                width: 100vw !important;
+                height: calc(100% - 72px) !important;
+            }
+            .mep-3d-scene {
+                height: 70% !important;
+            }
+            .fold {
+                height: 100% !important;
+            }
+            .fold.fold-center {
+                transform: none !important;
+            }
+            .fold.fold-top {
+                height: 100% !important;
+            }
+            .fold.fold-bottom {
+                height: 100% !important;
+            }
+            .room-wall-right {
+                width: 32vw !important;
+                padding: 1rem 0.75rem !important;
+                right: 1.5vw !important;
+            }
+            .room-wall-right .right-desc-block {
+                font-size: 1.15rem !important;
+                line-height: 1.35 !important;
+            }
+            .room-wall-left {
+                left: 1.5vw !important;
+            }
+            .room-wall-left .left-cursive-title {
+                font-size: 2.8rem !important;
+            }
+            .desktop-lines {
+                display: none !important;
+            }
+            .landscape-lines {
+                display: block !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -450,12 +587,20 @@
     <main class="mep-immersive-room">
         
         <!-- Perspective Lines (Yellow, matching Warhol 60vw/80vh folds) -->
-        <svg class="immersive-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <svg class="immersive-lines desktop-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect x="20" y="10" width="60" height="80" fill="none" stroke="var(--yellow-accent, #dde874)" stroke-width="0.35" style="opacity: 0.65;" />
             <line x1="0" y1="0" x2="20" y2="10" stroke="var(--yellow-accent, #dde874)" stroke-width="0.35" style="opacity: 0.65;" />
             <line x1="100" y1="0" x2="80" y2="10" stroke="var(--yellow-accent, #dde874)" stroke-width="0.35" style="opacity: 0.65;" />
             <line x1="0" y1="100" x2="20" y2="90" stroke="var(--yellow-accent, #dde874)" stroke-width="0.35" style="opacity: 0.65;" />
             <line x1="100" y1="100" x2="80" y2="90" stroke="var(--yellow-accent, #dde874)" stroke-width="0.35" style="opacity: 0.65;" />
+        </svg>
+
+        <svg class="immersive-lines landscape-lines" viewBox="0 0 100 100" preserveAspectRatio="none" style="display: none;">
+            <rect x="20" y="15" width="60" height="70" fill="none" stroke="var(--yellow-accent, #dde874)" stroke-width="0.35" style="opacity: 0.65;" />
+            <line x1="0" y1="0" x2="20" y2="15" stroke="var(--yellow-accent, #dde874)" stroke-width="0.35" style="opacity: 0.65;" />
+            <line x1="100" y1="0" x2="80" y2="15" stroke="var(--yellow-accent, #dde874)" stroke-width="0.35" style="opacity: 0.65;" />
+            <line x1="0" y1="100" x2="20" y2="85" stroke="var(--yellow-accent, #dde874)" stroke-width="0.35" style="opacity: 0.65;" />
+            <line x1="100" y1="100" x2="80" y2="85" stroke="var(--yellow-accent, #dde874)" stroke-width="0.35" style="opacity: 0.65;" />
         </svg>
 
         <!-- Left Wall labels (Static note about directors vision) -->
@@ -465,6 +610,12 @@
 
         <!-- Right Wall label (Description block stuck to right wall) -->
         <div class="room-wall-right">
+            <p class="right-desc-block">Before any shoot, there's a director's idea living only in their head. My job is to get it out of there and into something a client can see, feel, and understand. These are the decks and treatments I've built to do that.</p>
+        </div>
+
+        <!-- Mobile-only text container above conveyor -->
+        <div class="mep-mobile-text-box">
+            <h3 class="left-cursive-title">Mise en Place</h3>
             <p class="right-desc-block">Before any shoot, there's a director's idea living only in their head. My job is to get it out of there and into something a client can see, feel, and understand. These are the decks and treatments I've built to do that.</p>
         </div>
 

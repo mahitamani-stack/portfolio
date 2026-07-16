@@ -517,7 +517,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 playlist: activePlaylistName,
                 trackIndex: currentTrackIndex,
                 currentTime: audio.currentTime,
-                wasPlaying: !audio.paused,
+                wasPlaying: isPlaying,
                 playedIndices: playedIndices
             }));
         } catch(e) {}
@@ -532,18 +532,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const playlistNames = Object.keys(playlists);
     const saved = loadState();
 
-    let activePlaylistName, currentTrackIndex, playedIndices;
+    let activePlaylistName, currentTrackIndex, playedIndices, isPlaying = false, isTemporarilyPaused = false;
 
     if (saved && playlists[saved.playlist] && playlists[saved.playlist][saved.trackIndex]) {
         // Restore saved session state
         activePlaylistName = saved.playlist;
         currentTrackIndex = saved.trackIndex;
         playedIndices = saved.playedIndices || [currentTrackIndex];
+        isPlaying = saved.wasPlaying || false;
     } else {
         // Fresh start — pick random playlist + track
         activePlaylistName = playlistNames[Math.floor(Math.random() * playlistNames.length)];
         currentTrackIndex = Math.floor(Math.random() * playlists[activePlaylistName].length);
         playedIndices = [currentTrackIndex];
+        isPlaying = true;
     }
 
     // Retrieve track helper
@@ -551,12 +553,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const audio = new Audio();
     audio.src = getActiveTrack().src;
-    audio.volume = 0.1;
+    audio.volume = 0.2;
 
     // Restore playback position if coming from another page
     if (saved && saved.currentTime > 0) {
         audio.currentTime = saved.currentTime;
     }
+
+    // ── Native Audio Event Listeners for State Synchronization ──
+    audio.addEventListener("play", () => {
+        document.removeEventListener("click", tryAutoplay);
+        document.removeEventListener("touchstart", tryAutoplay);
+        isPlaying = true;
+        saveState();
+        renderScreen();
+    });
+
+    audio.addEventListener("pause", () => {
+        if (!isTemporarilyPaused) {
+            isPlaying = false;
+            saveState();
+        }
+        renderScreen();
+    });
 
     // ── Synthetic Haptic Click Sound Generator (Web Audio API) ──
     const playClickSound = () => {
@@ -582,17 +601,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // ── Autoplay / Resume Handler ──
     // If music was playing on previous page, auto-resume immediately
     const tryAutoplay = (userGesture) => {
-        audio.play().then(() => {
-            document.removeEventListener("click", tryAutoplay);
-            document.removeEventListener("touchstart", tryAutoplay);
-            renderScreen();
-            saveState();
-        }).catch(() => {
+        audio.play().catch(() => {
             // Blocked without user gesture — will resume on first click
         });
     };
 
-    if (saved && saved.wasPlaying) {
+    if (saved ? saved.wasPlaying : true) {
         // Try immediate resume (works if same-origin navigation already gave permission).
         // Only listen for a follow-up gesture when we actually have something to resume —
         // otherwise any click on a fresh/paused page would unexpectedly start playback.
@@ -605,21 +619,30 @@ document.addEventListener("DOMContentLoaded", () => {
     // Prevents audio from continuing in the background after the phone locks,
     // the tab is switched away from, or the tab/window is closed.
     const pauseForBackground = () => {
-        if (!audio.paused) {
+        if (isPlaying && !audio.paused) {
+            isTemporarilyPaused = true;
             audio.pause();
-            saveState();
         }
     };
+
+    const resumeFromBackground = () => {
+        if (isTemporarilyPaused) {
+            isTemporarilyPaused = false;
+            audio.play().catch(() => {});
+        }
+    };
+
     document.addEventListener("visibilitychange", () => {
-        if (document.hidden) pauseForBackground();
+        if (document.hidden) {
+            pauseForBackground();
+        } else {
+            resumeFromBackground();
+        }
     });
+
     window.addEventListener("pagehide", pauseForBackground);
-    // Belt-and-suspenders for iOS: a locked screen doesn't always fire
-    // visibilitychange as promptly as switching tabs/apps does, and iOS treats
-    // real (unmuted, user-started) audio as background-playback-eligible by
-    // default — like a music app — unless we explicitly pause it ourselves.
-    // "freeze" (Page Lifecycle API) fires right before the page is suspended;
-    // "blur" catches the loss-of-focus moment a beat earlier on some builds.
+    window.addEventListener("pageshow", resumeFromBackground);
+    window.addEventListener("focus", resumeFromBackground);
     window.addEventListener("freeze", pauseForBackground);
     window.addEventListener("blur", pauseForBackground);
 
@@ -676,6 +699,9 @@ document.addEventListener("DOMContentLoaded", () => {
         ipodContainer.style.pointerEvents = 'none';
 
         let revealed = false;
+        window.__triggerIpodReveal = () => {
+            revealIpod();
+        };
         const introFullyDone = () =>
             introOverlay.style.display === 'none'
             || !document.body.contains(introOverlay);
@@ -722,25 +748,27 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1400);
         };
 
-        if (introFullyDone() || sessionStorage.getItem('introPlayed') === 'true') {
+        const isMobileGuardActive = () => document.documentElement.classList.contains('bm-mobile-guard');
+
+        if (!isMobileGuardActive() && (introFullyDone() || sessionStorage.getItem('introPlayed') === 'true')) {
             // Intro already skipped this session — reveal shortly after load
             setTimeout(revealIpod, 400);
         } else {
             // Wait until overlay is fully removed (display:none), NOT mid-fade opacity.
-            // The old 500ms "opacity still 0" fallback was firing during the intro and
-            // enabling the dark blur backdrop over the video.
             const observer = new MutationObserver(() => {
-                if (introFullyDone()) {
+                if (introFullyDone() && !isMobileGuardActive()) {
                     observer.disconnect();
                     revealIpod();
                 }
             });
-            observer.observe(introOverlay, { attributes: true, attributeFilter: ['style', 'class'] });
-            observer.observe(document.body, { childList: true });
+            if (introOverlay) {
+                observer.observe(introOverlay, { attributes: true, attributeFilter: ['style', 'class'] });
+            }
+            observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
             // Safety only — intro is ~4s + fade; never interrupt playback
             setTimeout(() => {
-                if (!revealed) revealIpod();
+                if (!revealed && !isMobileGuardActive()) revealIpod();
             }, 15000);
         }
     }
@@ -777,6 +805,10 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (chosen === "Now Playing") {
                 menuStack.push("nowplaying");
             } else if (chosen === "Turn Off") {
+                if (isPlaying) {
+                    audio.pause();
+                    isPlaying = false;
+                }
                 minimizeIpod();
             }
         } 
@@ -803,7 +835,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 playedIndices = [currentTrackIndex]; // Set selected track as the first played
                 const track = getActiveTrack();
                 audio.src = track.src;
-                audio.volume = 0.1;
+                audio.volume = 0.2;
                 audio.play();
                 menuStack.push("nowplaying");
             }
@@ -918,13 +950,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `;
         }
+
+        // Scroll selected item into view
+        setTimeout(() => {
+            const activeItem = contentArea.querySelector(".ipod-menu-item.selected");
+            const menuList = contentArea.querySelector(".ipod-screen-menu");
+            if (activeItem && menuList) {
+                const listRect = menuList.getBoundingClientRect();
+                const itemRect = activeItem.getBoundingClientRect();
+                
+                if (itemRect.bottom > listRect.bottom) {
+                    menuList.scrollTop += (itemRect.bottom - listRect.bottom);
+                } else if (itemRect.top < listRect.top) {
+                    menuList.scrollTop -= (listRect.top - itemRect.top);
+                }
+            }
+        }, 0);
     };
 
     // Initial render
     renderScreen();
 
     // ── Screen Touch/Click Navigation Delegation ──
-    ipodContainer.querySelector(".ipod-screen-container").addEventListener("click", (e) => {
+    const screenContainer = ipodContainer.querySelector(".ipod-screen-container");
+    screenContainer.addEventListener("click", (e) => {
         const menuItem = e.target.closest(".ipod-menu-item");
         if (menuItem) {
             e.stopPropagation();
@@ -934,6 +983,35 @@ document.addEventListener("DOMContentLoaded", () => {
             triggerSelect();
         }
     });
+
+    let touchStartY = 0;
+    let touchStartIdx = 0;
+    screenContainer.addEventListener("touchstart", (e) => {
+        touchStartY = e.touches[0].clientY;
+        touchStartIdx = selectedIndex;
+    }, { passive: true });
+
+    screenContainer.addEventListener("touchmove", (e) => {
+        const currentView = menuStack[menuStack.length - 1];
+        if (currentView === "nowplaying") return; // No menu to scroll in now playing
+        
+        if (e.cancelable) e.preventDefault(); // Lock page scroll!
+        
+        const currentY = e.touches[0].clientY;
+        const diffY = touchStartY - currentY;
+        const stepHeight = 25; // number of pixels of drag per item step
+        const steps = Math.round(diffY / stepHeight);
+        
+        let newIdx = touchStartIdx + steps;
+        if (newIdx < 0) newIdx = 0;
+        if (newIdx >= menuItems.length) newIdx = menuItems.length - 1;
+        
+        if (newIdx !== selectedIndex) {
+            selectedIndex = newIdx;
+            playClickSound();
+            renderScreen();
+        }
+    }, { passive: false });
 
     // ── Click Wheel Rotation Physics ──
     const wheel = document.getElementById("ipod-wheel");
@@ -970,6 +1048,10 @@ document.addEventListener("DOMContentLoaded", () => {
         accumulatedRotation += delta;
         lastAngle = currentAngle;
 
+        if (Math.abs(accumulatedRotation) > 3) {
+            didRotate = true;
+        }
+
         if (Math.abs(accumulatedRotation) >= scrollThreshold) {
             const steps = Math.trunc(accumulatedRotation / scrollThreshold);
             accumulatedRotation = accumulatedRotation % scrollThreshold;
@@ -994,20 +1076,21 @@ document.addEventListener("DOMContentLoaded", () => {
         renderScreen();
     };
 
+    let didRotate = false;
+
     const onStart = (clientX, clientY) => {
         const rect = wheel.getBoundingClientRect();
         lastAngle = getAngle(clientX, clientY, rect);
         isDragging = true;
         accumulatedRotation = 0;
+        didRotate = false;
     };
 
     wheel.addEventListener("mousedown", (e) => {
-        if (e.target.classList.contains("ipod-wheel-btn")) return; 
         onStart(e.clientX, e.clientY);
     });
 
     wheel.addEventListener("touchstart", (e) => {
-        if (e.target.classList.contains("ipod-wheel-btn")) return;
         if (e.touches.length > 0) {
             onStart(e.touches[0].clientX, e.touches[0].clientY);
         }
@@ -1016,7 +1099,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("mousemove", handleRotation);
     document.addEventListener("touchmove", handleRotation, { passive: false });
 
-    const onEnd = () => { isDragging = false; };
+    const onEnd = () => { 
+        // Delay resetting isDragging/didRotate slightly so click handlers run first
+        setTimeout(() => {
+            isDragging = false;
+        }, 50);
+    };
     document.addEventListener("mouseup", onEnd);
     document.addEventListener("touchend", onEnd);
 
@@ -1025,6 +1113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. SELECT (Center Button)
     document.getElementById("ipod-btn-select").addEventListener("click", (e) => {
         e.stopPropagation();
+        if (didRotate) return;
         playClickSound();
         triggerSelect();
     });
@@ -1032,6 +1121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. MENU Button (Go back)
     document.getElementById("ipod-btn-menu").addEventListener("click", (e) => {
         e.stopPropagation();
+        if (didRotate) return;
         playClickSound();
         if (menuStack.length > 1) {
             menuStack.pop();
@@ -1045,6 +1135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. PLAY/PAUSE Button
     document.getElementById("ipod-btn-play").addEventListener("click", (e) => {
         e.stopPropagation();
+        if (didRotate) return;
         playClickSound();
         if (audio.paused) {
             audio.play();
@@ -1095,7 +1186,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         audio.src = getActiveTrack().src;
-        audio.volume = 0.1;
+        audio.volume = 0.2;
         audio.play();
         renderScreen();
         saveState();
@@ -1132,7 +1223,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
             audio.src = getActiveTrack().src;
-            audio.volume = 0.1;
+            audio.volume = 0.2;
             audio.play();
         }
         renderScreen();

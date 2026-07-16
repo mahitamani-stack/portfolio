@@ -67,21 +67,206 @@ html.bm-mobile-guard body {
     opacity: 0.8;
 }
 
-/* ── Mobile nav dropdown (top nav + footer nav share this Webflow
-   component): without an explicit background it can render as a
-   transparent/endless-looking overlay showing whatever page background sits
-   behind it, and without a height cap a layout hiccup can make it stretch
-   far past its actual link list. Force a solid background and a sane cap. ── */
+/* ── Mobile Layout Overrides & Adjustments ── */
 @media (max-width: 767px) {
-    .w-nav-overlay {
-        background-color: #14120d !important;
-        max-height: 80vh !important;
-        overflow-y: auto !important;
+    /* Global horizontal scroll safety net */
+    html, body {
+        overflow-x: clip !important;
+        max-width: 100vw !important;
     }
 
-    .nav-menu.w-nav-menu {
-        background-color: #14120d !important;
-        padding: 1.5rem !important;
+    /* Global Typography Scale for crisp readability on mobile */
+    h1, .display-header, .h1 {
+        font-size: 2.1rem !important;
+        line-height: 1.25 !important;
+    }
+    h2, .case-study-title, .h2-smaller {
+        font-size: 1.45rem !important;
+        line-height: 1.35 !important;
+    }
+    p, .body-text, .main-text, .left-aligned, .client-name, .testimonial-text, .right-desc-block {
+        font-size: 1.15rem !important;
+        line-height: 1.55 !important;
+    }
+
+    /* Hamburger Navigation Dropdown Overlay:
+       Make overlay background transparent so it doesn't cover page, and set background of menu to inherit.
+       Do not force height on overlay to allow Webflow's opening animation to work correctly! */
+    .navbar-1 {
+        z-index: 1000000 !important;
+        position: relative !important;
+    }
+    .navbar-1 .w-nav-button {
+        z-index: 1000005 !important;
+        position: relative !important;
+        pointer-events: auto !important;
+    }
+    .navbar-1 .w-nav-overlay {
+        background-color: transparent !important;
+        z-index: 999999 !important;
+    }
+    .navbar-1 .w-nav-menu {
+        background-color: inherit !important;
+        height: auto !important;
+        padding: 1rem 1.5rem !important;
         box-sizing: border-box !important;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.15) !important;
+        z-index: 1000000 !important;
+    }
+
+    /* Pinned Widgets Stacking on Bottom-Right Margin */
+    .progress-bar {
+        position: fixed !important;
+        right: 0.5rem !important;
+        left: auto !important;
+        bottom: 1.25rem !important;
+        top: auto !important;
+        transform: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        z-index: 100001 !important;
+    }
+    .ipod-widget-container.minimized {
+        width: 36px !important;
+        height: 64px !important;
+        right: 0.5rem !important;
+        left: auto !important;
+        bottom: 8.5rem !important; /* Raised higher to clear oranges completely */
+        top: auto !important;
+        z-index: 100002 !important;
+    }
+
+    /* Consistent 3D Footer with Vertically Stacked Social Icons */
+    .section.mahita-footer {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        height: auto !important;
+    }
+    .n-container.mahita-footer-inner {
+        background-color: #feffdd !important;
+        padding-bottom: 2rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .footer-3d-row {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 1.5rem !important;
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+    .sprite-3d-wrapper {
+        gap: 0 !important;
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    .sprite-3d-letter {
+        padding: 0 !important;
+        min-width: 0 !important;
+        height: auto !important;
+        min-height: 140px !important;
+        flex: 1 !important;
+    }
+    .sprite-3d-text {
+        font-size: 13vw !important;
+        letter-spacing: -0.04em !important;
+    }
+    .sprite-3d-model {
+        width: 150% !important;
+        height: 150% !important;
+    }
+
+    /* Social icons horizontally in one line - high specificity selector to override page inline styles */
+    .section.mahita-footer .sm-wrapper,
+    .footer-3d-row .sm-wrapper {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        inset: auto !important;
+        gap: 1.5rem !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    /* Upward-opening dropdown menu in footer navbar */
+    .section.mahita-footer,
+    .mahita-footer-inner,
+    .section.mahita-footer .navbar-1,
+    .section.mahita-footer .nav-container {
+        overflow: visible !important;
+    }
+    .footer-3d-row,
+    .sprite-3d-wrapper {
+        pointer-events: none !important;
+    }
+    .sprite-3d-model,
+    .sm-wrapper a {
+        pointer-events: auto !important;
+    }
+    .section.mahita-footer .w-nav-overlay {
+        top: auto !important;
+        bottom: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+        z-index: 999999 !important;
+    }
+    .section.mahita-footer .w-nav-menu {
+        bottom: 0 !important;
+        top: auto !important;
+        background-color: #feffdd !important;
+        z-index: 1000000 !important;
+    }
+
+    /* Case Studies Global Padding Adjustment */
+    .bk-hero-img {
+        margin-bottom: 2.5rem !important;
+    }
+    .case-study-intro {
+        padding-top: 1.5rem !important;
+    }
+}
+
+@media (max-width: 991px) and (orientation: landscape) {
+    /* iPod Widget landscape sizing & placement */
+    .ipod-widget-container {
+        height: 85vh !important;
+        width: calc(85vh * 312 / 555) !important;
+        bottom: 5vh !important;
+        right: 1.5rem !important;
+        left: auto !important;
+        top: auto !important;
+        z-index: 999999 !important;
+    }
+    .ipod-widget-container.minimized {
+        width: 36px !important;
+        height: 64px !important;
+        bottom: 1.5rem !important;
+        right: 4.5rem !important; /* sits side-by-side with oranges HI! capsule */
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+    }
+    /* Orange HI! capsule widget landscape alignment */
+    .progress-bar {
+        bottom: 1.5rem !important;
+        right: 1rem !important;
+        left: auto !important;
+        z-index: 100001 !important;
+        transform: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+    .sprite-3d-text {
+        font-size: 12vw !important;
     }
 }

@@ -6,6 +6,16 @@
     bottom: 100px; /* Aligns right above the progress-bar orange icon */
     width: 312px;
     height: 555px; /* 30% bigger than original 240×427 */
+    /* On short desktop viewports, a fixed 555px height measured up from
+       bottom:100px pushes the top of the widget above the viewport (and
+       behind the navbar). Cap it so it always stays fully on screen while
+       still clearing the progress-bar capsule below it. max-width is the
+       same proportion as max-height (312/555) so both clamp together
+       instead of distorting the faceplate art — aspect-ratio + width:auto
+       doesn't reliably resolve on a position:fixed box across engines, so
+       this spells the ratio out directly instead.  */
+    max-height: calc(100vh - 120px);
+    max-width: calc((100vh - 120px) * 312 / 555);
     z-index: 999999 !important;
     transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     background-color: transparent;
@@ -44,7 +54,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: fill !important;
     z-index: 10;
     pointer-events: none; /* Let pointer events pass to click targets below */
 }
@@ -67,12 +77,11 @@
 /* ── Screen Section (behind transparent window of PNG) ── */
 .ipod-screen-container {
     position: absolute;
-    /* Base bounds from find_transparent_screen.py, nudged down slightly —
-       reported as sitting a bit above the real screen cutout on device. */
+    /* Base bounds aligned to match transparency cutout exactly */
     left: 12.77%;
-    top: 5%;
+    top: 3.2% !important;
     width: 75.68%;
-    height: 32.95%;
+    height: 38.0% !important;
     background-color: #f7f7f7; /* iPod Classic grey LCD screen background */
     border-radius: 4px;
     z-index: 5;
@@ -109,10 +118,9 @@
 }
 .ipod-widget-container.minimized .ipod-screen-header {
     font-size: 2px;
-    height: 3px;
-    border-bottom: 0.2px solid #ccc;
-    padding: 0;
-    margin: 0;
+    padding-bottom: 0.2px;
+    margin-bottom: 0.3px;
+    border-bottom: 0.1px solid #ccc;
 }
 
 .ipod-header-battery {
@@ -145,13 +153,12 @@
 
 /* Menu items view */
 .ipod-screen-menu {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    flex: 1 1 auto !important;
+    display: block !important;
     margin: 0;
     padding: 0;
     list-style: none;
-    overflow-y: auto;
+    overflow-y: auto !important;
 }
 
 .ipod-menu-item {
@@ -159,17 +166,25 @@
     padding: 4px 6px;
     border-radius: 2px;
     cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     text-align: left;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 4px;
 }
 .ipod-widget-container.minimized .ipod-menu-item {
     font-size: 2px;
     padding: 0.5px;
+}
+
+/* Truncate on the title span itself (not the flex container), with
+   min-width:0 so it can actually shrink below its text's intrinsic width. */
+.ipod-menu-item > span:first-child {
+    min-width: 0;
+    flex: 1 1 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ipod-menu-item.selected {
@@ -180,6 +195,7 @@
 .ipod-menu-item-arrow {
     font-size: 9px;
     font-weight: bold;
+    flex-shrink: 0;
 }
 
 /* Now playing view inside screen */

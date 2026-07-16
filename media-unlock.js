@@ -36,7 +36,7 @@
 
   function showBanner() {
     banner = document.createElement('div');
-    banner.textContent = 'Tap to enable video & sound';
+    banner.textContent = 'Turn on media and sound';
     banner.setAttribute('role', 'button');
     banner.style.cssText = [
       'position:fixed', 'top:14px', 'left:50%', 'transform:translateX(-50%)',

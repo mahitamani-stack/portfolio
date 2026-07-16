@@ -35,5 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
         try { sessionStorage.setItem(PROCEED_KEY, "true"); } catch (e) {}
         document.documentElement.classList.remove("bm-mobile-guard");
         overlay.remove();
+        if (typeof window.__startIntroVideo === "function") {
+            window.__startIntroVideo();
+        } else {
+            if (typeof window.__triggerIpodReveal === "function") {
+                window.__triggerIpodReveal();
+            }
+        }
     });
 });
