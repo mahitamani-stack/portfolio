@@ -84,16 +84,52 @@ document.addEventListener("DOMContentLoaded", function() {
     --font-body: 'Instrument Serif', serif;
   }
 
-  /* The navbar's sticky ancestor (.section.hero.homepage.black.portfolio)
-     and the case-study cards' wrapper (.image-overlay-wrap.portfolio) both
-     inherit z-index:3 from the shared Webflow stylesheet. They're unrelated
-     components that happen to share that value, but once you scroll past
-     the hero, the cards wrapper — being later in the DOM — wins the tie and
-     sits on top of the still-visible sticky navbar, so the nav links stop
-     being clickable even though the bar is still visible. Give the sticky
-     header a z-index clearly above any page content so it always wins. */
-  .section.hero.homepage.black.portfolio {
-    z-index: 1000 !important;
+  /* .section.hero.homepage.black.portfolio is intentionally position:sticky
+     with height:100vh (a Webflow "sticky cover" hero design) — that's not a
+     bug, and it's specific to this page (the home page's hero isn't sticky).
+     The navbar lives inside it as a normal child.
+
+     Two earlier attempts didn't work:
+     1. Bumping the hero's own z-index made the whole full-viewport hero win
+        over every card scrolling underneath it — cards vanished entirely
+        for the hero's whole stuck range instead of just the nav strip
+        staying on top.
+     2. Setting the hero's z-index to auto (hoping it would stop creating
+        its own stacking context, letting the navbar's z-index compete
+        directly against the cards wrapper) doesn't work either —
+        position:sticky establishes a new stacking context unconditionally
+        in every browser, regardless of z-index. A descendant's z-index can
+        never let it visually escape an ancestor's stacking context; only
+        moving it out of that ancestor in the DOM does.
+
+     Real fix: JS (below, near the closing </body>) moves the actual
+     .navbar-1 node to be a direct child of <body>, so it's no longer inside
+     the sticky hero's stacking context at all. Made position:fixed here so
+     it still visually stays pinned at the top now that it's out of the
+     hero's sticky flow, with a z-index that comfortably beats the cards
+     wrapper's z-index:3. A spacer (added by the same script) compensates so
+     removing the navbar from the hero's flow doesn't shift the hero's
+     remaining content up by the navbar's height.
+
+     Scoped to desktop widths only (>991px) — mobile already has its own
+     working .navbar-1 positioning (relative, for the hamburger dropdown)
+     from mobile-block.css, and this page never had the sticky-hero z-index
+     conflict on mobile in the first place (portrait/landscape mobile use
+     entirely different hero layouts there). */
+  @media (min-width: 992px) {
+    .navbar-1 {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      z-index: 999999 !important;
+    }
+    .portfolio-hero-nav-spacer {
+      display: block !important;
+    }
+  }
+  .portfolio-hero-nav-spacer {
+    display: none;
   }
   
   body, p, a, div, span, .main-text, .body-text, .nav, .button-inner {
@@ -542,6 +578,27 @@ document.addEventListener("DOMContentLoaded", function() {
                 letter.classList.toggle("sprite-3d-active", !wasActive);
             });
         });
+    });
+</script>
+<script>
+    // Move .navbar-1 out from inside .section.hero.homepage.black.portfolio
+    // (which is intentionally position:sticky) so it stops being trapped in
+    // that section's stacking context — a descendant's z-index can never
+    // out-rank a sibling of its sticky ancestor, no matter how high, only
+    // physically moving it out of that ancestor does. See the CSS comment
+    // above (.navbar-1 rule) for the full explanation. Desktop only — mobile
+    // has its own working nav handling untouched.
+    document.addEventListener("DOMContentLoaded", () => {
+        if (!window.matchMedia("(min-width: 992px)").matches) return;
+        const nav = document.querySelector(".navbar-1");
+        if (!nav || nav.parentElement === document.body) return;
+
+        const spacer = document.createElement("div");
+        spacer.className = "portfolio-hero-nav-spacer";
+        spacer.style.height = nav.getBoundingClientRect().height + "px";
+        nav.parentElement.insertBefore(spacer, nav);
+
+        document.body.insertBefore(nav, document.body.firstChild);
     });
 </script>
 </body></html>
