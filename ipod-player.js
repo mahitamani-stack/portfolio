@@ -984,34 +984,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    let touchStartY = 0;
-    let touchStartIdx = 0;
-    screenContainer.addEventListener("touchstart", (e) => {
-        touchStartY = e.touches[0].clientY;
-        touchStartIdx = selectedIndex;
-    }, { passive: true });
-
-    screenContainer.addEventListener("touchmove", (e) => {
-        const currentView = menuStack[menuStack.length - 1];
-        if (currentView === "nowplaying") return; // No menu to scroll in now playing
-        
-        if (e.cancelable) e.preventDefault(); // Lock page scroll!
-        
-        const currentY = e.touches[0].clientY;
-        const diffY = touchStartY - currentY;
-        const stepHeight = 25; // number of pixels of drag per item step
-        const steps = Math.round(diffY / stepHeight);
-        
-        let newIdx = touchStartIdx + steps;
-        if (newIdx < 0) newIdx = 0;
-        if (newIdx >= menuItems.length) newIdx = menuItems.length - 1;
-        
-        if (newIdx !== selectedIndex) {
-            selectedIndex = newIdx;
-            playClickSound();
-            renderScreen();
-        }
-    }, { passive: false });
+    // Screen list scrolling is native (.ipod-screen-menu has overflow-y:auto) —
+    // a finger drag on the screen just scrolls the list directly, like any
+    // normal scrollable list. This used to be hijacked into a "drag nudges
+    // the selection by a fixed 25px-per-item step" gesture with
+    // preventDefault() blocking the real scroll, which meant reaching a
+    // song further than ~7 items down a long playlist took many repeated
+    // short swipes instead of one natural scroll.
 
     // ── Click Wheel Rotation Physics ──
     const wheel = document.getElementById("ipod-wheel");

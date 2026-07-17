@@ -83,6 +83,18 @@ document.addEventListener("DOMContentLoaded", function() {
     --font-title: 'Pinyon Script', cursive;
     --font-body: 'Instrument Serif', serif;
   }
+
+  /* The navbar's sticky ancestor (.section.hero.homepage.black.portfolio)
+     and the case-study cards' wrapper (.image-overlay-wrap.portfolio) both
+     inherit z-index:3 from the shared Webflow stylesheet. They're unrelated
+     components that happen to share that value, but once you scroll past
+     the hero, the cards wrapper — being later in the DOM — wins the tie and
+     sits on top of the still-visible sticky navbar, so the nav links stop
+     being clickable even though the bar is still visible. Give the sticky
+     header a z-index clearly above any page content so it always wins. */
+  .section.hero.homepage.black.portfolio {
+    z-index: 1000 !important;
+  }
   
   body, p, a, div, span, .main-text, .body-text, .nav, .button-inner {
     font-family: var(--font-body) !important;

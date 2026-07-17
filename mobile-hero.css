@@ -228,15 +228,23 @@
     padding: 0 !important;
   }
   #macos-container {
-    /* Fixed (not absolute) so it measures from the viewport/navbar directly —
-       its old offset parent is a flex-centered wrapper whose own top shifts
-       with content, which was compounding with this top value and pushing
-       the windows well below the navbar instead of right under it. */
-    position: fixed !important;
+    /* position:absolute (not fixed) against .section.hero.home-hero, which
+       is position:relative and starts at the very top of the page — so
+       top:4.5rem lands right under the navbar reliably, same as the fixed
+       version did, but this way the windows scroll away with the hero
+       section like normal page content instead of staying pinned to the
+       viewport for the rest of the page (which was the actual bug: once
+       fixed, they never left the screen no matter how far you scrolled). */
+    position: absolute !important;
     top: 4.5rem !important;
-    right: 8% !important;
-    left: auto !important;
-    width: 35vw !important;
+    /* Span the gap between the text/plate column (45% wide, on the left)
+       and the vertical scroll strip (14vw, on the right) instead of a
+       narrow 35vw slice pinned to the right edge — that was squeezing every
+       window on top of the scroll strip instead of spreading across the
+       middle of the screen near the butter plate. */
+    left: 42% !important;
+    right: 15vw !important;
+    width: auto !important;
     height: calc(100vh - 5.5rem) !important;
     min-width: 250px !important;
     max-height: none !important;
@@ -314,11 +322,11 @@
     flex-wrap: nowrap !important;
     width: max-content !important;
     overflow: visible !important;
-    animation: knife-marquee 25s linear infinite !important;
-  }
-  @keyframes knife-marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-50% - 0.625rem)); }
+    /* No CSS animation here — a fixed "-50%" keyframe doesn't line up with
+       the actual pixel width of one set once gap/padding rounding is
+       accounted for, which is what caused a visible jump at the loop point.
+       JS drives the loop instead, measuring the real clone offset. See
+       initKnifeKitMarquee() in index.html. */
   }
   .knife-column {
     /* Base desktop rule sets gap:7rem, sized for a tall single-column grid
@@ -411,6 +419,10 @@
   }
   .knife-subtitle-box {
     width: 160px !important;
+    /* Desktop's -25% margin-left trick (a manual centering hack for a
+       different layout) was still resolving here against the 220px column
+       width, shifting the box 55px left of the plate/card it sits under. */
+    margin-left: 0 !important;
     font-size: 0.8rem !important;
     text-align: center !important;
     margin-top: 0.25rem !important;

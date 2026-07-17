@@ -151,14 +151,28 @@
     background-color: #4cd964;
 }
 
+/* #ipod-screen-content (the direct flex child holding this menu/now-playing
+   view) is set inline to flex:1 by the JS, but as a flex item in a column
+   it still defaults to min-height:auto — meaning it won't shrink below its
+   content's height, so a long track list just grows the whole screen taller
+   than its container instead of scrolling inside it (only clipped, not
+   reachable, by the container's overflow:hidden). min-height:0 lets it
+   actually respect the bounded screen height. */
+#ipod-screen-content {
+    min-height: 0;
+}
+
 /* Menu items view */
 .ipod-screen-menu {
     flex: 1 1 auto !important;
+    min-height: 0; /* same fix, one level down — see #ipod-screen-content above */
     display: block !important;
     margin: 0;
     padding: 0;
     list-style: none;
     overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* don't let scrolling the list also scroll the page behind it */
 }
 
 .ipod-menu-item {
