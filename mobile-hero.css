@@ -66,9 +66,14 @@
     z-index: 6 !important;
   }
 
+  /* This was also duplicated (and effectively overridden) in index.html's
+     own <style> block — consolidated to just this one rule. Values are the
+     old working 42%/150px/85px scaled up 25% (aspect-ratio locked, so both
+     dimensions grow together). */
   .mac-window {
-    width: 44vw !important;
-    min-width: 150px !important;
+    width: 52.5% !important;
+    max-width: 188px !important;
+    min-width: 106px !important;
   }
 
   /* Vertical scroll strip: one vertical track on the right, behind macos tabs */
@@ -218,7 +223,13 @@
     max-width: 100vw !important;
   }
   .section.hero.home-hero {
-    min-height: 100vh !important;
+    /* A little taller than one screen: the popups are sized/positioned as
+       a percentage of #macos-container's own height (calc(100vh - 3rem),
+       independent of this min-height), so growing the hero doesn't grow
+       the popups too — it just gives the now-25%-bigger cluster enough
+       room to stay inside the hero instead of spilling into the next
+       section, at the cost of a little extra scroll before that section. */
+    min-height: calc(100vh + 140px) !important;
     height: auto !important;
     padding-top: 0 !important;
   }
@@ -265,11 +276,11 @@
        of trying to shrink each popup individually) shrinks their offsets
        and sizes together, keeping them fully inside the hero instead of
        spilling into the next section. */
-    transform: scale(0.8);
+    transform: scale(1);
     transform-origin: top left;
   }
   .mac-window {
-    min-width: 170px !important;
+    min-width: 213px !important;
   }
   .section.hero.home-hero ._1em-gap-verticle {
     display: flex !important;
@@ -341,6 +352,17 @@
     flex-wrap: nowrap !important;
     width: max-content !important;
     overflow: visible !important;
+    /* .knife-frame is a column flex container with align-items:center —
+       for a normal-width child that's just vertical centering, but once
+       this grid goes to width:max-content (way wider than the frame) that
+       same align-items centers it HORIZONTALLY instead, since a
+       max-content item is never stretched. The grid was rendering ~800px
+       off to the left of the frame with only its centered middle actually
+       visible, which is what looked like the marquee starting "in the
+       middle" instead of flush at the left edge, and threw off where the
+       JS-computed translateX values actually landed. Pin it to the
+       frame's start edge regardless of the parent's align-items. */
+    align-self: flex-start !important;
     /* No CSS animation here — a fixed "-50%" keyframe doesn't line up with
        the actual pixel width of one set once gap/padding rounding is
        accounted for, which is what caused a visible jump at the loop point.

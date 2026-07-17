@@ -1,3 +1,32 @@
+/* ── Sound toggle capsule (media-unlock.js) ── */
+/* Centered by default (mobile: no horizontal nav to collide with). On
+   desktop widths it used to stay centered too, which overlapped the
+   "Mise en Place" nav link on common laptop-width windows (~1024px) —
+   shifted to a fixed offset from the right edge instead, clear of both
+   the main nav links and "Let's Cook". */
+#site-sound-toggle-capsule {
+    left: 50%;
+    transform: translateX(-50%);
+}
+@media (hover: hover) and (pointer: fine) {
+    #site-sound-toggle-capsule:hover {
+        background-color: #222 !important;
+        transform: translateX(-50%) scale(1.05);
+    }
+}
+@media (min-width: 768px) {
+    #site-sound-toggle-capsule {
+        left: auto;
+        right: 190px;
+        transform: none;
+    }
+    @media (hover: hover) and (pointer: fine) {
+        #site-sound-toggle-capsule:hover {
+            transform: scale(1.05);
+        }
+    }
+}
+
 /* ── iPod Classic Floating Player Widget Styles ── */
 
 .ipod-widget-container {

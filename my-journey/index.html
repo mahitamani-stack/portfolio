@@ -109,7 +109,7 @@
             overflow: visible;
         }
         .sprite-3d-text {
-            font-size: 15vw;
+            font-size: clamp(2rem, 6vw, 3.5rem);
             line-height: 1;
             font-family: var(--font-body) !important;
             transition: opacity 0.3s ease;
@@ -129,6 +129,15 @@
             transform-style: preserve-3d;
             z-index: 1;
         }
+        .sprite-3d-letter:nth-child(4) .sprite-3d-model,
+        .sprite-3d-letter:nth-child(6) .sprite-3d-model {
+            transform: translate(-50%, -50%) translateY(20px) scale(0.8);
+        }
+        /* :hover only for real pointer devices — on touch, :hover can get
+           stuck active after a tap (no mouseleave to clear it). Touch
+           relies solely on the JS scroll-reveal / .sprite-3d-active class
+           below. */
+        @media (hover: hover) and (pointer: fine) {
         .sprite-3d-letter:hover .sprite-3d-text {
             opacity: 0;
         }
@@ -136,13 +145,10 @@
             opacity: 1;
             transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg);
         }
-        .sprite-3d-letter:nth-child(4) .sprite-3d-model,
-        .sprite-3d-letter:nth-child(6) .sprite-3d-model {
-            transform: translate(-50%, -50%) translateY(20px) scale(0.8);
-        }
         .sprite-3d-letter:nth-child(4):hover .sprite-3d-model,
         .sprite-3d-letter:nth-child(6):hover .sprite-3d-model {
             transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg) scale(0.8);
+        }
         }
         /* .sprite-3d-active mirrors :hover — toggled by the JS scroll-reveal
            in ipod-player.js (footer 3D letters section) so touch devices get
@@ -635,27 +641,27 @@
                 <div class="sprite-3d-wrapper">
                     <div class="sprite-3d-letter">
                         <span class="sprite-3d-text">M</span>
-                        <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_M.glb"></model-viewer>
+                        <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_M.glb"></model-viewer>
                     </div>
                     <div class="sprite-3d-letter">
                         <span class="sprite-3d-text">A</span>
-                        <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A.glb"></model-viewer>
+                        <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A.glb"></model-viewer>
                     </div>
                     <div class="sprite-3d-letter">
                         <span class="sprite-3d-text">H</span>
-                        <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_H.glb"></model-viewer>
+                        <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_H.glb"></model-viewer>
                     </div>
                     <div class="sprite-3d-letter">
                         <span class="sprite-3d-text">I</span>
-                        <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_I.glb"></model-viewer>
+                        <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_I.glb"></model-viewer>
                     </div>
                     <div class="sprite-3d-letter">
                         <span class="sprite-3d-text">T</span>
-                        <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_T.glb"></model-viewer>
+                        <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_T.glb"></model-viewer>
                     </div>
                     <div class="sprite-3d-letter">
                         <span class="sprite-3d-text">A</span>
-                        <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A2.glb"></model-viewer>
+                        <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A2.glb"></model-viewer>
                     </div>
                 </div>
                 <div class="sm-wrapper">
@@ -955,7 +961,21 @@
                 }
             });
 
-            window.addEventListener("resize", () => applyMode(getMode()));
+            // On mobile, scrolling itself can fire "resize" — the browser
+            // chrome (address bar) collapsing/expanding as you scroll
+            // changes window.innerHeight without the device actually
+            // rotating or resizing, and getPageDimensions() reads that
+            // height directly, so the book visibly grew/shrank on every
+            // scroll. Width doesn't change from address-bar chrome, only
+            // from a real rotation/resize, so mobile only re-applies when
+            // width actually moves; desktop (real window resizing, where
+            // height changes are legitimate) keeps reacting to any resize.
+            let lastResizeWidth = window.innerWidth;
+            window.addEventListener("resize", () => {
+                if (isMobileDevice && window.innerWidth === lastResizeWidth) return;
+                lastResizeWidth = window.innerWidth;
+                applyMode(getMode());
+            });
 
             // Belt-and-suspenders: some mobile WebKit versions fire resize
             // unreliably on rotation, so also listen for the orientation

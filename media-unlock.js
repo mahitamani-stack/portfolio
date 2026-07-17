@@ -61,22 +61,18 @@
     banner.id = 'site-sound-toggle-capsule';
     banner.setAttribute('role', 'button');
     banner.style.cssText = [
-      'position:fixed', 'top:14px', 'left:50%', 'transform:translateX(-50%)',
+      'position:fixed', 'top:14px',
       'background:#111', 'color:#fff', 'padding:0.6rem 1.25rem',
       'border-radius:999px', 'font-family:\'Instrument Serif\', serif', 'font-size:0.95rem',
       'letter-spacing:0.02em', 'z-index:999999', 'cursor:pointer',
       'box-shadow:0 6px 18px rgba(0,0,0,0.25)', 'user-select:none',
       'transition:transform 0.2s ease, background-color 0.2s ease'
     ].join(';');
-
-    banner.addEventListener('mouseenter', function() {
-      banner.style.transform = 'translateX(-50%) scale(1.05)';
-      banner.style.background = '#222';
-    });
-    banner.addEventListener('mouseleave', function() {
-      banner.style.transform = 'translateX(-50%) scale(1)';
-      banner.style.background = '#111';
-    });
+    // Positioning (centered on mobile, shifted right clear of the desktop
+    // nav) and the hover scale/color live in CSS (ipod-player.css) instead
+    // of here — doing hover via a JS-set transform would have fought with
+    // the positioning transform used on mobile (translateX(-50%)),
+    // clobbering it back to unpositioned on every hover.
 
     banner.addEventListener('click', handleCapsuleClick);
     document.body.appendChild(banner);

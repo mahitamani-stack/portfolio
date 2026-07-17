@@ -1355,6 +1355,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if ('IntersectionObserver' in window) {
+            const REVEAL_HOLD_MS = 500;   // how long each letter stays in its 3D state
+            const REVEAL_STEP_MS = 550;   // gap between one letter starting and the next — kept
+                                           // slightly longer than the hold so letters don't overlap
+                                           // and settle back to text before the next one turns
+
             const footerObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1368,12 +1373,12 @@ document.addEventListener("DOMContentLoaded", () => {
                                 setTimeout(() => {
                                     letter.classList.remove('sprite-3d-active');
                                     if (model) model.removeAttribute('auto-rotate');
-                                }, 1200);
-                            }, index * 150);
+                                }, REVEAL_HOLD_MS);
+                            }, index * REVEAL_STEP_MS);
                         });
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0 });
 
             const footerRow = document.querySelector('.footer-3d-row');
             if (footerRow) footerObserver.observe(footerRow);

@@ -35,6 +35,15 @@
   }
   .nav-container { background-color: var(--color-blue) !important; }
 
+  /* Webflow's shared CSS sets .section.hero.case-study to a fixed
+     height:100vh/56vh at various breakpoints (meant for pages with a big
+     hero image) - the page's own inline style only zeroed min-height, so
+     that height rule was still winning, leaving a near-full-viewport-tall
+     empty band above the actual "Coming Soon" content. */
+  .section.hero.case-study { min-height: 0 !important; height: auto !important; padding-bottom: 0 !important; }
+  .section.hero.case-study .n-container.hero { min-height: 0 !important; height: auto !important; padding-bottom: 0 !important; }
+  html, body { height: 100vh !important; overflow: hidden !important; }
+
   /* ── Center Coming Soon Area ── */
   .coming-soon-main {
     flex: 1;
@@ -83,7 +92,7 @@
     overflow: visible;
   }
   .sprite-3d-text {
-    font-size: 15vw;
+    font-size: clamp(2rem, 6vw, 3.5rem);
     line-height: 1;
     font-family: var(--font-body) !important;
     transition: opacity 0.3s ease;
@@ -103,18 +112,24 @@
     transform-style: preserve-3d;
     z-index: 1;
   }
+  .sprite-3d-letter:nth-child(4) .sprite-3d-model,
+  .sprite-3d-letter:nth-child(6) .sprite-3d-model {
+    transform: translate(-50%, -50%) translateY(20px) scale(0.8);
+  }
+  /* :hover only for real pointer devices — on touch, :hover can
+     get stuck active after a tap (no mouseleave to clear it). Touch
+     relies solely on the JS scroll-reveal / .sprite-3d-active class
+     below. */
+  @media (hover: hover) and (pointer: fine) {
   .sprite-3d-letter:hover .sprite-3d-text { opacity: 0; }
   .sprite-3d-letter:hover .sprite-3d-model {
     opacity: 1;
     transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg);
   }
-  .sprite-3d-letter:nth-child(4) .sprite-3d-model,
-  .sprite-3d-letter:nth-child(6) .sprite-3d-model {
-    transform: translate(-50%, -50%) translateY(20px) scale(0.8);
-  }
   .sprite-3d-letter:nth-child(4):hover .sprite-3d-model,
   .sprite-3d-letter:nth-child(6):hover .sprite-3d-model {
     transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg) scale(0.8);
+  }
   }
         /* .sprite-3d-active mirrors :hover — toggled by the JS scroll-reveal
            in ipod-player.js (footer 3D letters section) so touch devices get
@@ -131,11 +146,6 @@
   .sm-wrapper { display: flex !important; flex-direction: column !important; position: relative !important; inset: auto !important; justify-content: center !important; align-items: flex-end !important; padding: 0 1.5rem 0 0 !important; gap: 1rem !important; width: auto !important; margin: 0 !important; }
   .sm-icon { width: 28px; height: 28px; filter: brightness(0); }
   .sm-icon-wrapper { display: flex; align-items: center; }
-
-  @media (max-width: 900px) {
-    .sprite-3d-model { width: 50px; height: 50px; }
-    .sprite-3d-text { font-size: 2.5rem; }
-  }
 
   /* ── Reading Accessibility & Typography Hierarchy Overrides ── */
   h1, .display-header, .h1 {
@@ -213,27 +223,27 @@
       <div class="sprite-3d-wrapper">
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">M</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_M.glb"></model-viewer>
+          <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_M.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">A</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A.glb"></model-viewer>
+          <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">H</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_H.glb"></model-viewer>
+          <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_H.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">I</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_I.glb"></model-viewer>
+          <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_I.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">T</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_T.glb"></model-viewer>
+          <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_T.glb"></model-viewer>
         </div>
         <div class="sprite-3d-letter">
           <span class="sprite-3d-text">A</span>
-          <model-viewer auto-rotate="" camera-controls="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A2.glb"></model-viewer>
+          <model-viewer auto-rotate="" class="sprite-3d-model" disable-pan="" disable-zoom="" loading="lazy" src="/3d%20sprites%20for%20footer%20animation/Sprite_A2.glb"></model-viewer>
         </div>
       </div>
       <div class="sm-wrapper">
