@@ -1,4 +1,9 @@
 {
+  "redirects": [
+    { "source": "/approach", "destination": "/my-journey", "permanent": true },
+    { "source": "/portfolio", "destination": "/the-kitchen", "permanent": true },
+    { "source": "/portfolio/saba-portfolio-viewer", "destination": "/portfolio/3d-portfolio-viewer", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)\\.(js|css|woff2?|ttf|eot)",
