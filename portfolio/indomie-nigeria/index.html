@@ -251,8 +251,23 @@
   .button-inner, .nav {
     font-size: clamp(0.9rem, 1.5vw, 1rem) !important; /* 14px to 16px */
   }
-  .bk-pill, .deliverable p, .bk-credits p, .bk-credits, .legal-links-wrapper h4 {
-    font-size: clamp(0.8rem, 1.2vw, 0.88rem) !important; /* 13px to 14px captions */
+  @media (max-width: 767px) {
+    h1, .display-header, .h1 {
+      font-size: clamp(2rem, 8vw, 3rem) !important;
+    }
+    h2, .case-study-title, .h2-smaller {
+      font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
+    }
+    p, .body-text, .main-text, .left-aligned, .client-name, .testimonial-text {
+      font-size: clamp(1.1rem, 4vw, 1.25rem) !important;
+    }
+    .rounded-ivory {
+      padding: 1.5rem 1rem !important;
+    }
+    ._3-grid-wrap.case {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
   }
 </style>
   <link href="/ipod-player.css" rel="stylesheet" type="text/css"/>
@@ -540,7 +555,7 @@
         <nav role="navigation" class="nav-menu w-nav-menu">
           <a href="/" class="nav hover-spacing alt-styling black w-nav-link">Home</a>
           <a href="/my-journey" class="nav hover-spacing alt-styling black w-nav-link">My Journey</a>
-          <a href="/the-kitchen" class="nav hover-spacing alt-styling black w-nav-link">The Kitchen (Work)</a>
+          <a href="/the-kitchen" class="nav hover-spacing alt-styling black w-nav-link">The Kitchen (Work)</a><a href="/mise-en-place" class="nav hover-spacing alt-styling black w-nav-link">Mise en Place</a>
           <div class="nav-right"><a href="mailto:mahita.mani@gmail.com" class="nav hover-spacing alt-styling black w-nav-link">Let's Cook</a></div>
         </nav>
         <div class="w-nav-button"><div class="w-icon-nav-menu"></div></div>

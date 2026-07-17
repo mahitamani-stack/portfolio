@@ -440,3 +440,9 @@
     opacity: 1;
     pointer-events: auto;
 }
+
+/* Global Fix: Do not show play buttons on hover when video is already playing */
+.bk-play-btn.playing {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}

@@ -841,13 +841,26 @@
                     videoCard.appendChild(banner);
                     cardWrapper.appendChild(videoCard);
 
-                    const tryPlay = () => {
+                    // Capture a poster frame dynamically from the video data
+                    video.addEventListener("loadeddata", () => {
+                        video.currentTime = 1.0;
+                    }, { once: true });
+
+                    video.addEventListener("seeked", () => {
+                        try {
+                            const canvas = document.createElement("canvas");
+                            canvas.width = video.videoWidth || 640;
+                            canvas.height = video.videoHeight || 360;
+                            const ctx = canvas.getContext("2d");
+                            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                            video.setAttribute("poster", canvas.toDataURL("image/jpeg", 0.75));
+                        } catch (e) {
+                            console.error("Failed to capture video poster frame:", e);
+                        }
                         video.muted = true;
                         const p = video.play();
                         if (p && typeof p.catch === "function") p.catch(() => {});
-                    };
-                    video.addEventListener("loadeddata", tryPlay, { once: true });
-                    tryPlay();
+                    }, { once: true });
                 } else {
                     const canvaCard = document.createElement("div");
                     canvaCard.className = "canva-deck-card";

@@ -560,6 +560,17 @@ document.addEventListener("DOMContentLoaded", () => {
         audio.currentTime = saved.currentTime;
     }
 
+    // Expose global window APIs for audio control
+    window.playIpodAudio = () => {
+        audio.play().catch(() => {});
+    };
+    window.pauseIpodAudio = () => {
+        audio.pause();
+    };
+    window.isIpodAudioPlaying = () => {
+        return !audio.paused;
+    };
+
     // ── Native Audio Event Listeners for State Synchronization ──
     audio.addEventListener("play", () => {
         document.removeEventListener("click", tryAutoplay);
@@ -567,6 +578,7 @@ document.addEventListener("DOMContentLoaded", () => {
         isPlaying = true;
         saveState();
         renderScreen();
+        if (typeof window.__updateSoundCapsule === 'function') window.__updateSoundCapsule();
     });
 
     audio.addEventListener("pause", () => {
@@ -575,6 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
             saveState();
         }
         renderScreen();
+        if (typeof window.__updateSoundCapsule === 'function') window.__updateSoundCapsule();
     });
 
     // ── Synthetic Haptic Click Sound Generator (Web Audio API) ──
@@ -1237,4 +1250,101 @@ document.addEventListener("DOMContentLoaded", () => {
         playClickSound();
         minimizeIpod();
     });
+
+    // ── iPod/Video Playback Sync & Performance Visibility Observer & Footer Staggered Scroll Reveal ──
+    (function() {
+        // A. Video-to-iPod Control Listener
+        let ipodPausedByVideo = false;
+
+        const handleVideoPlay = (video) => {
+            if (video.id === 'intro-video' || video.classList.contains('site-media')) return;
+            if (!audio.paused) {
+                ipodPausedByVideo = true;
+                window.pauseIpodAudio();
+            }
+        };
+
+        const handleVideoPause = (video) => {
+            if (video.id === 'intro-video' || video.classList.contains('site-media')) return;
+            if (ipodPausedByVideo) {
+                const allVids = Array.from(document.querySelectorAll('video'));
+                const anyPlaying = allVids.some(v => 
+                    v.id !== 'intro-video' && 
+                    !v.classList.contains('site-media') && 
+                    !v.paused && 
+                    !v.ended
+                );
+                if (!anyPlaying) {
+                    ipodPausedByVideo = false;
+                    window.playIpodAudio();
+                }
+            }
+        };
+
+        const setupVideoSync = () => {
+            document.querySelectorAll('video').forEach(video => {
+                if (video.dataset.ipodSynced) return;
+                video.dataset.ipodSynced = "true";
+                video.addEventListener('play', () => handleVideoPlay(video));
+                video.addEventListener('pause', () => handleVideoPause(video));
+                video.addEventListener('ended', () => handleVideoPause(video));
+            });
+        };
+
+        setupVideoSync();
+        setInterval(setupVideoSync, 1000);
+
+        // B. Offscreen Video Auto-Pauser (Performance Optimization for Mobile)
+        if ('IntersectionObserver' in window) {
+            const videoVisibilityObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (video.id === 'intro-video') return;
+
+                    if (entry.isIntersecting) {
+                        if (video.dataset.wasPlaying === 'true' || video.autoplay) {
+                            video.play().catch(() => {});
+                        }
+                    } else {
+                        video.dataset.wasPlaying = (!video.paused && !video.ended).toString();
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            const observeVideos = () => {
+                document.querySelectorAll('video').forEach(video => {
+                    if (video.dataset.visibilityObserved) return;
+                    video.dataset.visibilityObserved = "true";
+                    videoVisibilityObserver.observe(video);
+                });
+            };
+
+            observeVideos();
+            setInterval(observeVideos, 1500);
+        }
+
+        // C. Footer 3D Letter Ripple Scroll-Reveal
+        if ('IntersectionObserver' in window) {
+            const footerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        footerObserver.unobserve(entry.target);
+                        const letters = entry.target.querySelectorAll('.sprite-3d-letter');
+                        letters.forEach((letter, index) => {
+                            setTimeout(() => {
+                                letter.classList.add('sprite-3d-active');
+                                setTimeout(() => {
+                                    letter.classList.remove('sprite-3d-active');
+                                }, 1200);
+                            }, index * 150);
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            const footerRow = document.querySelector('.footer-3d-row');
+            if (footerRow) footerObserver.observe(footerRow);
+        }
+    })();
 });

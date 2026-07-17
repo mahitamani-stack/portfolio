@@ -186,7 +186,28 @@
   }
   html, body { overflow-x: hidden !important; }
   /* Widen left column so the description fits in 3 lines instead of 5 */
-  .summary-grid { grid-template-columns: 1fr 39em !important; }
+  @media (min-width: 992px) {
+    .summary-grid { grid-template-columns: 1fr 39em !important; }
+  }
+  
+  @media (max-width: 767px) {
+    h1, .display-header, .h1 {
+      font-size: clamp(2rem, 8vw, 3rem) !important;
+    }
+    h2, .case-study-title, .h2-smaller {
+      font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
+    }
+    p, .body-text, .main-text, .left-aligned, .client-name, .testimonial-text {
+      font-size: clamp(1.1rem, 4vw, 1.25rem) !important;
+    }
+    .rounded-ivory {
+      padding: 1.5rem 1rem !important;
+    }
+    ._3-grid-wrap.case {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
   .cs-next h4.no-caps {
     font-size: clamp(1.1rem, 2vw, 1.4rem) !important;
   }
@@ -359,7 +380,7 @@
         <nav role="navigation" class="nav-menu w-nav-menu">
           <a href="/" class="nav hover-spacing alt-styling black w-nav-link">Home</a>
           <a href="/my-journey" class="nav hover-spacing alt-styling black w-nav-link">My Journey</a>
-          <a href="/the-kitchen" class="nav hover-spacing alt-styling black w-nav-link">The Kitchen (Work)</a>
+          <a href="/the-kitchen" class="nav hover-spacing alt-styling black w-nav-link">The Kitchen (Work)</a><a href="/mise-en-place" class="nav hover-spacing alt-styling black w-nav-link">Mise en Place</a>
           <div class="nav-right"><a href="mailto:mahita.mani@gmail.com" class="nav hover-spacing alt-styling black w-nav-link">Let's Cook</a></div>
         </nav>
         <div class="w-nav-button"><div class="w-icon-nav-menu"></div></div>

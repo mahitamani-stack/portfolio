@@ -270,8 +270,23 @@
   .button-inner, .nav {
     font-size: clamp(0.9rem, 1.5vw, 1rem) !important; /* 14px to 16px */
   }
-  .bk-pill, .deliverable p, .bk-credits p, .bk-credits, .legal-links-wrapper h4 {
-    font-size: clamp(0.8rem, 1.2vw, 0.88rem) !important; /* 13px to 14px captions */
+  @media (max-width: 767px) {
+    h1, .display-header, .h1 {
+      font-size: clamp(2rem, 8vw, 3rem) !important;
+    }
+    h2, .case-study-title, .h2-smaller {
+      font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
+    }
+    p, .body-text, .main-text, .left-aligned, .client-name, .testimonial-text {
+      font-size: clamp(1.1rem, 4vw, 1.25rem) !important;
+    }
+    .rounded-ivory {
+      padding: 1.5rem 1rem !important;
+    }
+    ._3-grid-wrap.case {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
   }
 </style>
   <link href="/ipod-player.css" rel="stylesheet" type="text/css"/>
@@ -441,6 +456,9 @@
       <a href="/portfolio/indomie-nigeria" class="_3-grid-wrap next-cs w-inline-block">
         <h4 class="black no-caps">Another project...</h4>
         <h2 class="display-header">Indomie Nigeria</h2>
+        <div class="wobble-icon" style="transform: translate3d(0em, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+          <img src="https://cdn.prod.website-files.com/609988bd503b3c3129b4bab4/661d489c4706486a0bd6840f_Group%207527.avif" loading="lazy" alt="Plus icon."/>
+        </div>
       </a>
       <a href="/portfolio/indomie-nigeria" class="project-wrapped r w-inline-block">
         <div class="project-cover-wrapper next-cs" style="padding:0;overflow:hidden;height:auto !important;">

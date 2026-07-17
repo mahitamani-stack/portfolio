@@ -98,7 +98,28 @@
   .bk-credits { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.75rem; }
   /* Give the What I did column more room so its pills stay on one line;
      Credits column shrinks and shifts right to accommodate. */
-  .summary-grid { grid-template-columns: 1fr 26em !important; }
+  @media (min-width: 992px) {
+    .summary-grid { grid-template-columns: 1fr 26em !important; }
+  }
+
+  @media (max-width: 767px) {
+    h1, .display-header, .h1 {
+      font-size: clamp(2rem, 8vw, 3rem) !important;
+    }
+    h2, .case-study-title, .h2-smaller {
+      font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
+    }
+    p, .body-text, .main-text, .left-aligned, .client-name, .testimonial-text {
+      font-size: clamp(1.1rem, 4vw, 1.25rem) !important;
+    }
+    .rounded-ivory {
+      padding: 1.5rem 1rem !important;
+    }
+    ._3-grid-wrap.case {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
 
   /* ── Film sections ── */
   .bk-film-grid {
