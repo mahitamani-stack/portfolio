@@ -142,10 +142,6 @@
   .bk-play-btn:hover { background: rgba(0,0,0,0.05); }
   .bk-play-btn svg { width: 72px; height: 72px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
   .bk-play-btn.playing { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-  @media (hover: hover) and (pointer: fine) {
-    .sy-full-film-video:hover .bk-play-btn.playing,
-    .sy-clip-cell:hover .bk-play-btn.playing { opacity: 1; pointer-events: auto; background: transparent; }
-  }
 
   /* ── Footer ── */
   .section.mahita-footer { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0 !important; padding-right: 0 !important; height: auto !important; background-color: var(--color-pink) !important; }
@@ -208,6 +204,14 @@
     opacity: 1;
     transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg);
   }
+  /* .sprite-3d-active mirrors :hover — toggled by the JS scroll-reveal in
+     ipod-player.js (footer 3D letters section) so touch devices get the
+     same one-time reveal that desktop gets on hover. */
+  .sprite-3d-letter.sprite-3d-active .sprite-3d-text { opacity: 0; }
+  .sprite-3d-letter.sprite-3d-active .sprite-3d-model {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg);
+  }
   .sm-wrapper { display: flex !important; flex-direction: column !important; position: relative !important; inset: auto !important; justify-content: center !important; align-items: flex-end !important; padding: 0 1.5rem 0 0 !important; gap: 1rem !important; width: auto !important; margin: 0 !important; }
   .sm-icon { width: 28px; height: 28px; filter: brightness(0); }
   .sm-icon-wrapper { display: flex; align-items: center; }
@@ -265,6 +269,13 @@
       padding: 1.5rem 1rem !important;
     }
     ._3-grid-wrap.case {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+    /* Webflow's own shared CSS sets padding-right (3.2em/4.3em at
+       different breakpoints) without ever resetting padding-left to
+       match, leaving the body content visibly off-center on mobile. */
+    .content.relative-div.case-study {
       padding-left: 1rem !important;
       padding-right: 1rem !important;
     }

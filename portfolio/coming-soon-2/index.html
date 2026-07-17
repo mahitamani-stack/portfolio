@@ -116,6 +116,18 @@
   .sprite-3d-letter:nth-child(6):hover .sprite-3d-model {
     transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg) scale(0.8);
   }
+        /* .sprite-3d-active mirrors :hover — toggled by the JS scroll-reveal
+           in ipod-player.js (footer 3D letters section) so touch devices get
+           the same one-time reveal that desktop gets on hover. */
+        .sprite-3d-letter.sprite-3d-active .sprite-3d-text { opacity: 0; }
+        .sprite-3d-letter.sprite-3d-active .sprite-3d-model {
+            opacity: 1;
+            transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg);
+        }
+        .sprite-3d-letter:nth-child(4).sprite-3d-active .sprite-3d-model,
+        .sprite-3d-letter:nth-child(6).sprite-3d-active .sprite-3d-model {
+            transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg) scale(0.8);
+        }
   .sm-wrapper { display: flex !important; flex-direction: column !important; position: relative !important; inset: auto !important; justify-content: center !important; align-items: flex-end !important; padding: 0 1.5rem 0 0 !important; gap: 1rem !important; width: auto !important; margin: 0 !important; }
   .sm-icon { width: 28px; height: 28px; filter: brightness(0); }
   .sm-icon-wrapper { display: flex; align-items: center; }

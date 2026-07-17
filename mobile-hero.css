@@ -40,13 +40,16 @@
     align-items: flex-start !important;
   }
 
-  /* macOS windows: float on the right, overlap toast, sized larger */
+  /* macOS windows: float on the right, clear of the butter plate (which
+     sits in the left ~35% of this same box) so they don't visually cover
+     it. z-index stays below the plate's wrapper as a safety net for any
+     edge overlap the horizontal shift doesn't fully avoid. */
   #macos-container {
     position: absolute !important;
     top: 5rem !important;
-    left: 0 !important;
+    left: 38vw !important;
     right: 0 !important;
-    width: 100vw !important;
+    width: auto !important;
     height: 145vw !important;
     min-width: 0 !important;
     min-height: 0 !important;
@@ -54,6 +57,13 @@
     margin: 0 !important;
     pointer-events: none !important;
     z-index: 5 !important;
+  }
+
+  /* Keep the plate above the mac-windows in the stacking order, in case
+     any window still edges into its space at some viewport width. */
+  .section.hero.home-hero .nekeg.imp {
+    position: relative !important;
+    z-index: 6 !important;
   }
 
   .mac-window {

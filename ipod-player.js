@@ -1300,6 +1300,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 entries.forEach(entry => {
                     const video = entry.target;
                     if (video.id === 'intro-video') return;
+                    // Mise en Place's carousel videos live inside 3D-rotated
+                    // fold panels (rotateX ~123deg) — from the camera's
+                    // projected 2D bounding box they're a near-zero-area
+                    // sliver, so this observer reads them as never
+                    // intersecting and continuously re-pauses them right
+                    // after they start, which looked like the video/thumbnail
+                    // never showing up at all. They already have their own
+                    // always-on autoplay handling in mise-en-place's page
+                    // script, so skip them here.
+                    if (video.closest('.video-deck-card')) return;
 
                     if (entry.isIntersecting) {
                         if (video.dataset.wasPlaying === 'true' || video.autoplay) {
@@ -1325,6 +1335,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // C. Footer 3D Letter Ripple Scroll-Reveal
+        // Each letter's <model-viewer> is a live WebGL context. They ship
+        // with auto-rotate="" baked into the HTML, which keeps them
+        // continuously rendering/rotating even while sitting at opacity:0
+        // (the default, non-hovered state) — 6 permanently-spinning WebGL
+        // contexts per page doing literally invisible work. That's a real
+        // contributor to the "laggy, sometimes goes blank" reports on
+        // longer sessions, especially on mobile GPUs with tight WebGL
+        // context budgets. Auto-rotate is now only turned on for the
+        // moments the model is actually visible (hovered, or during the
+        // scroll-reveal ripple), and off otherwise.
+        const footerLetters = document.querySelectorAll('.sprite-3d-letter');
+        footerLetters.forEach((letter) => {
+            const model = letter.querySelector('.sprite-3d-model');
+            if (!model) return;
+            model.removeAttribute('auto-rotate');
+            letter.addEventListener('mouseenter', () => model.setAttribute('auto-rotate', ''));
+            letter.addEventListener('mouseleave', () => model.removeAttribute('auto-rotate'));
+        });
+
         if ('IntersectionObserver' in window) {
             const footerObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1332,10 +1361,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         footerObserver.unobserve(entry.target);
                         const letters = entry.target.querySelectorAll('.sprite-3d-letter');
                         letters.forEach((letter, index) => {
+                            const model = letter.querySelector('.sprite-3d-model');
                             setTimeout(() => {
                                 letter.classList.add('sprite-3d-active');
+                                if (model) model.setAttribute('auto-rotate', '');
                                 setTimeout(() => {
                                     letter.classList.remove('sprite-3d-active');
+                                    if (model) model.removeAttribute('auto-rotate');
                                 }, 1200);
                             }, index * 150);
                         });
