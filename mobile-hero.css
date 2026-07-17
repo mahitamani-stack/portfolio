@@ -37,6 +37,7 @@
     min-height: 500px !important;
     order: 1;
     padding-bottom: 1.5rem !important;
+    align-items: flex-start !important;
   }
 
   /* macOS windows: float on the right, overlap toast, sized larger */
@@ -218,7 +219,7 @@
     justify-content: space-between !important;
     width: 100% !important;
     gap: 1.5rem !important;
-    margin-top: 4.5rem !important;
+    margin-top: 1rem !important;
   }
   .content-wrapper-home.home-hero {
     width: 45% !important;
@@ -228,15 +229,12 @@
     padding: 0 !important;
   }
   #macos-container {
-    /* position:absolute (not fixed) against .section.hero.home-hero, which
-       is position:relative and starts at the very top of the page — so
-       top:4.5rem lands right under the navbar reliably, same as the fixed
-       version did, but this way the windows scroll away with the hero
-       section like normal page content instead of staying pinned to the
-       viewport for the rest of the page (which was the actual bug: once
-       fixed, they never left the screen no matter how far you scrolled). */
+    /* position:absolute against .content-wrapper-home.home-hero (its actual
+       offsetParent — the nearest positioned ancestor, not the hero section
+       despite what the markup's own inline top/right values assume), so
+       top is measured from that wrapper's top edge, not the page/navbar. */
     position: absolute !important;
-    top: 4.5rem !important;
+    top: 0.25rem !important;
     /* Span the gap between the text/plate column (45% wide, on the left)
        and the vertical scroll strip (14vw, on the right) instead of a
        narrow 35vw slice pinned to the right edge — that was squeezing every
@@ -245,12 +243,23 @@
     left: 42% !important;
     right: 15vw !important;
     width: auto !important;
-    height: calc(100vh - 5.5rem) !important;
+    height: calc(100vh - 3rem) !important;
     min-width: 250px !important;
     max-height: none !important;
     margin: 0 !important;
     z-index: 5 !important;
     pointer-events: auto !important;
+    /* The popups' spread (top/left offsets, sizes) is baked in as inline
+       styles shared with desktop, sized for a much taller box than a short
+       landscape viewport provides. Scaling the whole cluster down (instead
+       of trying to shrink each popup individually) shrinks their offsets
+       and sizes together, keeping them fully inside the hero instead of
+       spilling into the next section. */
+    transform: scale(0.8);
+    transform-origin: top left;
+  }
+  .mac-window {
+    min-width: 170px !important;
   }
   .section.hero.home-hero ._1em-gap-verticle {
     display: flex !important;

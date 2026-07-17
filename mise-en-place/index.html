@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="w-mod-js wf-archivonarrow-n5-active wf-active w-mod-ix" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" xmlns="http://www.w3.org/1999/xhtml">
-<head><link href="https://portfolio-pi-one-uos32qk6gc.vercel.app/mise-en-place" rel="canonical"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/og-image.jpg" property="og:image"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/og-image.jpg" name="twitter:image"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/mise-en-place" property="og:url"/><link href="/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/><link href="/apple-touch-icon.png" rel="apple-touch-icon"/><script>(function(){try{var ua=navigator.userAgent||"";var isMobileUA=/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(ua);var isNarrow=window.matchMedia("(max-width: 767px)").matches;var proceeded=sessionStorage.getItem("bitemarkMobileProceed")==="true";if((isMobileUA||isNarrow)&&!proceeded){document.documentElement.classList.add("bm-mobile-guard");}}catch(e){}})();</script><link href="/mobile-block.css" rel="stylesheet" type="text/css"/><script src="/mobile-block.js" defer></script>
+<head><link href="https://mahitamanikandan.com/mise-en-place" rel="canonical"/><meta content="https://mahitamanikandan.com/og-image.jpg" property="og:image"/><meta content="https://mahitamanikandan.com/og-image.jpg" name="twitter:image"/><meta content="https://mahitamanikandan.com/mise-en-place" property="og:url"/><link href="/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/><link href="/apple-touch-icon.png" rel="apple-touch-icon"/><script>(function(){try{var ua=navigator.userAgent||"";var isMobileUA=/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(ua);var isNarrow=window.matchMedia("(max-width: 767px)").matches;var proceeded=sessionStorage.getItem("bitemarkMobileProceed")==="true";if((isMobileUA||isNarrow)&&!proceeded){document.documentElement.classList.add("bm-mobile-guard");}}catch(e){}})();</script><link href="/mobile-block.css" rel="stylesheet" type="text/css"/><script src="/mobile-block.js" defer></script>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>Mise en Place | Bitemark Studio</title>
@@ -505,51 +505,82 @@
         }
 
         @media (max-width: 991px) and (orientation: landscape) {
-            /* Pin the scene wrapper to the exact same box the landscape SVG lines are drawn
-               over (top: 72px / height: calc(100% - 72px) of the room), so the fold box and
-               the perspective lines share one coordinate system instead of drifting apart. */
-            .mep-scene-wrapper {
-                position: absolute !important;
-                top: 72px !important;
-                left: 0 !important;
-                width: 100vw !important;
-                height: calc(100% - 72px) !important;
+            /* Dedicated landscape-mobile layout: text card on the left, the
+               folded carousel on the right — the 3D room (angled walls +
+               perspective lines) never worked at short landscape heights,
+               so this drops it in favor of the same flat card pattern
+               portrait mobile already uses, just arranged as a row instead
+               of stacked. Desktop is untouched. */
+            html, body {
+                overflow: hidden !important;
+                height: 100vh !important;
             }
-            .mep-3d-scene {
-                height: 70% !important;
+
+            .mep-immersive-room {
+                flex-direction: row !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 1.25rem !important;
+                padding: 60px 1.25rem 0.75rem 1.25rem !important;
+                box-sizing: border-box !important;
             }
-            .fold {
-                height: 100% !important;
-            }
-            .fold.fold-center {
-                transform: none !important;
-            }
-            .fold.fold-top {
-                height: 100% !important;
-            }
-            .fold.fold-bottom {
-                height: 100% !important;
-            }
-            .room-wall-right {
-                width: 32vw !important;
-                padding: 1rem 0.75rem !important;
-                right: 1.5vw !important;
-            }
-            .room-wall-right .right-desc-block {
-                font-size: 1.15rem !important;
-                line-height: 1.35 !important;
-            }
-            .room-wall-left {
-                left: 1.5vw !important;
-            }
-            .room-wall-left .left-cursive-title {
-                font-size: 2.8rem !important;
-            }
-            .desktop-lines {
+
+            .room-wall-left, .room-wall-right, .immersive-lines, .room-hint {
                 display: none !important;
             }
-            .landscape-lines {
+
+            .mep-mobile-text-box {
                 display: block !important;
+                flex: 0 0 auto !important;
+                width: 34vw !important;
+                max-width: 300px !important;
+                background-color: rgba(254, 255, 220, 0.96) !important;
+                border: 2px solid #feffdc !important;
+                border-radius: 12px !important;
+                padding: 1.1rem 1rem !important;
+                margin: 0 !important;
+                text-align: center !important;
+                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08) !important;
+                box-sizing: border-box !important;
+                z-index: 20 !important;
+            }
+            .mep-mobile-text-box .left-cursive-title {
+                font-size: 2.4rem !important;
+            }
+            .mep-mobile-text-box .right-desc-block {
+                font-size: 0.95rem !important;
+                line-height: 1.35 !important;
+            }
+
+            .mep-scene-wrapper {
+                flex: 1 1 auto !important;
+                width: auto !important;
+                height: 82vh !important;
+                max-height: 420px !important;
+            }
+
+            .mep-scene-wrapper, .mep-3d-scene {
+                overflow: visible !important;
+            }
+
+            .mep-3d-scene {
+                width: 46vw !important;
+                max-width: 340px !important;
+                height: 100% !important;
+            }
+
+            .fold {
+                width: 46vw !important;
+                max-width: 340px !important;
+                height: 100% !important;
+            }
+
+            .fold.fold-center {
+                border: 1px solid #feffdc !important;
+            }
+
+            .canva-deck-card, .video-deck-card {
+                width: 85% !important;
             }
         }
     </style>
@@ -944,6 +975,7 @@
                     video.src = src;
                     video.controls = true;
                     video.autoplay = true;
+                    video.volume = 0.25;
                     video.style.width = "100%";
                     video.style.height = "100%";
                     video.style.objectFit = "contain";

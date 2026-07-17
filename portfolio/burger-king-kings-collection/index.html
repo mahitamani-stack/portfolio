@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head><link href="https://portfolio-pi-one-uos32qk6gc.vercel.app/portfolio/burger-king-kings-collection" rel="canonical"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/og-image.jpg" property="og:image"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/og-image.jpg" name="twitter:image"/><meta content="https://portfolio-pi-one-uos32qk6gc.vercel.app/portfolio/burger-king-kings-collection" property="og:url"/><link href="/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/><link href="/apple-touch-icon.png" rel="apple-touch-icon"/><script>(function(){try{var ua=navigator.userAgent||"";var isMobileUA=/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(ua);var isNarrow=window.matchMedia("(max-width: 767px)").matches;var proceeded=sessionStorage.getItem("bitemarkMobileProceed")==="true";if((isMobileUA||isNarrow)&&!proceeded){document.documentElement.classList.add("bm-mobile-guard");}}catch(e){}})();</script><link href="/mobile-block.css" rel="stylesheet" type="text/css"/><script src="/mobile-block.js" defer></script>
+<html xmlns="http://www.w3.org/1999/xhtml" data-wf-domain="www.bitemark.studio" data-wf-site="609988bd503b3c3129b4bab4" class="w-mod-js w-mod-ix wf-archivonarrow-n5-active wf-active"><head><link href="https://mahitamanikandan.com/portfolio/burger-king-kings-collection" rel="canonical"/><meta content="https://mahitamanikandan.com/og-image.jpg" property="og:image"/><meta content="https://mahitamanikandan.com/og-image.jpg" name="twitter:image"/><meta content="https://mahitamanikandan.com/portfolio/burger-king-kings-collection" property="og:url"/><link href="/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/><link href="/apple-touch-icon.png" rel="apple-touch-icon"/><script>(function(){try{var ua=navigator.userAgent||"";var isMobileUA=/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(ua);var isNarrow=window.matchMedia("(max-width: 767px)").matches;var proceeded=sessionStorage.getItem("bitemarkMobileProceed")==="true";if((isMobileUA||isNarrow)&&!proceeded){document.documentElement.classList.add("bm-mobile-guard");}}catch(e){}})();</script><link href="/mobile-block.css" rel="stylesheet" type="text/css"/><script src="/mobile-block.js" defer></script>
 <meta charset="utf-8"/>
 <title>Case Study: Burger King Kings Collection | Mahita Manikandan</title>
 <meta content="Four films for Burger King India's Kings Collection — hunger turned into cinema." name="description"/>
@@ -119,7 +119,9 @@
   .bk-play-btn:hover { background: rgba(0,0,0,0.05); }
   .bk-play-btn svg { width: 72px; height: 72px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
   .bk-play-btn.playing { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-  .bk-video-cell:hover .bk-play-btn.playing { opacity: 1; pointer-events: auto; background: transparent; }
+  @media (hover: hover) and (pointer: fine) {
+    .bk-video-cell:hover .bk-play-btn.playing { opacity: 1; pointer-events: auto; background: transparent; }
+  }
 
   /* ── Footer 3D MAHITA — exact copy of homepage ── */
   .section.mahita-footer { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0 !important; padding-right: 0 !important; height: auto !important; background-color: var(--color-pink) !important; }
@@ -531,6 +533,7 @@ function bkToggle(btn) {
   var cell = btn.closest('.bk-video-cell');
   var video = cell.querySelector('video');
   if (video.paused) {
+    video.volume = 0.25;
     video.play();
     btn.classList.add('playing');
   } else {
@@ -542,6 +545,10 @@ document.querySelectorAll('.bk-video-cell video').forEach(function(v) {
   v.addEventListener('ended', function() {
     var btn = v.closest('.bk-video-cell').querySelector('.bk-play-btn');
     if (btn) btn.classList.remove('playing');
+  });
+  v.addEventListener('click', function() {
+    var btn = v.closest('.bk-video-cell').querySelector('.bk-play-btn');
+    if (btn) bkToggle(btn);
   });
 });
 </script>

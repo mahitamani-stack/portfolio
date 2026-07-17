@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio-pi-one-uos32qk6gc.vercel.app/sitemap.xml
+Sitemap: https://mahitamanikandan.com/sitemap.xml
