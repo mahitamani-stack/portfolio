@@ -1,7 +1,7 @@
 /* ── Mobile "not ready yet" guard ── */
 
 document.addEventListener("DOMContentLoaded", () => {
-    const PROCEED_KEY = "bitemarkMobileProceed";
+    const PROCEED_KEY = "mobileProceed";
     let proceeded = false;
     try { proceeded = sessionStorage.getItem(PROCEED_KEY) === "true"; } catch (e) {}
 

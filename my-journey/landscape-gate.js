@@ -1,5 +1,5 @@
 (function () {
-    var SEEN_KEY = 'bitemarkLandscapeTipSeen';
+    var SEEN_KEY = 'landscapeTipSeen';
 
     document.addEventListener('DOMContentLoaded', function () {
         try {
