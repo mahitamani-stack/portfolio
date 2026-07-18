@@ -18,11 +18,15 @@
 
   function updateCapsuleText() {
     if (!banner) return;
-    if (window.isIpodAudioPlaying && window.isIpodAudioPlaying()) {
-      banner.textContent = 'Turn off sound';
-    } else {
-      banner.textContent = 'Turn on sound';
-    }
+    var isPlaying = window.isIpodAudioPlaying && window.isIpodAudioPlaying();
+    var text = isPlaying ? 'Turn off sound' : 'Turn on sound';
+    var label = banner.querySelector('.sound-label');
+    var icon = banner.querySelector('.sound-icon');
+    // Text pill on desktop, icon-only on mobile (see ipod-player.css) so the
+    // capsule doesn't sit as a wide bar over mobile hero content.
+    if (label) label.textContent = text;
+    if (icon) icon.textContent = isPlaying ? '🔊' : '🔇'; // 🔊 : 🔇
+    banner.setAttribute('aria-label', text);
   }
   window.__updateSoundCapsule = updateCapsuleText;
 
@@ -60,6 +64,7 @@
     banner = document.createElement('div');
     banner.id = 'site-sound-toggle-capsule';
     banner.setAttribute('role', 'button');
+    banner.innerHTML = '<span class="sound-label"></span><span class="sound-icon" aria-hidden="true"></span>';
     banner.style.cssText = [
       'position:fixed', 'top:14px',
       'background:#111', 'color:#fff', 'padding:0.6rem 1.25rem',
