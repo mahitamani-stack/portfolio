@@ -672,7 +672,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="ipod-inner-wrapper">
             <div class="ipod-close-btn" title="Minimize">&times;</div>
             <div class="ipod-expand-clicker" title="Open iPod Player"></div>
-            <img src="/ipod.png" class="ipod-faceplate" alt="iPod Classic">
+            <img src="/ipod.webp" class="ipod-faceplate" alt="iPod Classic" fetchpriority="high" decoding="async">
             
             <!-- Screen area behind transparent window -->
             <div class="ipod-screen-container">
