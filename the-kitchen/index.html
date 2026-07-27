@@ -261,22 +261,15 @@ document.addEventListener("DOMContentLoaded", function() {
     padding-left: 0 !important;
     padding-right: 0 !important;
     height: auto !important;
-    /* This page's hero (.section.hero.homepage.black.portfolio) is
-       position:sticky with overflow-visible content taller than its own
-       100vh box (all the project cards scroll past inside it) — since
-       sticky unconditionally creates a stacking context, and this footer
-       section is a later sibling at the body level with only z-index:1
-       from Webflow's base .section styles, the hero's z-index:3 stacking
-       context painted over this whole footer wherever the two boxes
-       overlapped. That's what made the footer nav's hamburger dropdown
-       open (functionally) but render invisible/untappable on mobile —
-       its own z-index:1000000 was trapped inside this section's z-index:1
-       context and could never escape it. Raising this section above the
-       hero's z-index:3 lets everything inside it (including the nav
-       dropdown) actually paint on top. */
-    position: relative !important;
-    z-index: 999999 !important;
   }
+  /* Mobile only (see @media (max-width: 991px) block below for the
+     z-index fix) — desktop already hoists the header .navbar-1 out to
+     body via JS with its own z-index:999999 (min-width:992px block
+     above), and giving this section the same z-index there made it win
+     ties against that fixed navbar wherever they overlapped, since this
+     section comes later in the DOM. Desktop never had the hamburger
+     visibility bug in the first place (no hamburger dropdown to escape
+     the sticky hero for), so it doesn't need this. */
   .n-container.mahita-footer-inner {
     background-color: #feffdd !important;
     padding-bottom: 2rem !important;
@@ -476,6 +469,30 @@ document.addEventListener("DOMContentLoaded", function() {
     .sprite-3d-wrapper { display: flex !important; justify-content: space-between !important; width: 100% !important; gap: 0 !important; }
     .sprite-3d-letter { flex: 1 !important; text-align: center !important; padding: 0 !important; min-width: 0 !important; height: auto !important; }
     .sprite-3d-text { font-size: 14.5vw !important; letter-spacing: -0.02em !important; }
+  }
+
+  @media (max-width: 991px) {
+    /* This page's hero (.section.hero.homepage.black.portfolio) is
+       position:sticky with overflow-visible content taller than its own
+       100vh box (all the project cards scroll past inside it) — since
+       sticky unconditionally creates a stacking context, and this footer
+       section is a later sibling at the body level with only z-index:1
+       from Webflow's base .section styles, the hero's z-index:3 stacking
+       context painted over this whole footer wherever the two boxes
+       overlapped. That's what made the footer nav's hamburger dropdown
+       open (functionally) but render invisible/untappable on mobile —
+       its own z-index:1000000 was trapped inside this section's z-index:1
+       context and could never escape it. Raising this section above the
+       hero's z-index:3 lets everything inside it (including the nav
+       dropdown) actually paint on top. Scoped to mobile only — desktop
+       hoists the header .navbar-1 out to body via JS with its own
+       z-index:999999 (see the min-width:992px block above), and this
+       section tying that same z-index broke it by winning stacking ties
+       (later in the DOM) wherever the two overlapped. */
+    .section.mahita-footer {
+      position: relative !important;
+      z-index: 999999 !important;
+    }
   }
 
   @media (max-width: 991px) and (orientation: landscape) {
