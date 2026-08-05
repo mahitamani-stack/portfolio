@@ -723,6 +723,28 @@ document.addEventListener("DOMContentLoaded", () => {
             if (revealed) return;
             revealed = true;
 
+            // The faceplate <img> is decoding="async", so on a cold cache (first-ever
+            // visit) it can still be decoding when the pop-in below starts, and the
+            // animation flashes the screen div with no device body around it for a
+            // beat. Wait for it to actually be paintable first (capped so a slow/failed
+            // image never delays the reveal indefinitely).
+            const faceplate = ipodContainer.querySelector('.ipod-faceplate');
+            if (faceplate && !faceplate.complete) {
+                let started = false;
+                const startPopIn = () => {
+                    if (started) return;
+                    started = true;
+                    popIn();
+                };
+                faceplate.addEventListener('load', startPopIn, { once: true });
+                faceplate.addEventListener('error', startPopIn, { once: true });
+                setTimeout(startPopIn, 800);
+                return;
+            }
+            popIn();
+        };
+
+        const popIn = () => {
             // Step 1: pop in at the SAME size/position it uses when opened via click
             // (right:20px / bottom:100px, full 312x555 size — no center modal, no backdrop,
             // so the macOS windows revealing in the background stay visible)
