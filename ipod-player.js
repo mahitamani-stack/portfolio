@@ -1278,8 +1278,17 @@ document.addEventListener("DOMContentLoaded", () => {
         // A. Video-to-iPod Control Listener
         let ipodPausedByVideo = false;
 
+        // Mise en Place's video-deck-card videos are muted, always-on
+        // decorative background loops (same as site-media) — never let them
+        // duck the iPod, or it stays paused for the whole time you're on
+        // that page since one is always playing.
+        const isDuckExempt = (video) =>
+            video.id === 'intro-video' ||
+            video.classList.contains('site-media') ||
+            video.closest('.video-deck-card');
+
         const handleVideoPlay = (video) => {
-            if (video.id === 'intro-video' || video.classList.contains('site-media')) return;
+            if (isDuckExempt(video)) return;
             if (!audio.paused) {
                 ipodPausedByVideo = true;
                 window.pauseIpodAudio();
@@ -1287,7 +1296,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const handleVideoPause = (video) => {
-            if (video.id === 'intro-video' || video.classList.contains('site-media')) return;
+            if (isDuckExempt(video)) return;
             if (ipodPausedByVideo) {
                 const allVids = Array.from(document.querySelectorAll('video'));
                 const anyPlaying = allVids.some(v => 

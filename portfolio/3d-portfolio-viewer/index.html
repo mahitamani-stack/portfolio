@@ -84,6 +84,30 @@
     transition: background 0.2s;
   }
   .viewer-fullscreen-btn:hover { background: #9fd4da; }
+  .viewer-click-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    cursor: url('/strawberry_cursor_48.webp') 16 16, pointer !important;
+    transition: opacity 0.25s ease;
+  }
+  .viewer-click-overlay span {
+    background: rgba(34, 34, 34, 0.75);
+    color: #fff;
+    font-family: var(--font-body) !important;
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    pointer-events: none;
+  }
+  .viewer-click-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
 
   /* ── Footer ── */
   .section.mahita-footer { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0 !important; padding-right: 0 !important; height: auto !important; background-color: var(--color-pink) !important; }
@@ -322,6 +346,9 @@
     <div class="cs-main first">
       <div class="viewer-iframe-wrap" style="margin-top: 0.5rem;">
         <iframe id="viewer-iframe" src="https://solarsystem-two-zeta.vercel.app/" title="Saba Gaziyani 3D Portfolio Viewer" allowfullscreen allow="camera; microphone" loading="lazy"></iframe>
+        <div class="viewer-click-overlay" id="viewer-click-overlay" onclick="this.classList.add('hidden')">
+          <span>Click to interact</span>
+        </div>
         <button class="viewer-fullscreen-btn" onclick="goFullscreen()" title="Full screen">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
