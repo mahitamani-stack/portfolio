@@ -7,25 +7,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 {
                         "title": "Haseen Raatein (Happy Nights)",
                         "artist": "Fake Tattoos",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736492/ipod%20music/Fake%20Tattoos%20-%20Haseen%20Raatein%20%28Happy%20Nights%29%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Fake%20Tattoos%20-%20Haseen%20Raatein%20%28Happy%20Nights%29%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/desi_house_Haseen_Raatein_Happy_Nights.jpg"
                 },
                 {
                         "title": "Haveli",
                         "artist": "Fake Tattoos",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736500/ipod%20music/Fake%20Tattoos%20-%20Haveli%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Fake%20Tattoos%20-%20Haveli%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/desi_house_Haveli.jpg"
                 },
                 {
                         "title": "Sitta",
                         "artist": "Novak, Chitralekha Sen",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736506/ipod%20music/Novak%2C%20Chitralekha%20Sen%20-%20Sitta%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Novak%2C%20Chitralekha%20Sen%20-%20Sitta%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/desi_house_Sitta.jpg"
                 },
                 {
                         "title": "Taka",
                         "artist": "SIDEPIECE, San Pacho",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736512/ipod%20music/SIDEPIECE%2C%20San%20Pacho%20-%20Taka%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/SIDEPIECE%2C%20San%20Pacho%20-%20Taka%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/desi_house_Taka.jpg"
                 }
         ],
@@ -33,205 +33,205 @@ document.addEventListener("DOMContentLoaded", () => {
                 {
                         "title": "Ghost Of You",
                         "artist": "5 Seconds of Summer",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736835/ipod%20music/5%20Seconds%20of%20Summer%20-%20Ghost%20Of%20You%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/5%20Seconds%20of%20Summer%20-%20Ghost%20Of%20You%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Ghost_Of_You.jpg"
                 },
                 {
                         "title": "Casual",
                         "artist": "Chappell Roan",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736840/ipod%20music/Chappell%20Roan%20-%20Casual%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Chappell%20Roan%20-%20Casual%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Casual.jpg"
                 },
                 {
                         "title": "Beanie",
                         "artist": "Chezile",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736845/ipod%20music/Chezile%20-%20Beanie%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Chezile%20-%20Beanie%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Beanie.jpg"
                 },
                 {
                         "title": "Sunsetz",
                         "artist": "Cigarettes After Sex",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736856/ipod%20music/Cigarettes%20After%20Sex%20-%20Sunsetz%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Cigarettes%20After%20Sex%20-%20Sunsetz%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Sunsetz.jpg"
                 },
                 {
                         "title": "Sparks",
                         "artist": "Coldplay",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736864/ipod%20music/Coldplay%20-%20Sparks%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Coldplay%20-%20Sparks%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Sparks.jpg"
                 },
                 {
                         "title": "Astronomy",
                         "artist": "Conan Gray",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736878/ipod%20music/Conan%20Gray%20-%20Astronomy%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Conan%20Gray%20-%20Astronomy%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Astronomy.jpg"
                 },
                 {
                         "title": "The Cut That Always Bleeds",
                         "artist": "Conan Gray",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736887/ipod%20music/Conan%20Gray%20-%20The%20Cut%20That%20Always%20Bleeds%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Conan%20Gray%20-%20The%20Cut%20That%20Always%20Bleeds%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_The_Cut_That_Always_Bleeds.jpg"
                 },
                 {
                         "title": "I Know You",
                         "artist": "Faye Webster",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736893/ipod%20music/Faye%20Webster%20-%20I%20Know%20You%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Faye%20Webster%20-%20I%20Know%20You%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_I_Know_You.jpg"
                 },
                 {
                         "title": "Silver Springs - 2004 Remaster",
                         "artist": "Fleetwood Mac",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736898/ipod%20music/Fleetwood%20Mac%20-%20Silver%20Springs%20-%202004%20Remaster%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Fleetwood%20Mac%20-%20Silver%20Springs%20-%202004%20Remaster%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Silver_Springs_-_2004_Remaster.jpg"
                 },
                 {
                         "title": "Do I Wanna Know - Live At the BBC",
                         "artist": "Hozier",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736904/ipod%20music/Hozier%20-%20Do%20I%20Wanna%20Know%20-%20Live%20At%20the%20BBC%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Hozier%20-%20Do%20I%20Wanna%20Know%20-%20Live%20At%20the%20BBC%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Do_I_Wanna_Know_-_Live_At_the_BBC.jpg"
                 },
                 {
                         "title": "What if I miss you for the rest of my life",
                         "artist": "Janine Berdin",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736910/ipod%20music/Janine%20Berdin%20-%20What%20if%20I%20miss%20you%20for%20the%20rest%20of%20my%20life%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Janine%20Berdin%20-%20What%20if%20I%20miss%20you%20for%20the%20rest%20of%20my%20life%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_What_if_I_miss_you_for_the_rest_of_my_life.jpg"
                 },
                 {
                         "title": "Glimpse of Us",
                         "artist": "Joji",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736918/ipod%20music/Joji%20-%20Glimpse%20of%20Us%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Joji%20-%20Glimpse%20of%20Us%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Glimpse_of_Us.jpg"
                 },
                 {
                         "title": "SLOW DANCING IN THE DARK",
                         "artist": "Joji",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736925/ipod%20music/Joji%20-%20SLOW%20DANCING%20IN%20THE%20DARK%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Joji%20-%20SLOW%20DANCING%20IN%20THE%20DARK%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_SLOW_DANCING_IN_THE_DARK.jpg"
                 },
                 {
                         "title": "The Night We Met",
                         "artist": "Lord Huron",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736932/ipod%20music/Lord%20Huron%20-%20The%20Night%20We%20Met%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Lord%20Huron%20-%20The%20Night%20We%20Met%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_The_Night_We_Met.jpg"
                 },
                 {
                         "title": "Two of Us - Acoustic",
                         "artist": "Louis Tomlinson",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736941/ipod%20music/Louis%20Tomlinson%20-%20Two%20of%20Us%20-%20Acoustic%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Louis%20Tomlinson%20-%20Two%20of%20Us%20-%20Acoustic%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Two_of_Us_-_Acoustic.jpg"
                 },
                 {
                         "title": "My Kind of Woman",
                         "artist": "Mac DeMarco",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736948/ipod%20music/Mac%20DeMarco%20-%20My%20Kind%20of%20Woman%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Mac%20DeMarco%20-%20My%20Kind%20of%20Woman%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_My_Kind_of_Woman.jpg"
                 },
                 {
                         "title": "Fade Into You",
                         "artist": "Mazzy Star",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736963/ipod%20music/Mazzy%20Star%20-%20Fade%20Into%20You%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Mazzy%20Star%20-%20Fade%20Into%20You%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Fade_Into_You.jpg"
                 },
                 {
                         "title": "1 step forward, 3 steps back",
                         "artist": "Olivia Rodrigo",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736975/ipod%20music/Olivia%20Rodrigo%20-%201%20step%20forward%2C%203%20steps%20back%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Olivia%20Rodrigo%20-%201%20step%20forward%2C%203%20steps%20back%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_1_step_forward_3_steps_back.jpg"
                 },
                 {
                         "title": "deja vu",
                         "artist": "Olivia Rodrigo",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736998/ipod%20music/Olivia%20Rodrigo%20-%20deja%20vu%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Olivia%20Rodrigo%20-%20deja%20vu%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_deja_vu.jpg"
                 },
                 {
                         "title": "drivers license",
                         "artist": "Olivia Rodrigo",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737020/ipod%20music/Olivia%20Rodrigo%20-%20drivers%20license%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Olivia%20Rodrigo%20-%20drivers%20license%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_drivers_license.jpg"
                 },
                 {
                         "title": "traitor",
                         "artist": "Olivia Rodrigo",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737035/ipod%20music/Olivia%20Rodrigo%20-%20traitor%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Olivia%20Rodrigo%20-%20traitor%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_traitor.jpg"
                 },
                 {
                         "title": "Half a Heart",
                         "artist": "One Direction",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737045/ipod%20music/One%20Direction%20-%20Half%20a%20Heart%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/One%20Direction%20-%20Half%20a%20Heart%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Half_a_Heart.jpg"
                 },
                 {
                         "title": "Scott Street",
                         "artist": "Phoebe Bridgers",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737072/ipod%20music/Phoebe%20Bridgers%20-%20Scott%20Street%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Phoebe%20Bridgers%20-%20Scott%20Street%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Scott_Street.jpg"
                 },
                 {
                         "title": "Let Down - Remastered",
                         "artist": "Radiohead",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737086/ipod%20music/Radiohead%20-%20Let%20Down%20-%20Remastered%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Radiohead%20-%20Let%20Down%20-%20Remastered%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Let_Down_-_Remastered.jpg"
                 },
                 {
                         "title": "Mr. Loverman",
                         "artist": "Ricky Montgomery",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737101/ipod%20music/Ricky%20Montgomery%20-%20Mr.%20Loverman%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Ricky%20Montgomery%20-%20Mr.%20Loverman%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Mr_Loverman.jpg"
                 },
                 {
                         "title": "Peter",
                         "artist": "Taylor Swift",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737122/ipod%20music/Taylor%20Swift%20-%20Peter%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Taylor%20Swift%20-%20Peter%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Peter.jpg"
                 },
                 {
                         "title": "exile (feat. Bon Iver)",
                         "artist": "Taylor Swift, Bon Iver",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737145/ipod%20music/Taylor%20Swift%2C%20Bon%20Iver%20-%20exile%20%28feat.%20Bon%20Iver%29%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Taylor%20Swift%2C%20Bon%20Iver%20-%20exile%20%28feat.%20Bon%20Iver%29%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_exile_feat_Bon_Iver.jpg"
                 },
                 {
                         "title": "About You",
                         "artist": "The 1975",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737156/ipod%20music/The%201975%20-%20About%20You%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/The%201975%20-%20About%20You%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_About_You.jpg"
                 },
                 {
                         "title": "Linger",
                         "artist": "The Cranberries",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737168/ipod%20music/The%20Cranberries%20-%20Linger%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/The%20Cranberries%20-%20Linger%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Linger.jpg"
                 },
                 {
                         "title": "Back To Me",
                         "artist": "The Mari\u0301as",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737174/ipod%20music/The%20Mari%CC%81as%20-%20Back%20To%20Me%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/The%20Mari%CC%81as%20-%20Back%20To%20Me%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Back_To_Me.jpg"
                 },
                 {
                         "title": "Coffee",
                         "artist": "beabadoobee",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737186/ipod%20music/beabadoobee%20-%20Coffee%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/beabadoobee%20-%20Coffee%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_Coffee.jpg"
                 },
                 {
                         "title": "back to friends",
                         "artist": "sombr",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737190/ipod%20music/sombr%20-%20back%20to%20friends%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/sombr%20-%20back%20to%20friends%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_back_to_friends.jpg"
                 },
                 {
                         "title": "perfume",
                         "artist": "sombr",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737196/ipod%20music/sombr%20-%20perfume%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/sombr%20-%20perfume%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_perfume.jpg"
                 },
                 {
                         "title": "undressed",
                         "artist": "sombr",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737202/ipod%20music/sombr%20-%20undressed%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/sombr%20-%20undressed%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/super_secret_gym_playlist_undressed.jpg"
                 }
         ],
@@ -239,271 +239,271 @@ document.addEventListener("DOMContentLoaded", () => {
                 {
                         "title": "Determinate - From Lemonade Mouth",
                         "artist": "Adam Hicks, Bridgit Mendler, Naomi Scott",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736519/ipod%20music/Adam%20Hicks%2C%20Bridgit%20Mendler%2C%20Naomi%20Scott%20-%20Determinate%20-%20From%20Lemonade%20Mouth%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Adam%20Hicks%2C%20Bridgit%20Mendler%2C%20Naomi%20Scott%20-%20Determinate%20-%20From%20Lemonade%20Mouth%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Determinate_-_From_Lemonade_Mouth.jpg"
                 },
                 {
                         "title": "Something About the Sunshine (Duet)",
                         "artist": "Anna Margaret, Christopher Wilde",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736526/ipod%20music/Anna%20Margaret%2C%20Christopher%20Wilde%20-%20Something%20About%20the%20Sunshine%20%28Duet%29%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Anna%20Margaret%2C%20Christopher%20Wilde%20-%20Something%20About%20the%20Sunshine%20%28Duet%29%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Something_About_the_Sunshine_Duet.jpg"
                 },
                 {
                         "title": "It's Alright, It's OK",
                         "artist": "Ashley Tisdale",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736531/ipod%20music/Ashley%20Tisdale%20-%20It%27s%20Alright%2C%20It%27s%20OK%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Ashley%20Tisdale%20-%20It%27s%20Alright%2C%20It%27s%20OK%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Its_Alright_Its_OK.jpg"
                 },
                 {
                         "title": "The Tide Is High - Radio Mix",
                         "artist": "Atomic Kitten",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736537/ipod%20music/Atomic%20Kitten%20-%20The%20Tide%20Is%20High%20-%20Radio%20Mix%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Atomic%20Kitten%20-%20The%20Tide%20Is%20High%20-%20Radio%20Mix%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_The_Tide_Is_High_-_Radio_Mix.jpg"
                 },
                 {
                         "title": "Hurricane",
                         "artist": "Bridgit Mendler",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736545/ipod%20music/Bridgit%20Mendler%20-%20Hurricane%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Bridgit%20Mendler%20-%20Hurricane%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Hurricane.jpg"
                 },
                 {
                         "title": "Ready or Not",
                         "artist": "Bridgit Mendler",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736553/ipod%20music/Bridgit%20Mendler%20-%20Ready%20or%20Not%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Bridgit%20Mendler%20-%20Ready%20or%20Not%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Ready_or_Not.jpg"
                 },
                 {
                         "title": "Somebody",
                         "artist": "Bridgit Mendler",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736563/ipod%20music/Bridgit%20Mendler%20-%20Somebody%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Bridgit%20Mendler%20-%20Somebody%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Somebody.jpg"
                 },
                 {
                         "title": "We Rock",
                         "artist": "Cast Of Camp Rock",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736572/ipod%20music/Cast%20Of%20Camp%20Rock%20-%20We%20Rock%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Cast%20Of%20Camp%20Rock%20-%20We%20Rock%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_We_Rock.jpg"
                 },
                 {
                         "title": "Hero",
                         "artist": "Christopher Wilde",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736579/ipod%20music/Christopher%20Wilde%20-%20Hero%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Christopher%20Wilde%20-%20Hero%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Hero.jpg"
                 },
                 {
                         "title": "Starstruck",
                         "artist": "Christopher Wilde",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736585/ipod%20music/Christopher%20Wilde%20-%20Starstruck%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Christopher%20Wilde%20-%20Starstruck%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Starstruck.jpg"
                 },
                 {
                         "title": "Give Your Heart a Break",
                         "artist": "Demi Lovato",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736592/ipod%20music/Demi%20Lovato%20-%20Give%20Your%20Heart%20a%20Break%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Demi%20Lovato%20-%20Give%20Your%20Heart%20a%20Break%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Give_Your_Heart_a_Break.jpg"
                 },
                 {
                         "title": "Wouldn't Change a Thing - From Camp Rock 2 The Final Jam",
                         "artist": "Demi Lovato, Joe Jonas",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736598/ipod%20music/Demi%20Lovato%2C%20Joe%20Jonas%20-%20Wouldn%27t%20Change%20a%20Thing%20-%20From%20Camp%20Rock%202%20The%20Final%20Jam%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Demi%20Lovato%2C%20Joe%20Jonas%20-%20Wouldn%27t%20Change%20a%20Thing%20-%20From%20Camp%20Rock%202%20The%20Final%20Jam%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Wouldnt_Change_a_Thing_-_From_Camp_Rock_2_The_Final_Jam.jpg"
                 },
                 {
                         "title": "He Could Be the One",
                         "artist": "Hannah Montana",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736606/ipod%20music/Hannah%20Montana%20-%20He%20Could%20Be%20the%20One%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Hannah%20Montana%20-%20He%20Could%20Be%20the%20One%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_He_Could_Be_the_One.jpg"
                 },
                 {
                         "title": "Nobody's Perfect",
                         "artist": "Hannah Montana",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736616/ipod%20music/Hannah%20Montana%20-%20Nobody%27s%20Perfect%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Hannah%20Montana%20-%20Nobody%27s%20Perfect%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Nobodys_Perfect.jpg"
                 },
                 {
                         "title": "Ordinary Girl",
                         "artist": "Hannah Montana",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736621/ipod%20music/Hannah%20Montana%20-%20Ordinary%20Girl%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Hannah%20Montana%20-%20Ordinary%20Girl%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Ordinary_Girl.jpg"
                 },
                 {
                         "title": "Rock Star",
                         "artist": "Hannah Montana",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736628/ipod%20music/Hannah%20Montana%20-%20Rock%20Star%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Hannah%20Montana%20-%20Rock%20Star%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Rock_Star.jpg"
                 },
                 {
                         "title": "The Best of Both Worlds",
                         "artist": "Hannah Montana",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736635/ipod%20music/Hannah%20Montana%20-%20The%20Best%20of%20Both%20Worlds%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Hannah%20Montana%20-%20The%20Best%20of%20Both%20Worlds%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_The_Best_of_Both_Worlds.jpg"
                 },
                 {
                         "title": "Beautiful Soul",
                         "artist": "Jesse McCartney",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736643/ipod%20music/Jesse%20McCartney%20-%20Beautiful%20Soul%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Jesse%20McCartney%20-%20Beautiful%20Soul%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Beautiful_Soul.jpg"
                 },
                 {
                         "title": "Gotta Find You - From Camp Rock Soundtrack Version",
                         "artist": "Joe Jonas",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736650/ipod%20music/Joe%20Jonas%20-%20Gotta%20Find%20You%20-%20From%20Camp%20Rock%20Soundtrack%20Version%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Joe%20Jonas%20-%20Gotta%20Find%20You%20-%20From%20Camp%20Rock%20Soundtrack%20Version%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Gotta_Find_You_-_From_Camp_Rock_Soundtrack_Version.jpg"
                 },
                 {
                         "title": "Play My Music",
                         "artist": "Jonas Brothers",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736656/ipod%20music/Jonas%20Brothers%20-%20Play%20My%20Music%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Jonas%20Brothers%20-%20Play%20My%20Music%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Play_My_Music.jpg"
                 },
                 {
                         "title": "S.O.S.",
                         "artist": "Jonas Brothers",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736660/ipod%20music/Jonas%20Brothers%20-%20S.O.S.%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Jonas%20Brothers%20-%20S.O.S.%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_SOS.jpg"
                 },
                 {
                         "title": "Year 3000",
                         "artist": "Jonas Brothers",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736665/ipod%20music/Jonas%20Brothers%20-%20Year%203000%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Jonas%20Brothers%20-%20Year%203000%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Year_3000.jpg"
                 },
                 {
                         "title": "Hasta La Vista",
                         "artist": "Jordan Francis, Roshon Bernard Fegan",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736669/ipod%20music/Jordan%20Francis%2C%20Roshon%20Bernard%20Fegan%20-%20Hasta%20La%20Vista%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Jordan%20Francis%2C%20Roshon%20Bernard%20Fegan%20-%20Hasta%20La%20Vista%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Hasta_La_Vista.jpg"
                 },
                 {
                         "title": "My Life Would Suck Without You",
                         "artist": "Kelly Clarkson",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736675/ipod%20music/Kelly%20Clarkson%20-%20My%20Life%20Would%20Suck%20Without%20You%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Kelly%20Clarkson%20-%20My%20Life%20Would%20Suck%20Without%20You%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_My_Life_Would_Suck_Without_You.jpg"
                 },
                 {
                         "title": "Too Cool",
                         "artist": "Meaghan Martin",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736681/ipod%20music/Meaghan%20Martin%20-%20Too%20Cool%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Meaghan%20Martin%20-%20Too%20Cool%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Too_Cool.jpg"
                 },
                 {
                         "title": "Hoedown Throwdown",
                         "artist": "Miley Cyrus",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736687/ipod%20music/Miley%20Cyrus%20-%20Hoedown%20Throwdown%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Miley%20Cyrus%20-%20Hoedown%20Throwdown%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Hoedown_Throwdown.jpg"
                 },
                 {
                         "title": "See You Again",
                         "artist": "Miley Cyrus",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736693/ipod%20music/Miley%20Cyrus%20-%20See%20You%20Again%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Miley%20Cyrus%20-%20See%20You%20Again%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_See_You_Again.jpg"
                 },
                 {
                         "title": "The Climb",
                         "artist": "Miley Cyrus",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736701/ipod%20music/Miley%20Cyrus%20-%20The%20Climb%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Miley%20Cyrus%20-%20The%20Climb%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_The_Climb.jpg"
                 },
                 {
                         "title": "Butterfly Fly Away",
                         "artist": "Miley Cyrus, Billy Ray Cyrus",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736710/ipod%20music/Miley%20Cyrus%2C%20Billy%20Ray%20Cyrus%20-%20Butterfly%20Fly%20Away%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Miley%20Cyrus%2C%20Billy%20Ray%20Cyrus%20-%20Butterfly%20Fly%20Away%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Butterfly_Fly_Away.jpg"
                 },
                 {
                         "title": "About You Now",
                         "artist": "Miranda Cosgrove",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736717/ipod%20music/Miranda%20Cosgrove%20-%20About%20You%20Now%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Miranda%20Cosgrove%20-%20About%20You%20Now%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_About_You_Now.jpg"
                 },
                 {
                         "title": "Shakespeare",
                         "artist": "Miranda Cosgrove",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736724/ipod%20music/Miranda%20Cosgrove%20-%20Shakespeare%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Miranda%20Cosgrove%20-%20Shakespeare%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Shakespeare.jpg"
                 },
                 {
                         "title": "Let's Make This Last 4Ever",
                         "artist": "Mitchel Musso",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736732/ipod%20music/Mitchel%20Musso%20-%20Let%27s%20Make%20This%20Last%204Ever%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Mitchel%20Musso%20-%20Let%27s%20Make%20This%20Last%204Ever%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Lets_Make_This_Last_4Ever.jpg"
                 },
                 {
                         "title": "She's So Gone",
                         "artist": "Naomi Scott",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736737/ipod%20music/Naomi%20Scott%20-%20She%27s%20So%20Gone%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Naomi%20Scott%20-%20She%27s%20So%20Gone%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Shes_So_Gone.jpg"
                 },
                 {
                         "title": "Introducing Me - From Camp Rock 2 The Final Jam",
                         "artist": "Nick Jonas",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736743/ipod%20music/Nick%20Jonas%20-%20Introducing%20Me%20-%20From%20Camp%20Rock%202%20The%20Final%20Jam%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Nick%20Jonas%20-%20Introducing%20Me%20-%20From%20Camp%20Rock%202%20The%20Final%20Jam%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Introducing_Me_-_From_Camp_Rock_2_The_Final_Jam.jpg"
                 },
                 {
                         "title": "Hit The Lights",
                         "artist": "Selena Gomez & The Scene",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737215/ipod%20music/Selena%20Gomez%20and%20The%20Scene%20-%20Hit%20The%20Lights%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Selena%20Gomez%20and%20The%20Scene%20-%20Hit%20The%20Lights%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Hit_The_Lights.jpg"
                 },
                 {
                         "title": "Naturally",
                         "artist": "Selena Gomez & The Scene",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737244/ipod%20music/Selena%20Gomez%20and%20The%20Scene%20-%20Naturally%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Selena%20Gomez%20and%20The%20Scene%20-%20Naturally%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Naturally.jpg"
                 },
                 {
                         "title": "Round & Round",
                         "artist": "Selena Gomez & The Scene",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782737269/ipod%20music/Selena%20Gomez%20and%20The%20Scene%20-%20Round%20and%20Round%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Selena%20Gomez%20and%20The%20Scene%20-%20Round%20and%20Round%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Round__Round.jpg"
                 },
                 {
                         "title": "Tell Me Something I Don't Know - Soundtrack",
                         "artist": "Selena Gomez",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736776/ipod%20music/Selena%20Gomez%20-%20Tell%20Me%20Something%20I%20Don%27t%20Know%20-%20Soundtrack%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Selena%20Gomez%20-%20Tell%20Me%20Something%20I%20Don%27t%20Know%20-%20Soundtrack%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Tell_Me_Something_I_Dont_Know_-_Soundtrack.jpg"
                 },
                 {
                         "title": "Strut - From The Cheetah Girls 2",
                         "artist": "The Cheetah Girls",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736783/ipod%20music/The%20Cheetah%20Girls%20-%20Strut%20-%20From%20The%20Cheetah%20Girls%202%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/The%20Cheetah%20Girls%20-%20Strut%20-%20From%20The%20Cheetah%20Girls%202%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Strut_-_From_The_Cheetah_Girls_2.jpg"
                 },
                 {
                         "title": "Breaking Free",
                         "artist": "Troy, Gabriella, Disney",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736797/ipod%20music/Troy%2C%20Gabriella%2C%20Disney%20-%20Breaking%20Free%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Troy%2C%20Gabriella%2C%20Disney%20-%20Breaking%20Free%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Breaking_Free.jpg"
                 },
                 {
                         "title": "Start of Something New",
                         "artist": "Troy, Gabriella, Disney",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736802/ipod%20music/Troy%2C%20Gabriella%2C%20Disney%20-%20Start%20of%20Something%20New%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Troy%2C%20Gabriella%2C%20Disney%20-%20Start%20of%20Something%20New%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Start_of_Something_New.jpg"
                 },
                 {
                         "title": "You Are the Music in Me",
                         "artist": "Troy, Gabriella, Disney",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736809/ipod%20music/Troy%2C%20Gabriella%2C%20Disney%20-%20You%20Are%20the%20Music%20in%20Me%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Troy%2C%20Gabriella%2C%20Disney%20-%20You%20Are%20the%20Music%20in%20Me%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_You_Are_the_Music_in_Me.jpg"
                 },
                 {
                         "title": "Best Friend's Brother (feat. Victoria Justice)",
                         "artist": "Victorious Cast, Victoria Justice",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736816/ipod%20music/Victorious%20Cast%2C%20Victoria%20Justice%20-%20Best%20Friend%27s%20Brother%20%28feat.%20Victoria%20Justice%29%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Victorious%20Cast%2C%20Victoria%20Justice%20-%20Best%20Friend%27s%20Brother%20%28feat.%20Victoria%20Justice%29%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Best_Friends_Brother_feat_Victoria_Justice.jpg"
                 },
                 {
                         "title": "Gotta Go My Own Way",
                         "artist": "Zac Efron, Vanessa Hudgens, Disney",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736825/ipod%20music/Zac%20Efron%2C%20Vanessa%20Hudgens%2C%20Disney%20-%20Gotta%20Go%20My%20Own%20Way%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Zac%20Efron%2C%20Vanessa%20Hudgens%2C%20Disney%20-%20Gotta%20Go%20My%20Own%20Way%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Gotta_Go_My_Own_Way.jpg"
                 },
                 {
                         "title": "Replay",
                         "artist": "Zendaya",
-                        "src": "https://res.cloudinary.com/dyazh2nxk/video/upload/v1782736831/ipod%20music/Zendaya%20-%20Replay%20%28SPOTISAVER%29.mp3",
+                        "src": "https://pub-86eb415eb15143d09ccacc63f0e840f4.r2.dev/video/ipod%20music/Zendaya%20-%20Replay%20%28SPOTISAVER%29.mp3",
                         "cover": "/album_art/life_is_a_movie-core_Replay.jpg"
                 }
         ]
