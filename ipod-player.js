@@ -783,15 +783,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1400);
         };
 
-        const isMobileGuardActive = () => document.documentElement.classList.contains('bm-mobile-guard');
-
-        if (!isMobileGuardActive() && (introFullyDone() || sessionStorage.getItem('introPlayed') === 'true')) {
+        if ((introFullyDone() || sessionStorage.getItem('introPlayed') === 'true')) {
             // Intro already skipped this session — reveal shortly after load
             setTimeout(revealIpod, 400);
         } else {
             // Wait until overlay is fully removed (display:none), NOT mid-fade opacity.
             const observer = new MutationObserver(() => {
-                if (introFullyDone() && !isMobileGuardActive()) {
+                if (introFullyDone()) {
                     observer.disconnect();
                     revealIpod();
                 }
@@ -803,7 +801,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Safety only — intro is ~4s + fade; never interrupt playback
             setTimeout(() => {
-                if (!revealed && !isMobileGuardActive()) revealIpod();
+                if (!revealed) revealIpod();
             }, 15000);
         }
     }
