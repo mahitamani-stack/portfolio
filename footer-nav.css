@@ -1,0 +1,36 @@
+/* Footer hamburger menu (mobile). Webflow drops the collapsed menu *below*
+   its navbar and slides it down from above — fine for the header, but the
+   footer nav sits at the very bottom of the page, so the menu opened off the
+   end of the page. Anchor it above the footer navbar and slide it up instead. */
+.mahita-footer .w-nav-overlay {
+    top: auto !important;
+    bottom: 100% !important;
+    /* Webflow sets this inline to the full document height; with bottom:100%
+       that pushed the menu thousands of px up the page. Size to the menu. */
+    height: auto !important;
+    z-index: 1000 !important;
+}
+
+.mahita-footer .w-nav-overlay [data-nav-menu-open] {
+    position: relative !important; /* in flow, so the overlay can size to it */
+    transform: none !important; /* cancel Webflow's inline slide-down */
+    background-color: transparent !important; /* dark bg peeked out at the capsules' rounded corners */
+    animation: footer-menu-up 0.4s ease both;
+}
+
+@keyframes footer-menu-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* Footer links are plain black, which vanished on the dark menu background.
+   Match the header menu: cream capsules with dark text, current page inverted. */
+.mahita-footer [data-nav-menu-open] .nav {
+    background-color: #feffdd !important;
+    color: #111 !important;
+}
+
+.mahita-footer [data-nav-menu-open] .nav.w--current {
+    background-color: #111 !important;
+    color: #feffdd !important;
+}

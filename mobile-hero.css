@@ -34,46 +34,43 @@
   .section.hero.home-hero .content-wrapper-home.home-hero {
     position: relative !important;
     width: 100% !important;
-    min-height: 500px !important;
+    min-height: 700px !important; /* room for the full-width mac-window spread */
     order: 1;
     padding-bottom: 1.5rem !important;
     align-items: flex-start !important;
   }
 
-  /* macOS windows: float on the right, clear of the butter plate (which
-     sits in the left ~35% of this same box) so they don't visually cover
-     it. z-index stays below the plate's wrapper as a safety net for any
-     edge overlap the horizontal shift doesn't fully avoid. */
+  /* macOS windows: span the full hero width below the heading, like the
+     desktop spread. Per-window positions/sizes for this layout are set in
+     _initMacWindows() in index.html; the first two sit right of the butter
+     plate, the rest cascade below it. */
   #macos-container {
     position: absolute !important;
-    top: 5rem !important;
-    left: 38vw !important;
+    top: 7.5rem !important;
+    left: 0 !important;
     right: 0 !important;
     width: auto !important;
-    height: 145vw !important;
+    height: 540px !important;
     min-width: 0 !important;
     min-height: 0 !important;
-    max-height: 520px !important;
+    max-height: none !important;
     margin: 0 !important;
     pointer-events: none !important;
     z-index: 5 !important;
   }
 
   /* Keep the plate above the mac-windows in the stacking order, in case
-     any window still edges into its space at some viewport width. */
+     any window edges into its space. */
   .section.hero.home-hero .nekeg.imp {
     position: relative !important;
     z-index: 6 !important;
   }
 
-  /* This was also duplicated (and effectively overridden) in index.html's
-     own <style> block — consolidated to just this one rule. Values are the
-     old working 42%/150px/85px scaled up 25% (aspect-ratio locked, so both
-     dimensions grow together). */
+  /* Width comes from the inline per-window size; just cancel the desktop
+     220px min-width and cap it for wider phones/small tablets. */
   .mac-window {
-    width: 52.5% !important;
-    max-width: 188px !important;
-    min-width: 106px !important;
+    min-width: 0 !important;
+    max-width: 260px !important;
   }
 
   /* Vertical scroll strip: one vertical track on the right, behind macos tabs */
