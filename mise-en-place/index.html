@@ -15,17 +15,16 @@
 
     <!-- Theme and Layout Overrides -->
     <style id="custom-brand-overrides">
-        /* Nav background here is light (--pink-bg), so nav text stays original dark — no override needed */
         @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Pinyon+Script&display=swap');
         
         :root {
             --font-title: 'Pinyon Script', cursive;
             --font-body: 'Instrument Serif', serif;
-            --pink-bg: #f1e6d2;
-            --baby-blue: #5e657b;
+            --pink-bg: #f2cbd1;
+            --baby-blue: #b0e0e6;
             --light-yellow: #feffdc;
             --yellow-accent: #feffdc; /* Star and lines matching light yellow */
-            --pale-yellow: #f1e6d2;
+            --pale-yellow: #f4ebd4;
         }
         
         /* Disable page scroll - room is 100vh absolute */
@@ -34,7 +33,7 @@
             padding: 0;
             overflow: hidden !important;
             height: 100vh;
-            background-color: #5e657b !important; /* Baby blue background */
+            background-color: #b0e0e6 !important; /* Baby blue background */
             font-family: var(--font-body);
             -webkit-font-smoothing: antialiased;
             position: relative;
@@ -79,7 +78,7 @@
         .navbar-1.ivory.light .w-nav-link[href="/mise-en-place"],
         .navbar-1.ivory .w-nav-link[href="/mise-en-place"] {
             background-color: #000 !important;
-            color: #f1e6d2 !important;
+            color: #feffdd !important;
             border-radius: 20px;
         }
 
@@ -95,7 +94,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #5e657b; /* Baby blue background */
+            background-color: #b0e0e6; /* Baby blue background */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -130,7 +129,7 @@
 
             /* Premium styled frame/box */
             background-color: rgba(254, 255, 220, 0.96) !important; /* Cream yellow backdrop */
-            border: 2.5px solid #f1e6d2 !important; /* Pink border */
+            border: 2.5px solid #f2cbd1 !important; /* Pink border */
             border-radius: 12px;
             padding: 2rem 1.6rem;
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
@@ -140,7 +139,7 @@
         .left-cursive-title {
             font-family: 'Pinyon Script', cursive !important;
             font-size: clamp(4rem, 6.5vw, 5.6rem) !important;
-            color: #f1e6d2 !important; /* Corrected pink title color */
+            color: #f2cbd1 !important; /* Corrected pink title color */
             line-height: 0.95;
             margin: 0;
             text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.05);
@@ -162,7 +161,7 @@
 
             /* Premium styled frame/box */
             background-color: rgba(254, 255, 220, 0.96) !important; /* Cream yellow backdrop */
-            border: 2.5px solid #f1e6d2 !important; /* Pink border */
+            border: 2.5px solid #f2cbd1 !important; /* Pink border */
             border-radius: 12px;
             padding: 2.4rem 2rem;
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
@@ -458,7 +457,7 @@
             .mep-mobile-text-box .left-cursive-title {
                 font-family: 'Pinyon Script', cursive !important;
                 font-size: 3.2rem !important;
-                color: #f1e6d2 !important;
+                color: #f2cbd1 !important;
                 line-height: 0.95 !important;
                 margin: 0 0 0.5rem 0 !important;
             }
@@ -601,7 +600,7 @@
         <div class="nav-container w-container">
             <nav class="nav-menu w-nav-menu" role="navigation">
                 <a class="nav hover-spacing alt-styling black ivory-mm w-nav-link" href="/">Home</a>
-                <a aria-current="page" class="nav hover-spacing alt-styling black ivory-mm w-nav-link w--current" href="/mise-en-place">Mise en Place</a>
+                <a class="nav hover-spacing alt-styling black ivory-mm w-nav-link" href="/my-journey">My Journey</a><a aria-current="page" class="nav hover-spacing alt-styling black ivory-mm w-nav-link w--current" href="/mise-en-place">Mise en Place</a>
                 <div class="nav-right">
                     <a class="nav hover-spacing alt-styling black ivory-mm w-nav-link" href="mailto:mahita.mani@gmail.com">Let's Cook</a>
                 </div>
