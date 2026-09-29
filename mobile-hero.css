@@ -67,7 +67,9 @@
      the windows in the stacking order in case one edges into it. */
   .section.hero.home-hero .nekeg.imp {
     position: absolute !important;
-    left: 0 !important;
+    /* Hug the left edge and bleed off it slightly, like desktop — at 2/3
+       width a plain left:0 still read as centred. */
+    left: -12vw !important;
     top: calc(9rem + 540px) !important;
     bottom: auto !important;
     width: 66.67vw !important;
