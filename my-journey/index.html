@@ -162,7 +162,25 @@
         .sprite-3d-letter:nth-child(6).sprite-3d-active .sprite-3d-model {
             transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg) scale(0.8);
         }
-        
+        /* iOS WebKit (Safari and Chrome on iPhone) can keep compositing a
+           <model-viewer> WebGL canvas after it fades to opacity:0, so the 3D
+           letter stayed on screen after the scroll-reveal ripple. Also flip
+           visibility once the fade-out finishes so it's truly removed. */
+        .sprite-3d-model {
+            visibility: hidden;
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), visibility 0s linear 0.4s;
+        }
+        .sprite-3d-letter.sprite-3d-active .sprite-3d-model {
+            visibility: visible;
+            transition-delay: 0s;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .sprite-3d-letter:hover .sprite-3d-model {
+                visibility: visible;
+                transition-delay: 0s;
+            }
+        }
+
         /* ── Specific Overrides for Footer (from index.html) ── */
         .section.mahita-footer { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0 !important; padding-right: 0 !important; height: auto !important; }
         .n-container.mahita-footer-inner { background-color: #feffdd !important; padding-bottom: 2rem !important; }

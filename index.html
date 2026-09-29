@@ -313,6 +313,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
                 transform: translate(-50%, -50%) translateY(-30px) rotateX(18deg) rotateY(12deg) scale(0.8);
             }
         }
+        /* iOS WebKit (Safari and Chrome on iPhone) can keep compositing a
+           <model-viewer> WebGL canvas after it fades to opacity:0, so the 3D
+           letter stayed on screen after the scroll-reveal ripple. Also flip
+           visibility once the fade-out finishes so it's truly removed. */
+        .sprite-3d-model {
+            visibility: hidden;
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), visibility 0s linear 0.4s;
+        }
+        .sprite-3d-letter.sprite-3d-active .sprite-3d-model {
+            visibility: visible;
+            transition-delay: 0s;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .sprite-3d-letter:hover .sprite-3d-model {
+                visibility: visible;
+                transition-delay: 0s;
+            }
+        }
         .service-outer {
             background-image: none !important;
             background-color: #ffb6c1 !important;
@@ -652,6 +670,20 @@ frames.forEach(function(f){obs2.observe(f);});
 <style>
 /* Sizing for .mac-window on mobile portrait lives in mobile-hero.css
    (single source of truth) — this used to duplicate/conflict with it here. */
+.mac-window-hint {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin: 0 0 0.4rem;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 0.8rem !important; /* site-wide p sizing otherwise wins */
+    line-height: 1.2 !important;
+    color: #111;
+    opacity: 0.65;
+    white-space: nowrap;
+    pointer-events: none;
+}
 .mac-window-controls {
     position: absolute;
     top: 8px;
@@ -798,19 +830,19 @@ frames.forEach(function(f){obs2.observe(f);});
         const rotations = [-3, 1.5, -1, 2.5, -2, 1, -1.5];
         const sizes    = ['87%','78%','90%','75%','82.5%','72%','84%'];
 
-        // Phone portrait: the container spans the full hero width (see
-        // mobile-hero.css), so spread the windows across it — the first two
-        // beside the butter plate, the rest cascading below it — instead of
-        // the desktop spread, which piled them all up against the right edge.
+        // Phone portrait: the container spans the full hero width and the
+        // butter plate sits at the hero's bottom-left (see mobile-hero.css),
+        // so cascade the windows zig-zag down the full width, keeping the
+        // last one right of the plate.
         const isPhonePortrait = window.matchMedia('(max-width: 991px) and (orientation: portrait)').matches;
         if (isPhonePortrait) {
             positions.splice(0, positions.length,
-                { top: 0,  left: 40 }, { top: 13, left: 46 },
-                { top: 36, left: 2  }, { top: 30, left: 46 },
-                { top: 52, left: 24 }, { top: 64, left: 48 },
-                { top: 75, left: 4  },
+                { top: 0,  left: 2  }, { top: 7,  left: 44 },
+                { top: 24, left: 18 }, { top: 38, left: 46 },
+                { top: 48, left: 3  }, { top: 62, left: 40 },
+                { top: 77, left: 46 },
             );
-            sizes.splice(0, sizes.length, '54%','50%','56%','50%','54%','48%','52%');
+            sizes.splice(0, sizes.length, '56%','52%','54%','50%','52%','54%','50%');
         }
 
         for (let i = 0; i < 7; i++) {
@@ -980,6 +1012,14 @@ frames.forEach(function(f){obs2.observe(f);});
             });
         }
 
+        // Small usage hint above the cluster (appended after the windows, so
+        // the "already initialised" children check above is unaffected).
+        const hint = document.createElement('p');
+        hint.className = 'mac-window-hint';
+        const isTouch = window.matchMedia('(hover: none)').matches;
+        hint.textContent = isTouch ? 'drag to interact · double-tap to view' : 'drag to interact · double-click to view';
+        container.appendChild(hint);
+
         // Pause every mac-window video while the hero is scrolled off-screen.
         // 7 simultaneous autoplaying/looping videos left decoding indefinitely
         // even when scrolled away was a major source of mobile lag/crashes.
@@ -1131,6 +1171,12 @@ document.addEventListener('keydown', function(e){ if (e.key === 'Escape') window
                     if (el !== letter) el.classList.remove("sprite-3d-active");
                 });
                 letter.classList.toggle("sprite-3d-active", !wasActive);
+                // Settle back to the text letter on its own — otherwise a stray
+                // tap while scrolling left the 3D sprite stuck on screen.
+                clearTimeout(letter._revertTimer);
+                if (!wasActive) {
+                    letter._revertTimer = setTimeout(() => letter.classList.remove("sprite-3d-active"), 2500);
+                }
             });
         });
     });

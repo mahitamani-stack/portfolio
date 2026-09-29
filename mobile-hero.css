@@ -34,7 +34,7 @@
   .section.hero.home-hero .content-wrapper-home.home-hero {
     position: relative !important;
     width: 100% !important;
-    min-height: 700px !important; /* room for the full-width mac-window spread */
+    min-height: 800px !important; /* room for the mac-window spread + plate below */
     order: 1;
     padding-bottom: 1.5rem !important;
     align-items: flex-start !important;
@@ -42,11 +42,11 @@
 
   /* macOS windows: span the full hero width below the heading, like the
      desktop spread. Per-window positions/sizes for this layout are set in
-     _initMacWindows() in index.html; the first two sit right of the butter
-     plate, the rest cascade below it. */
+     _initMacWindows() in index.html; they cascade down the full width and
+     the butter plate sits at the bottom-left, clear of the cluster. */
   #macos-container {
     position: absolute !important;
-    top: 7.5rem !important;
+    top: 9rem !important; /* leaves a line for .mac-window-hint above it */
     left: 0 !important;
     right: 0 !important;
     width: auto !important;
@@ -59,10 +59,14 @@
     z-index: 5 !important;
   }
 
-  /* Keep the plate above the mac-windows in the stacking order, in case
-     any window edges into its space. */
+  /* Butter plate: bottom-left of the hero instead of the middle band, where
+     it forced every window into the right half. Stays above the windows in
+     the stacking order in case one edges into it. */
   .section.hero.home-hero .nekeg.imp {
-    position: relative !important;
+    position: absolute !important;
+    left: 0 !important;
+    bottom: 1rem !important;
+    width: 34% !important;
     z-index: 6 !important;
   }
 
