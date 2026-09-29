@@ -34,7 +34,9 @@
   .section.hero.home-hero .content-wrapper-home.home-hero {
     position: relative !important;
     width: 100% !important;
-    min-height: 800px !important; /* room for the mac-window spread + plate below */
+    /* room for the mac-window spread (9rem + 540px) + the 2/3-width plate
+       below it (~1.45 tall:wide, plus the img's 1.5rem top margin) */
+    min-height: calc(9rem + 540px + 97vw + 2.5rem) !important;
     order: 1;
     padding-bottom: 1.5rem !important;
     align-items: flex-start !important;
@@ -59,14 +61,17 @@
     z-index: 5 !important;
   }
 
-  /* Butter plate: bottom-left of the hero instead of the middle band, where
-     it forced every window into the right half. Stays above the windows in
-     the stacking order in case one edges into it. */
+  /* Butter plate: 2/3 of the screen width, directly below the mac-window
+     cluster (container top 9rem + 540px tall) rather than in the middle
+     band, where it forced every window into the right half. Stays above
+     the windows in the stacking order in case one edges into it. */
   .section.hero.home-hero .nekeg.imp {
     position: absolute !important;
     left: 0 !important;
-    bottom: 1rem !important;
-    width: 34% !important;
+    top: calc(9rem + 540px) !important;
+    bottom: auto !important;
+    width: 66.67vw !important;
+    height: auto !important; /* Webflow fixes .nekeg at 180px, which capped the plate */
     z-index: 6 !important;
   }
 
