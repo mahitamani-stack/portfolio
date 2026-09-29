@@ -63,8 +63,8 @@
 
   /* Butter plate: 2/3 of the screen width, directly below the mac-window
      cluster (container top 9rem + 540px tall) rather than in the middle
-     band, where it forced every window into the right half. Stays above
-     the windows in the stacking order in case one edges into it. */
+     band, where it forced every window into the right half.
+     */
   .section.hero.home-hero .nekeg.imp {
     position: absolute !important;
     /* Hug the left edge and bleed off it slightly, like desktop — at 2/3
@@ -74,7 +74,10 @@
     bottom: auto !important;
     width: 66.67vw !important;
     height: auto !important; /* Webflow fixes .nekeg at 180px, which capped the plate */
-    z-index: 6 !important;
+    /* Under #macos-container (5) and touch-transparent: above the windows it
+       swallowed every touch in its band, so windows couldn't be dragged there. */
+    z-index: 4 !important;
+    pointer-events: none !important;
   }
 
   /* Width comes from the inline per-window size; just cancel the desktop
