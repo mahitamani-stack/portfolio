@@ -231,6 +231,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
             display: flex;
             align-items: flex-start;
             justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
             gap: 2.5rem;
             width: 100%;
             max-width: 1500px;
@@ -240,6 +242,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
         .sprite-3d-wrapper {
             display: flex;
             justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
             align-items: flex-end;
             gap: 1rem;
             flex: 1;
@@ -256,6 +260,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
             height: 250px;
             display: flex;
             justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
             align-items: center;
             overflow: visible;
         }
@@ -345,7 +351,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
         }
         .knife-grid {
             display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, calc((100% - 20rem) / 5)));
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
             gap: 5rem;
             border-radius: 1rem;
             padding: 2.5rem 3.5rem 0.5rem 3.5rem;
@@ -384,6 +393,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
             display: flex;
             flex-direction: column;
             justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
             align-items: center;
         }
         .knife-card-title {
@@ -583,7 +594,7 @@ window.__startIntroVideo = function() {
 <h3 class="display-header black knife-card-title">Canva</h3>
 </div>
 </div>
-<div class="knife-subtitle-box">Menus &amp; Pitch Decks</div>
+<div class="knife-subtitle-box">Pitch Decks</div>
 </div>
 <div class="knife-column">
 <div class="knife-plate-wrap">
@@ -602,15 +613,6 @@ window.__startIntroVideo = function() {
 </div>
 </div>
 <div class="knife-subtitle-box">AI Image &amp; Video Generation</div>
-</div>
-<div class="knife-column">
-<div class="knife-plate-wrap">
-<img src="/platesetupforcards.png" class="knife-plate-img" alt=""/>
-<div class="service-outer knife-card">
-<h3 class="display-header black knife-card-title">After Effects</h3>
-</div>
-</div>
-<div class="knife-subtitle-box">Motion Graphics &amp; VFX</div>
 </div>
 <div class="knife-column">
 <div class="knife-plate-wrap">
