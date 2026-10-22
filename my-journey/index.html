@@ -306,16 +306,16 @@
            still meet. translateY % is of the img's own height (= page height). */
         .page-img, .diary-filmstrip-page { transform-origin: left top; }
         .left-page .page-img, .diary-filmstrip-page.page-left { transform-origin: right top; }
-        .page-img[src$="/page_2.png"], .page-img[src$="/page_3.png"],
-        .diary-filmstrip-page[src$="/page_2.png"], .diary-filmstrip-page[src$="/page_3.png"] {
+        .page-img[src*="/page_2.png"], .page-img[src*="/page_3.png"],
+        .diary-filmstrip-page[src*="/page_2.png"], .diary-filmstrip-page[src*="/page_3.png"] {
             transform: translateY(-2.55%);
         }
-        .page-img[src$="/page_6.png"], .page-img[src$="/page_7.png"],
-        .diary-filmstrip-page[src$="/page_6.png"], .diary-filmstrip-page[src$="/page_7.png"] {
+        .page-img[src*="/page_6.png"], .page-img[src*="/page_7.png"],
+        .diary-filmstrip-page[src*="/page_6.png"], .diary-filmstrip-page[src*="/page_7.png"] {
             transform: translateY(-1.04%) scale(1.0244);
         }
-        .page-img[src$="/page_8.png"], .page-img[src$="/page_9.png"],
-        .diary-filmstrip-page[src$="/page_8.png"], .diary-filmstrip-page[src$="/page_9.png"] {
+        .page-img[src*="/page_8.png"], .page-img[src*="/page_9.png"],
+        .diary-filmstrip-page[src*="/page_8.png"], .diary-filmstrip-page[src*="/page_9.png"] {
             transform: translateY(4.87%);
         }
 
@@ -622,39 +622,39 @@
                 <div id="diary-book" class="diary-book">
                     <!-- Page 1: Closed Cover (2260 x 3250) - With Wobble Animation -->
                     <div class="my-page cover-page" data-density="hard">
-                        <img src="/diary_assets/page_1.png" alt="Diary Cover - Closed Book" class="page-img wobble-cover">
+                        <img src="/diary_assets/page_1.png?v=2" alt="Diary Cover - Closed Book" class="page-img wobble-cover">
                     </div>
                     <!-- Page 2: Left Page 1 (2150 x 3250) -->
                     <div class="my-page left-page" data-density="hard">
-                        <img src="/diary_assets/page_2.png" alt="Diary Page 1" class="page-img">
+                        <img src="/diary_assets/page_2.png?v=2" alt="Diary Page 1" class="page-img">
                     </div>
                     <!-- Page 3: Right Page 1 (3333 x 3250) -->
                     <div class="my-page right-page" data-density="hard">
-                        <img src="/diary_assets/page_3.png" alt="Diary Page 2" class="page-img">
+                        <img src="/diary_assets/page_3.png?v=2" alt="Diary Page 2" class="page-img">
                     </div>
                     <!-- Page 4: Left Page 2 (2150 x 3250) -->
                     <div class="my-page left-page" data-density="hard">
-                        <img src="/diary_assets/page_4.png" alt="Diary Page 3" class="page-img">
+                        <img src="/diary_assets/page_4.png?v=2" alt="Diary Page 3" class="page-img">
                     </div>
                     <!-- Page 5: Right Page 2 (3333 x 3250) -->
                     <div class="my-page right-page" data-density="hard">
-                        <img src="/diary_assets/page_5.png" alt="Diary Page 4" class="page-img">
+                        <img src="/diary_assets/page_5.png?v=2" alt="Diary Page 4" class="page-img">
                     </div>
                     <!-- Page 6: Left Page 3 - Dopamine Menu spread (2364 x 3250) -->
                     <div class="my-page left-page" data-density="hard">
-                        <img src="/diary_assets/page_6.png" alt="Diary Page 5" class="page-img">
+                        <img src="/diary_assets/page_6.png?v=2" alt="Diary Page 5" class="page-img">
                     </div>
                     <!-- Page 7: Right Page 3 - Dopamine Menu spread (2364 x 3250) -->
                     <div class="my-page right-page" data-density="hard">
-                        <img src="/diary_assets/page_7.png" alt="Diary Page 6" class="page-img">
+                        <img src="/diary_assets/page_7.png?v=2" alt="Diary Page 6" class="page-img">
                     </div>
                     <!-- Page 8: Left Page 4 (2150 x 3250) -->
                     <div class="my-page left-page" data-density="hard">
-                        <img src="/diary_assets/page_8.png" alt="Diary Page 7" class="page-img">
+                        <img src="/diary_assets/page_8.png?v=2" alt="Diary Page 7" class="page-img">
                     </div>
                     <!-- Page 9: Right Page 4 (3333 x 3250) -->
                     <div class="my-page right-page" data-density="hard">
-                        <img src="/diary_assets/page_9.png" alt="Diary Page 8" class="page-img">
+                        <img src="/diary_assets/page_9.png?v=2" alt="Diary Page 8" class="page-img">
                     </div>
                 </div>
             </div>
@@ -662,15 +662,15 @@
             <!-- Mobile Portrait: Camera-Pan Filmstrip (all pages side by side, panned into view) -->
             <div class="diary-filmstrip-container" id="diary-filmstrip-container">
                 <div class="diary-filmstrip-track" id="diary-filmstrip-track">
-                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_1.png" alt="Diary Cover - Closed Book" class="diary-filmstrip-page page-1"></div>
-                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_2.png" alt="Diary Page 1" class="diary-filmstrip-page page-left"></div>
-                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_3.png" alt="Diary Page 2" class="diary-filmstrip-page page-right"></div>
-                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_4.png" alt="Diary Page 3" class="diary-filmstrip-page page-left"></div>
-                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_5.png" alt="Diary Page 4" class="diary-filmstrip-page page-right"></div>
-                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_6.png" alt="Diary Page 5" class="diary-filmstrip-page page-left"></div>
-                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_7.png" alt="Diary Page 6" class="diary-filmstrip-page page-right"></div>
-                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_8.png" alt="Diary Page 7" class="diary-filmstrip-page page-left"></div>
-                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_9.png" alt="Diary Page 8" class="diary-filmstrip-page page-right"></div>
+                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_1.png?v=2" alt="Diary Cover - Closed Book" class="diary-filmstrip-page page-1"></div>
+                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_2.png?v=2" alt="Diary Page 1" class="diary-filmstrip-page page-left"></div>
+                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_3.png?v=2" alt="Diary Page 2" class="diary-filmstrip-page page-right"></div>
+                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_4.png?v=2" alt="Diary Page 3" class="diary-filmstrip-page page-left"></div>
+                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_5.png?v=2" alt="Diary Page 4" class="diary-filmstrip-page page-right"></div>
+                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_6.png?v=2" alt="Diary Page 5" class="diary-filmstrip-page page-left"></div>
+                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_7.png?v=2" alt="Diary Page 6" class="diary-filmstrip-page page-right"></div>
+                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_8.png?v=2" alt="Diary Page 7" class="diary-filmstrip-page page-left"></div>
+                    <div class="diary-filmstrip-page-wrapper"><img src="/diary_assets/page_9.png?v=2" alt="Diary Page 8" class="diary-filmstrip-page page-right"></div>
                 </div>
             </div>
 
